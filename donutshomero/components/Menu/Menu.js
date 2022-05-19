@@ -1,5 +1,6 @@
-import s from "./Menu.module.scss";
+import Section from '../Section/Section';
 import SingleDonutCard from "./SingleDonutCard/SingleDonutCard";
+import s from "./Menu.module.scss";
 
 const dontus = [
   {
@@ -50,15 +51,13 @@ const dontus = [
 
 export default function Menu() {
   return (
-    <div className={s.container}>
-      <p className={s.title}>MENÚ</p>
-
-      <div>
+    <Section>
+      <div className={s.menu}>
         {dontus.length > 0 &&
           dontus.map((donut) => (
             <SingleDonutCard donut={donut.name} price={donut.price} />
           ))}
       </div>
-    </div>
+    </Section>
   );
 }

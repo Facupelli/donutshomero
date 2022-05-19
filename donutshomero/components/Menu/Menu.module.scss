@@ -1,23 +1,9 @@
 @import "../../styles//app.scss";
 
-.container {
-  @include app_width;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-
-  .title {
-    @include title;
-  }
-
-  >div{
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
-    row-gap: 1rem;
-    column-gap: 2%;
-  }
-
- 
+.menu {
+  margin-top: 2rem;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 50% 50%;
+  row-gap: 1rem;
 }
-
-

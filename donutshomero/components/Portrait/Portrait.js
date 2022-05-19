@@ -10,6 +10,8 @@ export default function Portrait() {
           src={portada}
           alt="Picture of the author"
           objectFit="cover"
+          height="1110px"
+          width="1920px"
         />
       </div>
     </div>

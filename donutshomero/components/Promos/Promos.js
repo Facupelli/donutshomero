@@ -1,4 +1,5 @@
 import DonutPromo from "../Promos/DonutPromo/DonutPromo";
+import Section from "../Section/Section";
 import s from "./Promos.module.scss";
 
 const six_donuts_promos = [
@@ -77,11 +78,9 @@ const dozen_donuts_promos = [
 
 export default function Promos() {
   return (
-    <div className={s.container}>
-      <p className={s.title}>PROMOCIONES</p>
-
+    <Section>
       <DonutPromo promo_type="6 DONAS" donuts={six_donuts_promos} />
       <DonutPromo promo_type="12 DONAS" donuts={dozen_donuts_promos} />
-    </div>
+    </Section>
   );
 }

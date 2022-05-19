@@ -1,15 +1,18 @@
+@import "../../../styles/app.scss";
+
 .container {
-    margin: 2rem 0rem;
+  margin-bottom: 3rem;
 
   .donuts_quantity_promo {
-    //   padding-left: 3rem;
-    margin: 1rem 0;
-    font-size: 1.5rem;
+    text-align: center;
+    font-size: 1.7rem;
     font-weight: 600;
+    margin-bottom: 1rem;
   }
 
   .six_donuts_promo {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
   }
