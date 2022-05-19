@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Portrait from "../components/Portrait/Portrait";
 import Nav from "../components/Nav/Nav";
-
-import s from "../styles/index.module.scss";
 import Promos from "../components/Promos/Promos";
 import Menu from "../components/Menu/Menu";
+import Local from '../components/Local/Local'
+
+import s from "../styles/index.module.scss";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <div className={s.promos}>
           <Promos />
           <Menu />
+          <Local />
         </div>
       </main>
 

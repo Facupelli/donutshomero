@@ -78,7 +78,7 @@ const dozen_donuts_promos = [
 
 export default function Promos() {
   return (
-    <Section>
+    <Section title="PROMOCIONES">
       <DonutPromo promo_type="6 DONAS" donuts={six_donuts_promos} />
       <DonutPromo promo_type="12 DONAS" donuts={dozen_donuts_promos} />
     </Section>

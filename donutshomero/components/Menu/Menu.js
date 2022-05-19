@@ -51,7 +51,7 @@ const dontus = [
 
 export default function Menu() {
   return (
-    <Section>
+    <Section title="MENÚ">
       <div className={s.menu}>
         {dontus.length > 0 &&
           dontus.map((donut) => (
