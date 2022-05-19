@@ -1,0 +1,16 @@
+.container {
+    margin: 2rem 0rem;
+
+  .donuts_quantity_promo {
+    //   padding-left: 3rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .six_donuts_promo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}

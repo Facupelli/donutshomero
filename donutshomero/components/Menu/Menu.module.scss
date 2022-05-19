@@ -9,10 +9,15 @@
     @include title;
   }
 
-  .six_donuts_promo{
-      display: flex;
-      gap: 2rem;
+  >div{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    row-gap: 1rem;
+    column-gap: 2%;
   }
+
+ 
 }
 
 

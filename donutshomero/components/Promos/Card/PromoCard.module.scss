@@ -1,0 +1,48 @@
+@import '../../../styles/app.scss';
+
+.promo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 425px;
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    // background-color: $second_pink;
+    background-color: white;
+    
+    .id{
+        font-size: 4rem;
+        color: $second_blue;
+        border-right: 1px solid $second_blue;
+        padding-right: .7rem;
+        // height: 100%;
+        // background-color: red;
+    }
+
+    .info{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+    }
+    
+    .image_container{
+        margin-left: auto;
+        background-color: $second_pink;
+        border-radius: 100%;
+        position: relative;
+        
+        .price{
+            text-align: end;
+            font-weight: 500;
+            font-size: 1.3rem;
+            position: absolute;
+            bottom: -10px;
+            right: 0px;
+            background-color: white;
+            border-radius: .7rem;
+            padding: .3rem;
+        }
+    }
+  
+  }
