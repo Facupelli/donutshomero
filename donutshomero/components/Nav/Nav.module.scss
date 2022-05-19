@@ -1,0 +1,43 @@
+@import "../../styles/app.scss";
+
+.container {
+  position: relative;
+  z-index: 5;
+  // background-color: #ee89b6;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  > div {
+    @include app_width;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+
+    .logo {
+      p {
+        font-size: 1.2rem;
+        font-weight: 300;
+        span {
+          font-weight: 800;
+        }
+      }
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 2rem;
+      color: #ec5b9e;
+      font-weight: 600;
+
+      p {
+        &:hover {
+          cursor: pointer;
+          color: #ee89b6;
+        }
+      }
+    }
+  }
+}

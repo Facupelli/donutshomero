@@ -1,0 +1,19 @@
+@import "../../styles//app.scss";
+
+.container {
+  @include app_width;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  .title {
+    @include title;
+  }
+}
+
+.promo {
+  display: inline-block;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 1%);
+  border-radius: 1.5rem;
+  background-color: white;
+}
