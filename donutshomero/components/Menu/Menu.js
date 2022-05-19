@@ -1,3 +1,4 @@
+import PromoCard from "./Card/PromoCard";
 import s from "./Menu.module.scss";
 
 export default function Menu() {
@@ -8,10 +9,23 @@ export default function Menu() {
       <div>
         <p>6 DONAS</p>
 
-        <div className={s.promo}>
-          <p>3 azucaradas</p>
-          <p>3 glaseadas de limon </p>
-          <p>$700</p>
+        <div className={s.six_donuts_promo}>
+          <PromoCard
+            fisrt_donuts="3 azucaradas"
+            second_donuts="3 glaseadas de limon"
+            price="700"
+          />
+          <PromoCard
+            fisrt_donuts="3 glaseadas de limon"
+            second_donuts="3 dulce de leche"
+            price="750"
+          />
+          <PromoCard
+            fisrt_donuts="1 azucaradas"
+            second_donuts="3 oreo"
+            third_donuts="3 chocotorta"
+            price="850"
+          />
         </div>
       </div>
     </div>

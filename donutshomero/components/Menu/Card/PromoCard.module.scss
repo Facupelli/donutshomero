@@ -1,0 +1,13 @@
+@import '../../../styles/app.scss';
+
+.promo {
+    display: inline-block;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 1%);
+    border-radius: 1.5rem;
+    background-color: white;
+  
+    .price{
+        text-align: center;
+    }
+  }
