@@ -29,13 +29,13 @@
       align-items: center;
       margin-left: auto;
       gap: 2rem;
-      color: #ec5b9e;
+      color: $main_pink;
       font-weight: 600;
 
       p {
         &:hover {
           cursor: pointer;
-          color: #ee89b6;
+          color: $second_pink;
         }
       }
     }

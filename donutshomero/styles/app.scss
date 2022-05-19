@@ -1,3 +1,9 @@
+
+$main_pink: #ec5b9e;
+$second_pink: #ee89b6;
+$main_blue: #00b5ff;
+$second_blue: #0081b7;
+
 @mixin app_width($width: 1200px) {
   max-width: $width;
   margin-left: auto;
@@ -11,5 +17,5 @@
   border-radius: 2rem;
   background-color: white;
   font-weight: 500;
-  color: #ec5b9e;
+  color: $main_pink;
 }

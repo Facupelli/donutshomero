@@ -1,13 +1,26 @@
 @import '../../../styles/app.scss';
 
 .promo {
-    display: inline-block;
-    padding: 1.5rem;
-    box-shadow: 0 4px 10px rgb(0 0 0 / 1%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
     border-radius: 1.5rem;
+    // background-color: $second_pink;
     background-color: white;
-  
-    .price{
-        text-align: center;
+    
+    .id{
+        font-size: 3.5rem;
     }
+
+    .info{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .price{
+            text-align: center;
+        }
+    }
+  
   }
