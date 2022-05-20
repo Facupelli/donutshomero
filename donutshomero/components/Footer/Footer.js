@@ -55,6 +55,7 @@ export default function Footer({ menuDivRef, promosDivRef }) {
               <a
                 href="https://www.instagram.com/donuts_homero/"
                 target="_blank"
+                rel="noreferrer"
               >
                 <FontAwesomeIcon icon={faInstagram} width="25px" />
               </a>
@@ -70,6 +71,7 @@ export default function Footer({ menuDivRef, promosDivRef }) {
             <a
               href="https://www.linkedin.com/in/facundopellicer/"
               target="_blank"
+              rel="noreferrer"
             >
               Facundo Pellicer
             </a>
