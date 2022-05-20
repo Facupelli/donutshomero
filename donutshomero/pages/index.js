@@ -3,14 +3,13 @@ import Portrait from "../components/Portrait/Portrait";
 import Nav from "../components/Nav/Nav";
 import Promos from "../components/Promos/Promos";
 import Menu from "../components/Menu/Menu";
-import Local from '../components/Local/Local'
+import Local from "../components/Local/Local";
 
 import s from "../styles/index.module.scss";
 import { useRef } from "react";
 import Footer from "../components/Footer/Footer";
 
 export default function Home() {
-
   const menuDivRef = useRef(null);
   const promosDivRef = useRef(null);
   const localDivRef = useRef(null);
@@ -29,7 +28,7 @@ export default function Home() {
           <Portrait />
         </div>
         <div className={s.promos}>
-          <Promos promosDivRef={promosDivRef}/>
+          <Promos promosDivRef={promosDivRef} />
           <Menu menuDivRef={menuDivRef} />
           <Local localDivRef={localDivRef} />
         </div>

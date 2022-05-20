@@ -18,11 +18,19 @@ export default function Footer({ menuDivRef, promosDivRef }) {
     <footer className={s.footer}>
       <div>
         <div className={s.grid}>
-          <div>
-            <p className={s.title}>PRODUCTOS</p>
-            <p onClick={() => hanldeScrollTo(menuDivRef)}>Donas</p>
-            <p className={s.title}>PROMOCIONES</p>
-            <p onClick={() => hanldeScrollTo(promosDivRef)}>Promociones</p>
+          <div className={s.first_column}>
+            <div>
+              <p className={s.title}>PRODUCTOS</p>
+              <p onClick={() => hanldeScrollTo(menuDivRef)}>Donas</p>
+            </div>
+            <div>
+              <p className={s.title}>PROMOCIONES</p>
+              <p onClick={() => hanldeScrollTo(promosDivRef)}>Promociones</p>
+            </div>
+            <div>
+              <p className={s.title}>EVENTOS</p>
+              <p>Festeja con Donuts Homero</p>
+            </div>
           </div>
 
           <div>
@@ -42,9 +50,12 @@ export default function Footer({ menuDivRef, promosDivRef }) {
             <p className={s.title}>SIGUENOS EN</p>
             <div className={s.networks}>
               <p>
-                <FontAwesomeIcon icon={faFacebook} width="25px" />
+                <FontAwesomeIcon icon={faFacebook} width="25px"  />
               </p>
-              <a href="https://www.instagram.com/donuts_homero/" target="_blank">
+              <a
+                href="https://www.instagram.com/donuts_homero/"
+                target="_blank"
+              >
                 <FontAwesomeIcon icon={faInstagram} width="25px" />
               </a>
               <p>
