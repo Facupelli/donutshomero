@@ -3,14 +3,13 @@
 .container {
   @include app_width;
   position: relative;
-  height: 90vh;
+  // height: 90vh;
+  max-height: 1110px;
 
   .image {
     padding-top: 1.5rem;
     // z-index: 1;
-    // position: absolute;
-    // top: -100px;
     // left: 0;
-    // background-color: transparent;
+    // background-color: blue;
   }
 }
