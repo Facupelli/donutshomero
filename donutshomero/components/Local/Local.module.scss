@@ -19,7 +19,8 @@
   display: grid;
   grid-template-columns: 50% 35% 10%;
   justify-items: start;
-  box-shadow: $second_pink 0px 3px 0px 0px;
+  box-shadow: rgba(99, 99, 99, 0.11) 0px 2px 8px 0px,
+    $second_pink 0px 3px 0px 0px;
 
   .ubi {
     border-right: 1px solid $second_blue;
@@ -46,7 +47,7 @@
       &:first-child {
         display: flex;
         align-items: center;
-        gap: .5rem;
+        gap: 0.5rem;
       }
     }
   }
