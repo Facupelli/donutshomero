@@ -6,8 +6,12 @@ import Menu from "../components/Menu/Menu";
 import Local from '../components/Local/Local'
 
 import s from "../styles/index.module.scss";
+import { useRef } from "react";
 
 export default function Home() {
+
+  const menuDivRef = useRef(null);
+
   return (
     <div>
       <Head>
@@ -17,13 +21,13 @@ export default function Home() {
       </Head>
 
       <main>
-        <Nav />
+        <Nav menuDivRef={menuDivRef} />
         <div className={s.portrait}>
           <Portrait />
         </div>
         <div className={s.promos}>
           <Promos />
-          <Menu />
+          <Menu menuDivRef={menuDivRef} />
           <Local />
         </div>
       </main>

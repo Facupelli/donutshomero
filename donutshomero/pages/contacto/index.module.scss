@@ -1,0 +1,7 @@
+@import '../../styles/app.scss';
+
+.info{
+    @include app_width;
+    padding-top: 4rem;
+
+}
