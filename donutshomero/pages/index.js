@@ -22,7 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className={s.main}>
         <Nav menuDivRef={menuDivRef} localDivRef={localDivRef} />
         <div className={s.portrait}>
           <Portrait />

@@ -68,7 +68,7 @@ export default function Local({ localDivRef }) {
           <div className={s.horario}>
             <p>
               <FontAwesomeIcon icon={faPhone} width="15px" color="#0081b7" />
-              <span>Telf:</span> 264 5467990
+              <span>Telf:</span> 264-5467990
             </p>
           </div>
         </div>

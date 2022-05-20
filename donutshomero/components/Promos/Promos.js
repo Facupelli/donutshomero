@@ -6,13 +6,13 @@ const six_donuts_promos = [
   {
     id: 1,
     fisrt_donuts: "3 azucaradas",
-    second_donuts: "3 glaseadas de limon",
+    second_donuts: "3 glaseadas de limón",
     third_donuts: "",
     price: "700",
   },
   {
     id: 2,
-    fisrt_donuts: "3 glaseadas de limon",
+    fisrt_donuts: "3 glaseadas de limón",
     second_donuts: "3 dulce de leche",
     third_donuts: "",
     price: "750",
@@ -26,7 +26,7 @@ const six_donuts_promos = [
   },
   {
     id: 4,
-    fisrt_donuts: "3 glaseada de limon",
+    fisrt_donuts: "3 glaseada de limón",
     second_donuts: "3 nutella",
     third_donuts: "",
     price: "900",
@@ -37,7 +37,7 @@ const dozen_donuts_promos = [
   {
     id: 1,
     fisrt_donuts: "3 azucaradas",
-    second_donuts: "3 glaseadas de limon",
+    second_donuts: "3 glaseadas de limón",
     third_donuts: "3 chocolate rosado",
     forth_donuts: "3 chocolate negro",
     price: "1350",
@@ -45,7 +45,7 @@ const dozen_donuts_promos = [
   {
     id: 2,
     fisrt_donuts: "4 azucaradas",
-    second_donuts: "4 rellenas a eleccion",
+    second_donuts: "4 rellenas a elección",
     third_donuts: "4 orer",
     forth_donuts: "",
     price: "1500",
@@ -55,7 +55,7 @@ const dozen_donuts_promos = [
     fisrt_donuts: "6 chocolate rosado",
     second_donuts: "2 oreo",
     third_donuts: "2 kit kat",
-    forth_donuts: "2 glaseadas de limon",
+    forth_donuts: "2 glaseadas de limón",
     price: "1600",
   },
   {
@@ -68,7 +68,7 @@ const dozen_donuts_promos = [
   },
   {
     id: 5,
-    fisrt_donuts: "6 glaseadas de limon",
+    fisrt_donuts: "6 glaseadas de limón",
     second_donuts: "6 dulce de leche",
     third_donuts: "",
     forth_donuts: "",

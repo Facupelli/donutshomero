@@ -10,7 +10,7 @@ const dontus = [
   },
   {
     id:2,
-    name: "GLASEADA DE LIMON",
+    name: "GLASEADA DE LIMÓN",
     price: 130,
   },
   {
