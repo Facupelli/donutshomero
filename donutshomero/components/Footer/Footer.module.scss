@@ -1,0 +1,48 @@
+@import "../../styles/app.scss";
+
+.footer {
+  background-color: #2e2f2f;
+
+  >div{
+      @include app_width;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4,25%);
+    justify-content: space-between;
+    padding: 2rem 0;
+    color: #7d7d7d;
+
+    .title {
+      color: #b1b1b0;
+      font-weight: 500;
+
+      &:hover {
+        cursor: auto;
+      }
+    }
+
+    p {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .facupelli {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.8rem;
+    border-top: 1px solid #7d7d7d;
+    color: #7d7d7d;
+
+    &:hover{
+        color: black;
+    }
+
+    a{
+        font-weight: 500;
+    }
+  }
+}

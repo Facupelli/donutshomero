@@ -7,6 +7,7 @@ import Local from '../components/Local/Local'
 
 import s from "../styles/index.module.scss";
 import { useRef } from "react";
+import Footer from "../components/Footer/Footer";
 
 export default function Home() {
 
@@ -31,6 +32,7 @@ export default function Home() {
           <Menu menuDivRef={menuDivRef} />
           <Local localDivRef={localDivRef} />
         </div>
+        <Footer />
       </main>
 
       <footer></footer>
