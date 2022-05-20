@@ -17,13 +17,13 @@
   border-radius: 0.5rem;
   padding: 1rem;
   display: grid;
-  grid-template-columns: 50% 30% 8%;
+  grid-template-columns: 45% 35% 8%;
   column-gap: 2%;
   justify-items: start;
 
 
   .ubi {
-    border-right: 1px solid $second_blue;
+    border-right: 1px solid $second_pink;
     padding-right: 2rem;
 
     .departament {

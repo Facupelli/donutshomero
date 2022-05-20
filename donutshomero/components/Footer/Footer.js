@@ -7,22 +7,29 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import s from "./Footer.module.scss";
+import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ menuDivRef, promosDivRef }) {
+  const hanldeScrollTo = (ref) => {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <footer className={s.footer}>
       <div>
         <div className={s.grid}>
           <div>
             <p className={s.title}>PRODUCTOS</p>
-            <p>Donas</p>
+            <p onClick={() => hanldeScrollTo(menuDivRef)}>Donas</p>
             <p className={s.title}>PROMOCIONES</p>
-            <p>Promociones</p>
+            <p onClick={() => hanldeScrollTo(promosDivRef)}>Promociones</p>
           </div>
 
           <div>
             <p className={s.title}>SOBRE NOSOTROS</p>
-            <p>Nuestras donas</p>
+            <Link href="/nosotros">
+              <p>Nuestras donas</p>
+            </Link>
           </div>
 
           <div>
@@ -37,9 +44,9 @@ export default function Footer() {
               <p>
                 <FontAwesomeIcon icon={faFacebook} width="25px" />
               </p>
-              <p>
+              <a href="https://www.instagram.com/donuts_homero/" target="_blank">
                 <FontAwesomeIcon icon={faInstagram} width="25px" />
-              </p>
+              </a>
               <p>
                 <FontAwesomeIcon icon={faTwitter} width="25px" />
               </p>

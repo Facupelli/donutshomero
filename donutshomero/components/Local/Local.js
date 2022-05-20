@@ -37,11 +37,11 @@ export default function Local({ localDivRef }) {
         <div className={s.ubi}>
           <div className={s.horario}>
             <p className={s.bold}>Horario</p>
-            <p className={s.dias}>Luneas a Domingo: 7 AM a 9 PM</p>
+            <p className={s.dias}>Luneas a Domingo: 7 AM a 9 PM.</p>
           </div>
           <div className={s.horario}>
             <p className={s.bold}>Delivery</p>
-            <p className={s.dias}>Luneas a Domingo: 12 AM a 8 PM</p>
+            <p className={s.dias}>Luneas a Domingo: 12 AM a 8 PM.</p>
           </div>
           <p>
             <span>Telf:</span> 264 5467990

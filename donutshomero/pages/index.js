@@ -12,6 +12,7 @@ import Footer from "../components/Footer/Footer";
 export default function Home() {
 
   const menuDivRef = useRef(null);
+  const promosDivRef = useRef(null);
   const localDivRef = useRef(null);
 
   return (
@@ -28,11 +29,11 @@ export default function Home() {
           <Portrait />
         </div>
         <div className={s.promos}>
-          <Promos />
+          <Promos promosDivRef={promosDivRef}/>
           <Menu menuDivRef={menuDivRef} />
           <Local localDivRef={localDivRef} />
         </div>
-        <Footer />
+        <Footer menuDivRef={menuDivRef} promosDivRef={promosDivRef} />
       </main>
 
       <footer></footer>
