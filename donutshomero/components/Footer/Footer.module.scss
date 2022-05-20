@@ -28,6 +28,12 @@
         cursor: pointer;
       }
     }
+
+    .networks{
+        margin-top: .5rem;
+        display: flex;
+        gap: .8rem;
+    }
   }
 
   .facupelli {
@@ -43,6 +49,7 @@
 
     a{
         font-weight: 500;
+        text-decoration: none;
     }
   }
 }

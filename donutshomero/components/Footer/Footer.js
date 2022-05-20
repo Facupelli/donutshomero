@@ -1,3 +1,11 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faInstagram,
+  faFacebook,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+
 import s from "./Footer.module.scss";
 
 export default function Footer() {
@@ -25,13 +33,29 @@ export default function Footer() {
 
           <div>
             <p className={s.title}>SIGUENOS EN</p>
-            <p>Face</p>
-            <p>Insta</p>
-            <p>Twitter</p>
+            <div className={s.networks}>
+              <p>
+                <FontAwesomeIcon icon={faFacebook} width="25px" />
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faInstagram} width="25px" />
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faTwitter} width="25px" />
+              </p>
+            </div>
           </div>
         </div>
         <div className={s.facupelli}>
-          <p>made with Love by <a href="https://www.linkedin.com/in/facundopellicer/" target="_blank">Facundo Pellicer</a></p>
+          <p>
+            made with <FontAwesomeIcon icon={faHeart} width="15px" /> by{" "}
+            <a
+              href="https://www.linkedin.com/in/facundopellicer/"
+              target="_blank"
+            >
+              Facundo Pellicer
+            </a>
+          </p>
         </div>
       </div>
     </footer>
