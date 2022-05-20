@@ -17,7 +17,7 @@ import s from "./Map.module.scss";
 export default function Map() {
   return (
     <MapContainer
-      style={{ height: "350px", width: "100%" }}
+      style={{ height: "250px", width: "100%" }}
       center={[-31.53483, -68.52154]}
       zoom={14}
     >

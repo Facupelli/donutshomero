@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import s from "./Nav.module.scss";
 
-export default function Nav({ route, menuDivRef }) {
+export default function Nav({ route, menuDivRef, localDivRef }) {
   const hanldeScrollTo = (ref) => {
     ref.current.scrollIntoView({ bottom: 100, behavior: "smooth" });
   };
@@ -20,7 +20,7 @@ export default function Nav({ route, menuDivRef }) {
         <div className={s.links}>
           <p>DELIVERY</p>
           <p onClick={() => hanldeScrollTo(menuDivRef)}>MENÚ</p>
-          <p>LOCALES</p>
+          <p onClick={() => hanldeScrollTo(localDivRef)}>LOCALES</p>
           <Link href="/nosotros">
             <p className={route === "nosotros" ? s.active : ""}>NOSOTROS</p>
           </Link>

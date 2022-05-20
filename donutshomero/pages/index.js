@@ -11,6 +11,7 @@ import { useRef } from "react";
 export default function Home() {
 
   const menuDivRef = useRef(null);
+  const localDivRef = useRef(null);
 
   return (
     <div>
@@ -21,14 +22,14 @@ export default function Home() {
       </Head>
 
       <main>
-        <Nav menuDivRef={menuDivRef} />
+        <Nav menuDivRef={menuDivRef} localDivRef={localDivRef} />
         <div className={s.portrait}>
           <Portrait />
         </div>
         <div className={s.promos}>
           <Promos />
           <Menu menuDivRef={menuDivRef} />
-          <Local />
+          <Local localDivRef={localDivRef} />
         </div>
       </main>
 
