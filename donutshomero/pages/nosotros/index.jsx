@@ -1,9 +1,13 @@
+import Head from "next/head";
 import Nav from "../../components/Nav/Nav";
 import s from "./index.module.scss";
 
 export default function Nosotros() {
   return (
     <div>
+      <Head>
+        <title>Nosotros</title>
+      </Head>
       <Nav route="nosotros" />
       <div className={s.info}>
         <p>QUE HACEMOS</p>
