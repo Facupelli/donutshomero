@@ -28,6 +28,7 @@ export default function PromoCard({
           width="120px"
           height="120px"
           objectFit="contain"
+          alt="media_docena"
           />
           <p className={s.price}>${price}</p>
       </div>

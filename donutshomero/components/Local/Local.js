@@ -30,6 +30,7 @@ export default function Local({ localDivRef }) {
             width="490px"
             objectFit="cover"
             style={{ borderRadius: ".5rem" }}
+            alt="local"
           />
         </div>
         <Map />
@@ -73,7 +74,7 @@ export default function Local({ localDivRef }) {
           </div>
         </div>
         <div className={s.single_donut_container}>
-          <Image src={single_donut} width="80px" height="80px" />
+          <Image src={single_donut} width="80px" height="80px" alt="single_donut" />
         </div>
       </div>
     </Section>

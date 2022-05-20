@@ -14,6 +14,7 @@ export default function SingleDonutCard({ donut, price }) {
           width="65px"
           height="65px"
           objectFit="contain"
+          alt="single_donut_2"
         />
       </div>
     </div>
