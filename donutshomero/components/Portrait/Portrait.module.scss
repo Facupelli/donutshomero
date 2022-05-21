@@ -3,8 +3,7 @@
 .container {
   @include app_width;
   position: relative;
-  // height: 90vh;
-  max-height: 1110px;
+  min-height: 570px;
 
   @media (max-width: 480px) {
     height: 90vh;
@@ -12,6 +11,8 @@
 
   .image {
     padding-top: 1.5rem;
+    position: absolute;
+    bottom: -4px;
     @media (max-width: 480px) {
       display: none;
     }
@@ -24,6 +25,8 @@
     display: none;
     @media (max-width: 480px) {
       display: block;
+      position: absolute;
+      bottom: -4px;
     }
   }
 }
