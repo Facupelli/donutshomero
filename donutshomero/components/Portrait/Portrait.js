@@ -1,5 +1,6 @@
 import s from "./Portrait.module.scss";
 import portada from "../../public/images/portada.png";
+import portada_phone from "../../public/images/portada_phone.png";
 import Image from "next/image";
 
 export default function Portrait() {
@@ -12,6 +13,15 @@ export default function Portrait() {
           objectFit="cover"
           height="1110px"
           width="1920px"
+        />
+      </div>
+      <div className={s.image_phone}>
+        <Image
+          src={portada_phone}
+          alt="Picture of the author"
+          objectFit="contain"
+          height="1512px"
+          width="1080px"
         />
       </div>
     </div>

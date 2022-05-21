@@ -6,10 +6,24 @@
   // height: 90vh;
   max-height: 1110px;
 
+  @media (max-width: 480px) {
+    height: 90vh;
+  }
+
   .image {
     padding-top: 1.5rem;
+    @media (max-width: 480px) {
+      display: none;
+    }
     // z-index: 1;
     // left: 0;
     // background-color: blue;
+  }
+
+  .image_phone {
+    display: none;
+    @media (max-width: 480px) {
+      display: block;
+    }
   }
 }
