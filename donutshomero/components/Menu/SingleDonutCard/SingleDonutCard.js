@@ -17,6 +17,15 @@ export default function SingleDonutCard({ donut, price }) {
           alt="single_donut_2"
         />
       </div>
+      <div className={s.image_container_phone}>
+        <Image
+          src={single_donut}
+          width="45px"
+          height="45px"
+          objectFit="contain"
+          alt="single_donut_phone"
+        />
+      </div>
     </div>
   );
 }
