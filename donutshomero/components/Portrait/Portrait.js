@@ -19,7 +19,7 @@ export default function Portrait() {
         <Image
           src={portada_phone}
           alt="Picture of the author"
-          objectFit="contain"
+          objectFit="cover"
           height="1512px"
           width="1080px"
         />
