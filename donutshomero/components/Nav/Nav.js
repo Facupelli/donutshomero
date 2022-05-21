@@ -1,13 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import s from "./Nav.module.scss";
 import { useState } from "react";
 
 export default function Nav({ route, menuDivRef, localDivRef }) {
+  const router = useRouter();
+
   const hanldeScrollTo = (ref) => {
-    ref.current.scrollIntoView({ bottom: 100, behavior: "smooth" });
+    if (route === "nosotros" || route === "contacto") {
+      router.push("/");
+    } else {
+      ref.current.scrollIntoView({ bottom: 100, behavior: "smooth" });
+    }
   };
 
   const [showPhoneNav, setShowPhoneNav] = useState(false);
