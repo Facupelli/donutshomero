@@ -14,6 +14,10 @@ $second_blue: #0081b7;
   @media (max-width: 480px) {
     max-width: 350px;
   }
+
+  @media (max-width: 380px) {
+    max-width: 320px;
+  }
 }
 
 @mixin title() {
