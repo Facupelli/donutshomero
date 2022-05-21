@@ -1,11 +1,10 @@
-@import '../../styles/app.scss';
+@import "../../styles/app.scss";
 
 .container {
-    @include app_width;
-    padding-top: 4rem;
-  
-    .title {
-      @include title;
-    }
-  
+  @include app_width;
+  padding-top: 4rem;
+
+  .title {
+    @include title;
   }
+}

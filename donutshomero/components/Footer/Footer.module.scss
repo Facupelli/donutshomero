@@ -14,6 +14,10 @@
     padding: 2rem 0;
     color: #7d7d7d;
 
+    @media (max-width: 480px) {
+      grid-template-columns: 50% 50%;
+    }
+
     .first_column{
       >div{
         margin-bottom: 1rem;

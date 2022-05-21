@@ -16,6 +16,11 @@
     padding: 1.5rem 0;
 
     .logo {
+
+      // @media (max-width: 480px) {
+      //   margin-left: 1rem;
+      // }
+
       p {
         font-size: 1.2rem;
         font-weight: 300;
@@ -35,6 +40,10 @@
       gap: 2rem;
       color: $main_pink;
       font-weight: 600;
+
+      @media (max-width: 480px) {
+        display: none;
+      }
 
       p {
         &:hover {

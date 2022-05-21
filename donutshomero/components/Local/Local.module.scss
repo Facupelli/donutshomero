@@ -6,67 +6,13 @@
   grid-template-columns: 49% 49%;
   column-gap: 2%;
 
+  @media (max-width:480px) {
+    grid-template-columns: 100%;
+    row-gap: 1rem;
+  }
+
   .image_container {
     width: 100%;
   }
 }
 
-.info {
-  margin-top: 1rem;
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: 50% 35% 10%;
-  justify-items: start;
-  box-shadow: rgba(99, 99, 99, 0.11) 0px 2px 8px 0px,
-    $second_pink 0px 3px 0px 0px;
-
-  .ubi {
-    border-right: 1px solid $second_blue;
-    padding-right: 2rem;
-
-    .departament {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: $second_pink;
-      margin-bottom: 1rem;
-    }
-
-    .address {
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-  }
-
-  .horario {
-    margin-bottom: 1rem;
-    p {
-      &:first-child {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-    }
-  }
-
-  .bold {
-    font-weight: 500;
-    // margin-bottom: .2rem;
-    // margin-top: .2rem;
-  }
-
-  .dias {
-    font-size: 0.95rem;
-  }
-
-  span {
-    font-weight: 500;
-  }
-
-  .single_donut_container {
-    align-self: center;
-  }
-}

@@ -10,6 +10,10 @@ $second_blue: #0081b7;
   max-width: $width;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 480px) {
+    max-width: 350px;
+  }
 }
 
 @mixin title() {
