@@ -15,6 +15,8 @@
     font-size: 1.1rem;
 
     @media (max-width: 920px) {
+      padding: 1rem 0;
+
       .click:checked ~ ul {
         left: 0;
       }
