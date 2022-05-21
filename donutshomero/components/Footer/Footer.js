@@ -5,9 +5,9 @@ import {
   faFacebook,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
 
 import s from "./Footer.module.scss";
-import Link from "next/link";
 
 export default function Footer({ menuDivRef, promosDivRef }) {
   const hanldeScrollTo = (ref) => {

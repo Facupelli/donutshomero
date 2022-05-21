@@ -1,14 +1,23 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 import s from "./Nav.module.scss";
+import { useState } from "react";
 
 export default function Nav({ route, menuDivRef, localDivRef }) {
   const hanldeScrollTo = (ref) => {
     ref.current.scrollIntoView({ bottom: 100, behavior: "smooth" });
   };
 
+  const [showPhoneNav, setShowPhoneNav] = useState(false);
+
+  const handleClickMenu = () => {
+    setShowPhoneNav(!showPhoneNav);
+  };
+
   return (
-    <nav className={s.container}>
+    <nav className={s.nav}>
       <div>
         <div className={s.logo}>
           <Link href="/">
@@ -17,18 +26,27 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
             </p>
           </Link>
         </div>
-        <div className={s.links}>
-          <p>DELIVERY</p>
-          <p onClick={() => hanldeScrollTo(menuDivRef)}>MENÚ</p>
-          <p onClick={() => hanldeScrollTo(localDivRef)}>LOCALES</p>
+        <input type="checkbox" name="click" className={s.click} id="click" />
+        <label htmlFor="click" className={s.icon_container}>
+          <FontAwesomeIcon
+            icon={faBars}
+            width="25px"
+            onClick={handleClickMenu}
+          />
+        </label>
+        <ul className={s.links}>
+          <li>DELIVERY</li>
+          <li onClick={() => hanldeScrollTo(menuDivRef)}> MENÚ</li>
+          <li onClick={() => hanldeScrollTo(localDivRef)}>LOCALES</li>
           <Link href="/nosotros">
-            <p className={route === "nosotros" ? s.active : ""}>NOSOTROS</p>
+            <li className={route === "nosotros" ? s.active : ""}>NOSOTROS</li>
           </Link>
           <Link href="/contacto">
-            <p className={route === "contacto" ? s.active : ""}>CONTACTO</p>
+            <li className={route === "contacto" ? s.active : ""}>CONTACTO</li>
           </Link>
-        </div>
+        </ul>
       </div>
     </nav>
   );
+  s;
 }

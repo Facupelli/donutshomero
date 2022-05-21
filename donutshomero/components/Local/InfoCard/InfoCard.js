@@ -17,7 +17,7 @@ export default function InfoCard() {
         <p className={s.departament}>CAPITAL</p>
         <p className={s.address}>
           <FontAwesomeIcon icon={faLocationDot} width="15px" color="#0081b7" />
-          CALLE JUJUY N 4234, ENTRE LAPRIDA Y LIBERTADOR
+          CALLE JUJUY N° 4234, ENTRE LAPRIDA Y LIBERTADOR
         </p>
       </div>
       <div className={s.ubi}>

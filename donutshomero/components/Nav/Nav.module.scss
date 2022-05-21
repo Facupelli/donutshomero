@@ -1,11 +1,7 @@
 @import "../../styles/app.scss";
 
-.container {
+.nav {
   font-family: $karla;
-  position: relative;
-  z-index: 5;
-  // background-color: #ee89b6;
-  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
@@ -13,14 +9,18 @@
     @include app_width;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     padding: 1.5rem 0;
+    width: 100%;
+    font-size: 1.1rem;
+
+    @media (max-width: 920px) {
+      .click:checked ~ ul {
+        left: 0;
+      }
+    }
 
     .logo {
-
-      // @media (max-width: 480px) {
-      //   margin-left: 1rem;
-      // }
-
       p {
         font-size: 1.2rem;
         font-weight: 300;
@@ -28,7 +28,7 @@
           font-weight: 800;
         }
       }
-      &:hover{
+      &:hover {
         cursor: pointer;
       }
     }
@@ -41,24 +41,58 @@
       color: $main_pink;
       font-weight: 600;
 
-      @media (max-width: 480px) {
-        display: none;
+      @media (max-width: 920px) {
+        position: absolute;
+        z-index: 2;
+        top: 80px;
+        left: -100%;
+        background: #111;
+        height: 100vh;
+        width: 100%;
+        transition: all 0.3s ease;
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+        align-items: flex-end;
+        padding: 3rem;
+        font-size: 1.5rem;
       }
 
-      p {
+      li {
+        text-decoration: none;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
         &:hover {
           cursor: pointer;
           color: $second_pink;
         }
       }
 
-      .active{
+      .active {
         color: $second_blue;
 
-        &:hover{
-          color: $main_blue
+        &:hover {
+          color: $main_blue;
         }
       }
+    }
+
+    .icon_container {
+      font-size: 22px;
+      cursor: pointer;
+      display: none;
+
+      @media (max-width: 920px) {
+        display: block;
+        margin-left: auto;
+      }
+    }
+
+    input[type="checkbox"] {
+      display: none;
     }
   }
 }
