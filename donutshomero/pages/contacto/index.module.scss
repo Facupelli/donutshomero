@@ -3,7 +3,7 @@
 .info {
   @include app_width;
   font-family: $karla;
-  padding: 4rem 0;
+  padding: 6rem 0;
   min-height: 80vh;
 
   display: grid;
@@ -24,13 +24,16 @@
       font-size: 1.5rem;
       padding: 0rem 0;
       border-bottom: 2px solid $main_pink;
+      margin-left: 2rem;
     }
 
     > div {
       margin-top: 1rem;
       display: flex;
-      gap: 1rem;
-      color: $second_blue;
+      align-items: center;
+      gap: 2rem;
+      color: #00d455;
+      margin-left: 2rem;
 
       &:hover {
         cursor: pointer;
@@ -47,5 +50,7 @@
     font-weight: 500;
     margin-bottom: 1.5rem;
     color: black;
+    border-left: 2px solid $main_pink;
+    padding: 0 2rem;
   }
 }

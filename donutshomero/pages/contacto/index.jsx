@@ -21,7 +21,7 @@ export default function Contact() {
           <span>+54 264-4415016</span>
           <div>
             <a>
-              <FontAwesomeIcon icon={faPhone} width="40px" />
+              <FontAwesomeIcon icon={faPhone} width="45px" />
             </a>
             <a
               href="https://wa.me/542644415016"
@@ -39,7 +39,11 @@ export default function Contact() {
             target="_blank"
             rel="noreferrer"
           >
-            <FontAwesomeIcon icon={faInstagram} width="50px" />
+            <FontAwesomeIcon
+              icon={faInstagram}
+              width="50px"
+              style={{ marginLeft: "2rem" }}
+            />
           </a>
         </div>
       </div>
