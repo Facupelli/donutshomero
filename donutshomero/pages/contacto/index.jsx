@@ -14,7 +14,7 @@ export default function Contact() {
         <p>DEJANOS TU MENSAJE</p>
         <p>SEGUINOS EN LAS REDES</p>
       </div>
-      <Footer />
+      <Footer route="contacto" />
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function Nosotros() {
         </p>
         <p>NUESTRA HISTORIA</p>
       </div>
-      <Footer />
+      <Footer route="nosotros" />
     </div>
   );
 }

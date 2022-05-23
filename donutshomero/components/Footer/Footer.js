@@ -8,10 +8,16 @@ import {
 import Link from "next/link";
 
 import s from "./Footer.module.scss";
+import { Router, useRouter } from "next/router";
 
-export default function Footer({ menuDivRef, promosDivRef }) {
+export default function Footer({ route, menuDivRef, promosDivRef }) {
+  const router = useRouter();
   const hanldeScrollTo = (ref) => {
-    ref.current.scrollIntoView({ behavior: "smooth" });
+    if (route === "nosotros" || route === "contacto") {
+      router.push("/");
+    } else {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -29,7 +35,9 @@ export default function Footer({ menuDivRef, promosDivRef }) {
             </div>
             <div>
               <p className={s.title}>EVENTOS</p>
-              <p>Festeja con Donuts Homero</p>
+              <Link href="/contacto">
+                <p>Festeja con Donuts Homero</p>
+              </Link>
             </div>
           </div>
 
@@ -50,7 +58,7 @@ export default function Footer({ menuDivRef, promosDivRef }) {
             <p className={s.title}>SIGUENOS EN</p>
             <div className={s.networks}>
               <p>
-                <FontAwesomeIcon icon={faFacebook} width="25px"  />
+                <FontAwesomeIcon icon={faFacebook} width="25px" />
               </p>
               <a
                 href="https://www.instagram.com/donuts_homero/"
