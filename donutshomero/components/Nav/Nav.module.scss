@@ -44,20 +44,26 @@
         border-radius: 1rem;
         color: white;
         display: flex;
-        gap: 0.5rem;
         align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
 
         @media (max-width: 920px) {
-          background-color: white;
-          color: #00d455;
-          display: inline-block;
-          margin: 0;
-          font-size: 1rem;
+          padding: 0;
+          margin-left: 1rem;
+          border-radius: 100%;
         }
 
         > div {
           &:first-child {
             font-size: 1.5rem;
+            @media (max-width: 920px) {
+              height: 30px;
+              width: 30px;
+              padding: .25rem;
+              font-size: 1rem;
+              text-align: center;
+            }
           }
 
           &:last-child {
