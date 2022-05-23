@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    padding: 1.5rem 0;
+    padding: 1.2rem 0;
     width: 100%;
 
     @media (max-width: 920px) {
@@ -31,6 +31,41 @@
       }
       &:hover {
         cursor: pointer;
+      }
+    }
+
+    .ws {
+      a {
+        margin-right: auto;
+        margin-left: 2rem;
+        background-color: #00d455;
+        padding: 0.2rem 1rem;
+        font-size: 0.8rem;
+        border-radius: 1rem;
+        color: white;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        @media (max-width: 920px) {
+          background-color: white;
+          color: #00d455;
+          display: inline-block;
+          margin: 0;
+          font-size: 1rem;
+        }
+
+        > div {
+          &:first-child {
+            font-size: 1.5rem;
+          }
+
+          &:last-child {
+            @media (max-width: 920px) {
+              display: none;
+            }
+          }
+        }
       }
     }
 

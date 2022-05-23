@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -32,6 +33,21 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
               <span>DONUTS</span> HOMERO
             </p>
           </Link>
+        </div>
+        <div className={s.ws}>
+          <a href="https://wa.me/542644415016" target="_blank" rel="noreferrer">
+            <div>
+              <FontAwesomeIcon
+                icon={faWhatsapp}
+                width="20px"
+                onClick={handleClickMenu}
+              />
+            </div>
+            <div>
+              <p>pedi aquí </p>
+              <p>Whatsapp</p>
+            </div>
+          </a>
         </div>
         <input type="checkbox" name="click" className={s.click} id="click" />
         <label htmlFor="click" className={s.icon_container}>
