@@ -65,6 +65,26 @@
         list-style: none;
         padding: 0;
         margin: 0;
+        position: relative;
+        z-index: 2;
+
+        .proximamente {
+          position: absolute;
+          z-index: 0;
+          top: 30px;
+          color: white;
+          background-color: $second_pink;
+          padding: 0.5rem;
+          border-radius: 0.2rem;
+          font-size: 0.8rem;
+          display: none;
+        }
+
+        &:first-child {
+          &:hover .proximamente {
+            display: block;
+          }
+        }
 
         &:hover {
           cursor: pointer;

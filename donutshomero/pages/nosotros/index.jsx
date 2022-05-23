@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Footer from "../../components/Footer/Footer";
 import Nav from "../../components/Nav/Nav";
 import s from "./index.module.scss";
 
@@ -33,6 +34,7 @@ export default function Nosotros() {
         </p>
         <p>NUESTRA HISTORIA</p>
       </div>
+      <Footer />
     </div>
   );
 }

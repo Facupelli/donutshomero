@@ -42,7 +42,12 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
           />
         </label>
         <ul className={s.links}>
-          <li>DELIVERY</li>
+          <li>
+            DELIVERY
+            <ul className={s.proximamente}>
+              <li>PROXIMAMENTE</li>
+            </ul>
+          </li>
           <li onClick={() => hanldeScrollTo(menuDivRef)}> MENÚ</li>
           <li onClick={() => hanldeScrollTo(localDivRef)}>LOCALES</li>
           <Link href="/nosotros">
