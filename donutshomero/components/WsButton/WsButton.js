@@ -9,8 +9,8 @@ export default function WsButton() {
       <a href="https://wa.me/542644415016" target="_blank" rel="noreferrer">
         <FontAwesomeIcon
           icon={faWhatsapp}
-          width="50px"
-          height="50px"
+          width="40px"
+          height="40px"
           // onClick={handleClickMenu}
         />
       </a>
