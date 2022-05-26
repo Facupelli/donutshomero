@@ -1,7 +1,8 @@
-@import '../styles/app.scss';
+@import "../styles/app.scss";
 
-.main{
+.main {
   font-family: $karla;
+  position: relative;
 
   .portrait {
     // background-color: red;
@@ -14,9 +15,11 @@
       #0081b7
     );
   }
-  
-  .promos{
+
+  .promos {
     background-color: #f1f1f0;
     padding-bottom: 8rem;
-}
+  }
+
+  
 }

@@ -41,7 +41,6 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
                 icon={faWhatsapp}
                 width="20px"
                 height="20px"
-                onClick={handleClickMenu}
               />
             </div>
             <div>

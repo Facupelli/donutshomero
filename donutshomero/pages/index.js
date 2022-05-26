@@ -5,9 +5,11 @@ import Promos from "../components/Promos/Promos";
 import Menu from "../components/Menu/Menu";
 import Local from "../components/Local/Local";
 
+
 import s from "../styles/index.module.scss";
 import { useRef } from "react";
 import Footer from "../components/Footer/Footer";
+import WsButton from "../components/WsButton/WsButton";
 
 export default function Home() {
   const menuDivRef = useRef(null);
@@ -32,6 +34,7 @@ export default function Home() {
           <Menu menuDivRef={menuDivRef} />
           <Local localDivRef={localDivRef} />
         </div>
+        <WsButton />
         <Footer menuDivRef={menuDivRef} promosDivRef={promosDivRef} />
       </main>
 

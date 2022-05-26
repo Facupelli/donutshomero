@@ -1,0 +1,24 @@
+.ws {
+    display: none;
+
+    @media (max-width: 920px) {
+      position: fixed;
+      // position: absolute;
+      z-index: 1;
+      right: 20px;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background-color: #00d455;
+      border-radius: 100%;
+    }
+
+    a {
+      @media (max-width: 920px) {
+        color: white;
+      }
+    }
+  }

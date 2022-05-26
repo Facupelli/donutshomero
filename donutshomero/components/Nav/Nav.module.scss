@@ -49,9 +49,10 @@
         gap: 0.5rem;
 
         @media (max-width: 920px) {
-          padding: 0;
-          margin-left: 1rem;
-          border-radius: 100%;
+          // padding: 0;
+          // margin-left: 1rem;
+          // border-radius: 100%;
+          display: none;
         }
 
         > div {
