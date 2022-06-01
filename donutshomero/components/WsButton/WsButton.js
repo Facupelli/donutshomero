@@ -3,9 +3,9 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 import s from "./WsButton.module.scss";
 
-export default function WsButton() {
+export default function WsButton({ scrollY }) {
   return (
-    <div className={s.ws}>
+    <div className={scrollY > 62 ? s.wsDesktop : s.ws}>
       <a href="https://wa.me/542644415016" target="_blank" rel="noreferrer">
         <FontAwesomeIcon
           icon={faWhatsapp}
