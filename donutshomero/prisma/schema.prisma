@@ -11,26 +11,45 @@ model Donut {
   id          String     @default(cuid()) @id
   title       String
   price       Int
-  Customers   DonutsBuyedByUsers[]
+  promos      DonutsPromo[] @relation("DonutsInPromo")
+  Customers   DonutsByUsers[]
+}
+
+model DonutsPromo {
+  id          String     @default(cuid()) @id
+  title       String
+  price       Int
+  donuts      Donut[] @relation("DonutsInPromo")
+  Customers   DonutsPromoByUsers[]
 }
 
 model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  Donuts        DonutsBuyedByUsers[]
+  id                      String       @default(cuid()) @id
+  name                    String?
+  email                   String?   @unique
+  createdAt               DateTime  @default(now()) @map(name: "created_at")
+  updatedAt               DateTime  @updatedAt @map(name: "updated_at")
+  DonutsBought            DonutsByUsers[]
+  DonutsPromosBought      DonutsPromoByUsers[]
   @@map(name: "users")
 }
 
-model DonutsBuyedByUsers {
+model DonutsByUsers {
   donut       Donut     @relation(fields: [donutId], references: [id])
   donutId     String // relation scalar field (used in the `@relation` attribute above)
   user        User @relation(fields: [userId], references: [id])
   userId      String // relation scalar field (used in the `@relation` attribute above)
   assignedAt  DateTime @default(now())
-  assignedBy  String
+
+  @@id([donutId, userId])
+}
+
+model DonutsPromoByUsers {
+  donutsPromo       DonutsPromo     @relation(fields: [donutId], references: [id])
+  donutId           String // relation scalar field (used in the `@relation` attribute above)
+  user              User @relation(fields: [userId], references: [id])
+  userId            String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt        DateTime @default(now())
 
   @@id([donutId, userId])
 }
