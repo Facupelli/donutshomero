@@ -17,11 +17,11 @@ export default function Home() {
 
   const [scrollY, setScrollY] = useState(0);
 
-  useEffect(() => {
-    window.onscroll = function (e) {
-      setScrollY(window.scrollY); // Value of scroll Y in px
-    };
-  });
+  // useEffect(() => {
+  //   window.onscroll = function (e) {
+  //     setScrollY(window.scrollY); // Value of scroll Y in px
+  //   };
+  // });
 
   return (
     <div>
