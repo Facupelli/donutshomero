@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import local from "../../public/images/local.jpg";
 import Image from "next/image";
 
-
 import s from "./Local.module.scss";
 import InfoCard from "./InfoCard/InfoCard";
 

@@ -1,16 +1,19 @@
+// import prisma from "../lib/prisma";
+import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
+
+//COMPONENTS
 import Portrait from "../components/Portrait/Portrait";
 import Nav from "../components/Nav/Nav";
-import Promos from "../components/Promos/Promos";
 import Menu from "../components/Menu/Menu";
+import Promos from "../components/Promos/Promos";
 import Local from "../components/Local/Local";
-
-import s from "../styles/index.module.scss";
-import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer/Footer";
 import WsButton from "../components/WsButton/WsButton";
 
-export default function Home() {
+import s from "../styles/index.module.scss";
+
+export default function Home({ feed }) {
   const menuDivRef = useRef(null);
   const promosDivRef = useRef(null);
   const localDivRef = useRef(null);
@@ -21,7 +24,9 @@ export default function Home() {
   //   window.onscroll = function (e) {
   //     setScrollY(window.scrollY); // Value of scroll Y in px
   //   };
-  // });
+  // }, []);
+
+  console.log("FEED", feed);
 
   return (
     <div>
@@ -49,3 +54,15 @@ export default function Home() {
     </div>
   );
 }
+
+// export const getStaticProps = async () => {
+  // const feed = await prisma.post.findMany({
+  //   where: { published: true },
+  //   include: {
+  //     author: {
+  //       select: { name: true },
+  //     },
+  //   },
+  // });
+  // return { props: { feed:[] } };
+// };
