@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -37,11 +37,7 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
         <div className={s.ws}>
           <a href="https://wa.me/542644415016" target="_blank" rel="noreferrer">
             <div>
-              <FontAwesomeIcon
-                icon={faWhatsapp}
-                width="20px"
-                height="20px"
-              />
+              <FontAwesomeIcon icon={faWhatsapp} width="20px" height="20px" />
             </div>
             <div>
               <p>pedi aquí </p>
@@ -58,12 +54,14 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
           />
         </label>
         <ul className={s.links}>
-          <li>
-            DELIVERY
-            <ul className={s.proximamente}>
-              <li>PROXIMAMENTE</li>
-            </ul>
-          </li>
+          <Link href="/delivery">
+            <li>
+              DELIVERY
+              <ul className={s.proximamente}>
+                <li>PROXIMAMENTE</li>
+              </ul>
+            </li>
+          </Link>
           <li onClick={() => hanldeScrollTo(menuDivRef)}> MENÚ</li>
           <li onClick={() => hanldeScrollTo(localDivRef)}>LOCALES</li>
           <Link href="/nosotros">
@@ -72,6 +70,7 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
           <Link href="/contacto">
             <li className={route === "contacto" ? s.active : ""}>CONTACTO</li>
           </Link>
+          <li><FontAwesomeIcon icon={faCartShopping} width="20px" /></li>
         </ul>
       </div>
     </nav>
