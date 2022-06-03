@@ -48,6 +48,17 @@
       .price {
         margin-left: auto;
       }
+
+      .trash_icon {
+        color: $second_blue;
+        width: 20px;
+        height: 20px;
+  
+        &:hover {
+          cursor: pointer;
+          color: $main_blue;
+        }
+      }
     }
 
     .donuts_list {

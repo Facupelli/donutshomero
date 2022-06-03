@@ -1,12 +1,19 @@
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faAngleUp,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../../redux/features/cart/cartSlice";
 import Quantity from "../Quantity/Quantity";
 import TotalPrice from "../TotalPrice/TotalPrice";
 
 import s from "./CartItemPromo.module.scss";
 
 export default function CartItemPromo({ cartItem }) {
+  const dispatch = useDispatch();
   const [showDonuts, setShowDonuts] = useState(false);
 
   return (
@@ -30,6 +37,11 @@ export default function CartItemPromo({ cartItem }) {
           </button>
           <p className={s.price}>${cartItem.price}</p>
           <Quantity quantity={cartItem.quantity} id={cartItem.id} />
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className={s.trash_icon}
+            onClick={() => dispatch(removeFromCart(cartItem.id))}
+          />
         </div>
 
         {showDonuts && (

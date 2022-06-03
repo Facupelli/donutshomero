@@ -7,8 +7,8 @@
 
   .cart_item_single {
     margin: 0.3rem;
-    padding: .5rem 1rem;
-    border-radius: .2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
     background-color: white;
     display: flex;
     align-items: center;
@@ -16,6 +16,17 @@
 
     .price {
       margin-left: auto;
+    }
+
+    .trash_icon {
+      color: $second_blue;
+      width: 20px;
+      height: 20px;
+
+      &:hover {
+        cursor: pointer;
+        color: $main_blue;
+      }
     }
   }
 }

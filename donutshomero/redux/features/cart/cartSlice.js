@@ -12,6 +12,10 @@ export const cartSlice = createSlice({
       // "Mutate" the existing state, no return value needed
       state.cart = [...state.cart, action.payload];
     },
+    removeFromCart: (state, action) => {
+      const id = action.payload;
+      state.cart = state.cart.filter((cartItem) => cartItem.id !== id);
+    },
     incrementQuantity: (state, action) => {
       const id = action.payload;
       const newCart = state.cart.map((cartItem) => {
@@ -35,6 +39,10 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, incrementQuantity, decrementQuantity } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} = cartSlice.actions;
 export default cartSlice.reducer;

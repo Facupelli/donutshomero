@@ -17,25 +17,52 @@
       }
     }
 
-    .total_container{
+    .cart_empty{
+      font-weight: 600;
+    }
+
+    .total_container {
       margin-top: 1rem;
       padding-top: 1rem;
       display: grid;
       grid-template-columns: 85% 15%;
       border-top: 1px solid $second_blue;
 
-      >p{
-        &:first-child{
+      > p {
+        &:first-child {
           margin-left: auto;
-          padding: 0 .2rem;
+          padding: 0 0.2rem;
           font-weight: 700;
         }
       }
 
-      .total{
+      .total {
         text-align: center;
         font-weight: 700;
         font-size: 1.3rem;
+      }
+
+      .pagar_btn_container {
+        grid-column: 2;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+
+        button {
+          width: 75%;
+          border: none;
+          border-radius: 1rem;
+          background-color: $second_blue;
+          color: white;
+          padding: .7rem;
+          font-weight: 700;
+          font-size: 1rem;
+
+          &:hover{
+            cursor: pointer;
+            background-color: $main_blue;
+          }
+        }
       }
     }
   }
