@@ -40,19 +40,40 @@ export default function Delivery({ donuts }) {
           <div className={s.single_donuts}>
             {donuts_single &&
               donuts_single.map((donut) => (
-                <SingleDonutCard key={donut.id} donut={donut} delivery />
+                <SingleDonutCard
+                  key={donut.id}
+                  donut={donut}
+                  delivery
+                  cart={cart.filter(
+                    (cartItem) => cartItem.donuts === undefined
+                  )}
+                />
               ))}
           </div>
           <div className={s.single_donuts}>
             <span>6 DONAS</span>
             {donuts_promo.six &&
               donuts_promo.six.map((promo) => (
-                <PromoCard key={promo.id} promo={promo} delivery />
+                <PromoCard
+                  key={promo.id}
+                  promo={promo}
+                  delivery
+                  cart={cart.filter(
+                    (cartItem) => cartItem.donuts !== undefined
+                  )}
+                />
               ))}
             <span>12 DONAS</span>
             {donuts_promo.dozen &&
               donuts_promo.dozen.map((promo) => (
-                <PromoCard key={promo.id} promo={promo} delivery />
+                <PromoCard
+                  key={promo.id}
+                  promo={promo}
+                  delivery
+                  cart={cart.filter(
+                    (cartItem) => cartItem.donuts !== undefined
+                  )}
+                />
               ))}
           </div>
         </div>

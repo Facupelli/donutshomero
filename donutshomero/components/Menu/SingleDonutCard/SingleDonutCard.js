@@ -1,17 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartPlus,
+  faBasketShopping,
+} from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import single_donut from "../../../public/images/single_donut.png";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/features/cart/cartSlice";
+import {
+  addToCart,
+  removeFromCart,
+} from "../../../redux/features/cart/cartSlice";
 
 import s from "./SingleDonutCard.module.scss";
 
-export default function SingleDonutCard({ donut, delivery }) {
+export default function SingleDonutCard({ donut, delivery, cart }) {
   const { name, price } = donut;
   const dispatch = useDispatch();
+
+  const handleCartClick = () => {
+    cart.filter((cartItem) => cartItem.id === donut.id).length > 0
+      ? dispatch(removeFromCart(donut.id))
+      : dispatch(addToCart(donut));
+  };
+
+  console.log("SINGLE CART", cart);
 
   return (
     <div className={delivery ? s.single_donut_cart : s.single_donut}>
@@ -37,9 +51,13 @@ export default function SingleDonutCard({ donut, delivery }) {
       </div>
       <div className={delivery ? s.cart_icon_container : s.none}>
         <FontAwesomeIcon
-          icon={faCartPlus}
+          icon={
+            cart.filter((cartItem) => cartItem.id === donut.id).length > 0
+              ? faBasketShopping
+              : faCartPlus
+          }
           className={s.cart_icon}
-          onClick={() => dispatch(addToCart(donut))}
+          onClick={handleCartClick}
         />
       </div>
     </div>

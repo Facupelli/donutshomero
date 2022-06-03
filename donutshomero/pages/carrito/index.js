@@ -8,11 +8,7 @@ import s from "./index.module.scss";
 export default function Carrito() {
   const cart = useSelector((state) => state.cart.cart);
 
-  const orderedCart = [...cart]
-    .sort((a, b) => {
-      if (a.donuts) return 1;
-      else return -1;
-    })
+  const orderedCart = [...cart].sort((a, b) => a.price - b.price);
 
   console.log("cart", orderedCart);
 
