@@ -20,7 +20,9 @@ export default function Delivery({ donuts }) {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
-  console.log("donuts", donuts);
+  const { donuts_single, donuts_promo } = donuts;
+
+  // console.log("donuts", donuts);
   console.log("cart", cart);
 
   return (
@@ -41,14 +43,20 @@ export default function Delivery({ donuts }) {
           <p>SIMPLES</p>
           <p>PROMOS</p>
           <div className={s.single_donuts}>
-            {donuts.donuts_single &&
-              donuts.donuts_single.map((donut) => (
+            {donuts_single &&
+              donuts_single.map((donut) => (
                 <SingleDonutCard key={donut.id} donut={donut} delivery />
               ))}
           </div>
           <div className={s.single_donuts}>
-            {donuts.donuts_promo &&
-              donuts.donuts_promo.map((promo) => (
+            <span>6 DONAS</span>
+            {donuts_promo.six &&
+              donuts_promo.six.map((promo) => (
+                <PromoCard key={promo.id} promo={promo} delivery />
+              ))}
+            <span>12 DONAS</span>
+            {donuts_promo.dozen &&
+              donuts_promo.dozen.map((promo) => (
                 <PromoCard key={promo.id} promo={promo} delivery />
               ))}
           </div>
@@ -63,5 +71,15 @@ export default function Delivery({ donuts }) {
 export const getStaticProps = async () => {
   const donuts_single = await prisma.donut.findMany({});
   const donuts_promo = await prisma.donutsPromo.findMany({});
-  return { props: { donuts: { donuts_single, donuts_promo } } };
+  return {
+    props: {
+      donuts: {
+        donuts_single,
+        donuts_promo: {
+          six: donuts_promo.slice(0, 4),
+          dozen: donuts_promo.slice(4),
+        },
+      },
+    },
+  };
 };

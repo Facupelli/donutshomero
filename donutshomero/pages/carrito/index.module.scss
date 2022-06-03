@@ -1,0 +1,9 @@
+@import "../../styles/app.scss";
+
+.container {
+  background-color: #f1f1f0;
+
+  .main {
+    @include app_width;
+  }
+}

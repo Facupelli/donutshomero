@@ -1,0 +1,39 @@
+@import "../../../styles/app.scss";
+
+.cart_item_promo {
+  margin: 0.3rem;
+  padding: 1rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .flex {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 1rem;
+
+    p {
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .arrow_icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .price {
+    margin-left: auto;
+  }
+}

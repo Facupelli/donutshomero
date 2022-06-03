@@ -1,0 +1,13 @@
+@import "../../../styles/app.scss";
+
+.cart_item_single {
+  margin: 0.3rem;
+  padding: 1rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+
+  .price {
+    margin-left: auto;
+  }
+}
