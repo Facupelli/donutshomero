@@ -7,25 +7,26 @@ import { useState } from "react";
 
 import s from "./index.module.scss";
 import PurchaseForm from "../../components/PurchaseForm/PurchaseForm";
-
-
+import ConfirmOrder from "../../components/ConfirmOrder/ConfirmOrder";
 
 export default function Carrito() {
-  const [customerData, setCustomerData] = useState(false);
+  const [showCustomerForm, setShowCustomerForm] = useState(false);
+  const [confirmOrder, setConfirmOrder] = useState(false);
+
   const cart = useSelector((state) => state.cart.items);
 
   const orderedCart = [...cart].sort((a, b) => a.price - b.price);
 
   const handleClickPagar = () => {
-    if (cart.length > 0) setCustomerData(true);
+    if (cart.length > 0) setShowCustomerForm(true);
   };
 
-  console.log("cart", orderedCart);
+  // console.log("cart", orderedCart);
 
   return (
     <div className={s.container}>
       <Nav route="carrito" />
-      {!customerData && (
+      {!showCustomerForm && !confirmOrder && (
         <div className={s.main}>
           <div className={s.titles}>
             <p>CARRITO</p>
@@ -59,7 +60,14 @@ export default function Carrito() {
         </div>
       )}
 
-      {customerData && <PurchaseForm />}
+      {showCustomerForm && !confirmOrder && (
+        <PurchaseForm
+          setConfirmOrder={setConfirmOrder}
+          setShowCustomerForm={setShowCustomerForm}
+        />
+      )}
+
+      {confirmOrder && <ConfirmOrder />}
       <Footer />
     </div>
   );

@@ -19,7 +19,10 @@ const schema = yup.object().shape({
   purchase: yup.array(),
 });
 
-export default function PurchaseForm() {
+export default function PurchaseForm({
+  setConfirmOrder,
+  setShowCustomerForm,
+}) {
   const {
     register,
     handleSubmit,
@@ -35,6 +38,8 @@ export default function PurchaseForm() {
     console.log("DATOS USUARIO", data);
     try {
       dispatch(setCustomerData(data));
+      setConfirmOrder(true);
+      setShowCustomerForm(false);
     } catch (e) {
       console.log({ onSubmitError: e });
     }
@@ -72,7 +77,7 @@ export default function PurchaseForm() {
             <input
               type="radio"
               id="cash"
-              value="cash"
+              value="efectivo"
               {...register("paymentMethod")}
             />
             <label htmlFor="cash">EFECTIVO</label>
@@ -86,7 +91,9 @@ export default function PurchaseForm() {
             />
             <label htmlFor="mercadopago">MERCADO PAGO</label>
           </div>
-          {errors && <span className={s.error}>{errors.paymentMethod?.message}</span>}
+          {errors && (
+            <span className={s.error}>{errors.paymentMethod?.message}</span>
+          )}
         </div>
         {/* </div> */}
         <div className={s.btn_container}>

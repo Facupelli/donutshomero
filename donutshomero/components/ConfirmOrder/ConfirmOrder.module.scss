@@ -1,0 +1,77 @@
+@import "../../styles/app.scss";
+
+.container {
+  @include app_width;
+  padding: 5rem 0;
+
+  > p {
+    font-weight: 800;
+  }
+
+  .info {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    column-gap: 2%;
+
+    .title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .donas {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: .2rem;
+      box-shadow: rgba(99, 99, 99, 0.11) 0px 2px 8px 0px;
+
+      .donuts_list {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .total {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .customerData {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: .2rem;
+
+      span {
+        font-weight: 500;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .pedir_btn_container {
+    grid-column: 2;
+    margin-top: 2rem;
+    margin-left: auto;
+
+    button {
+      border: none;
+      padding: 1rem 2rem;
+      background-color: $second_blue;
+      border-radius: 1.5rem;
+      font-weight: 700;
+      color: white;
+      
+      &:hover {
+        cursor: pointer;
+        background-color: $main_blue;
+      }
+    }
+  }
+}
