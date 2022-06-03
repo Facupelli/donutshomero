@@ -5,6 +5,10 @@ export default function ConfirmOrder() {
   const cart = useSelector((state) => state.cart.items);
   const customerData = useSelector((state) => state.customerData.data);
 
+  const totalPrice = cart.reduce((prev, acc, index, array) => {
+    return prev + acc.price * acc.quantity;
+  }, 0);
+
   return (
     <div className={s.container}>
       <p>CONFRIMACIÓN DE PEDIDO</p>
@@ -30,7 +34,7 @@ export default function ConfirmOrder() {
             <span>Pago:</span> {customerData.paymentMethod}
           </p>
         </div>
-        
+
         <div className={s.donas}>
           <p className={s.title}>DONAS:</p>
           {cart.map((item) => (
@@ -45,10 +49,12 @@ export default function ConfirmOrder() {
           ))}
           <div className={s.total}>
             <p>
-              Total: $
-              {cart.reduce((prev, acc, index, array) => {
-                return prev + acc.price * acc.quantity;
-              }, 0)}
+              Total:{" "}
+              {new Intl.NumberFormat("es-AR", {
+                style: "currency",
+                currency: "ARS",
+                maximumSignificantDigits: 12,
+              }).format(totalPrice)}
             </p>
           </div>
         </div>

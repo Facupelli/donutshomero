@@ -17,6 +17,10 @@ export default function Carrito() {
 
   const orderedCart = [...cart].sort((a, b) => a.price - b.price);
 
+  const totalPrice = cart.reduce((prev, acc, index, array) => {
+    return prev + acc.price * acc.quantity;
+  }, 0);
+
   const handleClickPagar = () => {
     if (cart.length > 0) setShowCustomerForm(true);
   };
@@ -48,10 +52,11 @@ export default function Carrito() {
           <div className={s.total_container}>
             <p>TOTAL A PAGAR:</p>
             <p className={s.total}>
-              $
-              {cart.reduce((prev, acc, index, array) => {
-                return prev + acc.price * acc.quantity;
-              }, 0)}
+              {new Intl.NumberFormat("es-AR", {
+                style: "currency",
+                currency: "ARS",
+                maximumSignificantDigits: 12,
+              }).format(totalPrice)}
             </p>
             <div className={s.pagar_btn_container}>
               <button onClick={handleClickPagar}>PAGAR</button>
