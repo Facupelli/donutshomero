@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import Nav from "../../components/Nav/Nav";
-import CartItemPromo from "./CartItemPromo/CartItemPromo";
-import CartItemSingle from "./CartItemSingle/CartItemSingle";
+import CartItemPromo from "../../components/CartItem/CartItemPromo/CartItemPromo";
+import CartItemSingle from "../../components/CartItem/CartItemSingle/CartItemSingle";
 import s from "./index.module.scss";
 
 export default function Carrito() {

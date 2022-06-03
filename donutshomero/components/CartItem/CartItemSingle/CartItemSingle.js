@@ -1,4 +1,3 @@
-
 import Quantity from "../Quantity/Quantity";
 
 import s from "./CartItemSingle.module.scss";
