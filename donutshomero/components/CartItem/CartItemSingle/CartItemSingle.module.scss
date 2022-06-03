@@ -1,14 +1,21 @@
 @import "../../../styles/app.scss";
 
-.cart_item_single {
-  margin: 0.3rem;
-  padding: 1rem;
-  background-color: white;
-  display: flex;
+.container {
+  display: grid;
   align-items: center;
-  gap: 1rem;
+  grid-template-columns: 85% 15%;
 
-  .price {
-    margin-left: auto;
+  .cart_item_single {
+    margin: 0.3rem;
+    padding: .5rem 1rem;
+    border-radius: .2rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .price {
+      margin-left: auto;
+    }
   }
 }

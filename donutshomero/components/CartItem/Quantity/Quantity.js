@@ -12,27 +12,27 @@ export default function Quantity({ quantity, id }) {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch(incrementQuantity(id))
-  }
+    dispatch(incrementQuantity(id));
+  };
 
   const handleDecrement = () => {
-    if(quantity === 1){
-      return
+    if (quantity === 1) {
+      return;
     }
-    dispatch(decrementQuantity(id))
-  }
+    dispatch(decrementQuantity(id));
+  };
 
   return (
     <div className={s.quantity}>
       <FontAwesomeIcon
-        icon={faArrowUp}
-        className={s.qty_arrow_icon}
-        onClick={handleIncrement}
-      />
-      <FontAwesomeIcon
         icon={faArrowDown}
         className={s.qty_arrow_icon}
         onClick={handleDecrement}
+      />
+      <FontAwesomeIcon
+        icon={faArrowUp}
+        className={s.qty_arrow_icon}
+        onClick={handleIncrement}
       />
       <p>{quantity}</p>
     </div>

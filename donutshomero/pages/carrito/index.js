@@ -14,7 +14,10 @@ export default function Carrito() {
     <div className={s.container}>
       <Nav route="carrito" />
       <div className={s.main}>
-        <p>CARRITO</p>
+        <div className={s.titles}>
+          <p>CARRITO</p>
+          <p>TOTAL</p>
+        </div>
         {cart.length > 0 &&
           cart.map((cartItem) =>
             cartItem.name ? (
@@ -23,6 +26,14 @@ export default function Carrito() {
               <CartItemPromo key={cartItem.id} cartItem={cartItem} />
             )
           )}
+        <div className={s.total_container}>
+          <p>TOTAL A PAGAR:</p>
+          <p className={s.total}>
+            ${cart.reduce((prev, acc, index, array) => {
+              return prev + acc.price * acc.quantity;
+            }, 0)}
+          </p>
+        </div>
       </div>
       <Footer />
     </div>
