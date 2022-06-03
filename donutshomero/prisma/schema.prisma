@@ -9,18 +9,18 @@ generator client {
 
 model Donut {
   id          String     @default(cuid()) @id
-  title       String
+  name        String
   price       Int
-  promos      DonutsPromo[] @relation("DonutsInPromo")
   Customers   DonutsByUsers[]
 }
 
 model DonutsPromo {
-  id          String     @default(cuid()) @id
-  title       String
-  price       Int
-  donuts      Donut[] @relation("DonutsInPromo")
-  Customers   DonutsPromoByUsers[]
+  id                String     @default(cuid()) @id
+  title             String
+  price             Int
+  donuts            String[]
+  donutsQuantity    Int
+  Customers         DonutsPromoByUsers[]
 }
 
 model User {

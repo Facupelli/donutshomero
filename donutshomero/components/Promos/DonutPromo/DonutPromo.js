@@ -12,12 +12,9 @@ export default function DonutPromo({ promo_type, donuts }) {
         {donuts.length > 0 &&
           donuts.map((donut) => (
             <PromoCard
-              key={donut.id}
-              id={donut.id}
-              fisrt_donuts={donut.fisrt_donuts}
-              second_donuts={donut.second_donuts}
-              third_donuts={donut.third_donuts}
-              forth_donuts={donut.forth_donuts}
+              key={donut.title}
+              title={donut.title}
+              donuts={donut.donuts}
               price={donut.price}
             />
           ))}
