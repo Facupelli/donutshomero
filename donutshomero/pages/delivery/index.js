@@ -28,21 +28,19 @@ export default function Delivery({ donuts }) {
       <Nav route="delivery" />
       <div className={s.container}>
         <p>Agrega los productos que quieras al carrito</p>
+        <div>
+          {donuts &&
+            donuts.map((donut) => (
+              <SingleDonutCard
+                key={donut.id}
+                donut={donut.title}
+                price={donut.price}
+                delivery
+              />
+            ))}
+        </div>
       </div>
-      <div>
-        {donuts &&
-          donuts.map((donut) => (
-            <div key={donut.id}>
-              <SingleDonutCard donut={donut.title} price={donut.price} />
-              <div>
-                <button onClick={() => dispatch(addToCart(donut))}>
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          ))}
-        {/* <p>{cart}</p> */}
-      </div>
+
       <Footer />
     </>
   );

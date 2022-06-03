@@ -6,7 +6,7 @@
   width: 370px;
   background-color: white;
   display: grid;
-  grid-template-columns: 60% 15% 25%;
+  grid-template-columns: 60% 20% 20%;
   align-items: center;
   box-shadow: rgba(99, 99, 99, 0.11) 0px 2px 8px 0px;
 
@@ -16,36 +16,76 @@
 
   @media (max-width: 380px) {
     width: 320px;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+.single_donut_cart {
+  padding: 0 1rem;
+  border-radius: 1rem;
+  width: 420px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 55% 18% 17% 10%;
+  align-items: center;
+  box-shadow: rgba(99, 99, 99, 0.11) 0px 2px 8px 0px;
+
+  @media (max-width: 480px) {
+    width: 350px;
   }
 
-  .donut_name {
-    padding: 0.5rem 0;
-    flex-grow: 1;
-    font-weight: 600;
-    border-right: 1px solid $second_blue;
-    // background-color: red;
+  @media (max-width: 380px) {
+    width: 320px;
+    padding: 0.5rem 1rem;
   }
+}
 
-  .price {
-    margin-left: 1rem;
-    font-weight: 700;
-    font-size: 1.2rem;
-  }
+.donut_name {
+  padding: 0.5rem 0;
+  flex-grow: 1;
+  font-weight: 600;
+  border-right: 1px solid $second_blue;
+  // background-color: red;
+}
 
-  .image_container {
-    margin-left: auto;
+.price {
+  margin-left: 1rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
 
-    @media (max-width: 380px) {
-      display: none;
-    }
-  }
+.image_container {
+  // margin-left: auto;
+  text-align: center;
 
-  .image_container_phone {
+  @media (max-width: 380px) {
     display: none;
-    @media (max-width: 380px) {
-      margin-left: auto;
-      display: block;
+  }
+}
+
+.image_container_phone {
+  display: none;
+  @media (max-width: 380px) {
+    // margin-left: auto;
+    display: block;
+  }
+}
+
+.cart_icon_container {
+  margin-left: auto;
+
+  .cart_icon {
+    color: $second_blue;
+    width: 25px;
+    height: 25px;
+
+    &:hover {
+      cursor: pointer;
+      color: $main_blue;
     }
   }
+}
+
+.none {
+  display: none;
 }
