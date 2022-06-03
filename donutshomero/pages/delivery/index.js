@@ -29,10 +29,15 @@ export default function Delivery({ donuts }) {
       <Nav route="delivery" />
       <div className={s.main}>
         <div className={s.instructions}>
-          <p>Agrega los productos que quieras al carrito luego ajustas las cantidades!</p>
+          <p>
+            Agrega los productos que quieras al carrito y luego ajustas las
+            cantidades!
+          </p>
           <button>VER CARRITO</button>
         </div>
         <div className={s.products_container}>
+          <p>SIMPLES</p>
+          <p>PROMOS</p>
           <div className={s.single_donuts}>
             {donuts.donuts_single &&
               donuts.donuts_single.map((donut) => (
