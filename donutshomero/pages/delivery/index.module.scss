@@ -7,17 +7,16 @@
     @include app_width;
     padding: 2rem 0;
 
-    .product_container{
-        display: grid;
-        grid-template-columns: 50% 50%;
+    .product_container {
+      display: grid;
+      grid-template-columns: 50% 50%;
 
-        .single_donuts {
-          margin: 4rem 0;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
+      .single_donuts {
+        margin: 4rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
-
   }
 }

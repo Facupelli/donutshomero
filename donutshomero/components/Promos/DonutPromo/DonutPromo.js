@@ -10,12 +10,10 @@ export default function DonutPromo({ promo_type, donuts }) {
 
       <div className={s.six_donuts_promo}>
         {donuts.length > 0 &&
-          donuts.map((donut) => (
+          donuts.map((promo) => (
             <PromoCard
-              key={donut.title}
-              title={donut.title}
-              donuts={donut.donuts}
-              price={donut.price}
+              key={promo.title}
+              promo={promo}
             />
           ))}
       </div>

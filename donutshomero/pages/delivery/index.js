@@ -33,23 +33,13 @@ export default function Delivery({ donuts }) {
           <div className={s.single_donuts}>
             {donuts.donuts_single &&
               donuts.donuts_single.map((donut) => (
-                <SingleDonutCard
-                  key={donut.id}
-                  donut={donut.name}
-                  price={donut.price}
-                  delivery
-                />
+                <SingleDonutCard key={donut.id} donut={donut} delivery />
               ))}
           </div>
           <div className={s.single_donuts}>
             {donuts.donuts_promo &&
               donuts.donuts_promo.map((promo) => (
-                <PromoCard
-                  key={promo.id}
-                  title={promo.title}
-                  donuts={promo.donuts}
-                  price={promo.price}
-                />
+                <PromoCard key={promo.id} promo={promo} delivery />
               ))}
           </div>
         </div>

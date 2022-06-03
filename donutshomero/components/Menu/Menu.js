@@ -66,7 +66,7 @@ export default function Menu({menuDivRef}) {
       <div className={s.menu} ref={menuDivRef}>
         {dontus.length > 0 &&
           dontus.map((donut) => (
-            <SingleDonutCard key={donut.id} donut={donut.name} price={donut.price} />
+            <SingleDonutCard key={donut.id} donut={donut} />
           ))}
       </div>
     </Section>
