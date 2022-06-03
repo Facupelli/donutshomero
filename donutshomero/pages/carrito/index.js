@@ -18,9 +18,9 @@ export default function Carrito() {
         {cart.length > 0 &&
           cart.map((cartItem) =>
             cartItem.name ? (
-              <CartItemSingle cartItem={cartItem} />
+              <CartItemSingle key={cartItem.id} cartItem={cartItem} />
             ) : (
-              <CartItemPromo cartItem={cartItem} />
+              <CartItemPromo key={cartItem.id} cartItem={cartItem} />
             )
           )}
       </div>

@@ -1,39 +1,51 @@
 @import "../../../styles/app.scss";
 
-.cart_item_promo {
+.container {
   margin: 0.3rem;
   padding: 1rem;
   background-color: white;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 
-  .flex {
+  .cart_item_promo {
     display: flex;
     align-items: center;
-    gap: 0.2rem;
-  }
+    gap: 1rem;
 
-  button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 1rem;
-
-    p {
-      font-size: 0.7rem;
-      font-weight: 600;
+    .flex {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
     }
 
-    .arrow_icon {
-      width: 15px;
-      height: 15px;
+    button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 1rem;
+
+      &:hover{
+        cursor: pointer;
+      }
+
+      p {
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+
+      .arrow_icon {
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    .price {
+      margin-left: auto;
     }
   }
 
-  .price {
-    margin-left: auto;
+  .donuts_list {
+    padding-top: .5rem;
+    padding-left: 1rem;
   }
 }
