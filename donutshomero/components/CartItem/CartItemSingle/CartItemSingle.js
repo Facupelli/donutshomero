@@ -7,7 +7,7 @@ export default function CartItemSingle({ cartItem }) {
     <div key={cartItem.id} className={s.cart_item_single}>
       <p>{cartItem.name}</p>
       <p className={s.price}>${cartItem.price}</p>
-      <Quantity />
+      <Quantity quantity={cartItem.quantity} id={cartItem.id} />
     </div>
   );
 }

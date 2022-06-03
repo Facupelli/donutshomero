@@ -5,11 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import SingleDonutCard from "../../components/Menu/SingleDonutCard/SingleDonutCard";
 import Nav from "../../components/Nav/Nav";
-import {
-  addToCart,
-  removeFromCart,
-  incrementByAmount,
-} from "../../redux/features/cart/cartSlice";
 
 import s from "./index.module.scss";
 import PromoCard from "../../components/Promos/Card/PromoCard";

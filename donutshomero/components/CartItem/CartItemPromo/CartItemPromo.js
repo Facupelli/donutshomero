@@ -21,15 +21,18 @@ export default function CartItemPromo({ cartItem }) {
         </div>
         <button onClick={() => setShowDonuts(!showDonuts)}>
           <p>VER DONAS</p>
-          <FontAwesomeIcon icon={showDonuts ? faAngleUp : faAngleDown} className={s.arrow_icon} />
+          <FontAwesomeIcon
+            icon={showDonuts ? faAngleUp : faAngleDown}
+            className={s.arrow_icon}
+          />
         </button>
         <p className={s.price}>${cartItem.price}</p>
-        <Quantity />
+        <Quantity quantity={cartItem.quantity} id={cartItem.id} />
       </div>
       {showDonuts && (
         <div className={s.donuts_list}>
           {cartItem.donuts.map((donut) => (
-            <p>{donut}</p>
+            <p key={donut}>{donut}</p>
           ))}
         </div>
       )}

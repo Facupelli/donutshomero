@@ -22,16 +22,11 @@
     }
   }
 
-  input {
-    width: 40px;
-    padding: 0.3rem;
+  >p{
     background-color: white;
-    border: none;
-    border-radius: 0.5rem;
-
-    &:focus,
-    &:active {
-      outline: none;
-    }
+    border-radius: 1rem;
+    padding: .5rem;
+    width: 40px;
+    text-align: center;
   }
 }
