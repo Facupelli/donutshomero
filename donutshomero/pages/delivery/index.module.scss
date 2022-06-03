@@ -38,6 +38,23 @@
       grid-template-columns: 50% 50%;
       justify-items: center;
 
+      @media (max-width: 600px) {
+        display: block;
+      }
+
+      .promos_title_pc {
+        @media (max-width: 600px) {
+          display: none;
+        }
+      }
+
+      .promos_title_mobile {
+        display: none;
+        @media (max-width: 600px) {
+          display: block;
+        }
+      }
+
       > p {
         margin: 3rem 0 1rem 0;
         font-weight: 800;

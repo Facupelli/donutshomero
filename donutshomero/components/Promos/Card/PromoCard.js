@@ -31,11 +31,21 @@ export default function PromoCard({ promo, delivery, cart }) {
       <div className={s.info}>
         {donuts && donuts.map((donut) => <p key={donut}>{donut}</p>)}
       </div>
-      <div className={s.image_container}>
+      <div className={s.image_container_pc}>
         <Image
           src={media_docena}
           width="120px"
           height="120px"
+          objectFit="contain"
+          alt="media_docena"
+        />
+        <p className={s.price}>${price}</p>
+      </div>
+      <div className={s.image_container_mobile}>
+        <Image
+          src={media_docena}
+          width="80px"
+          height="80px"
           objectFit="contain"
           alt="media_docena"
         />

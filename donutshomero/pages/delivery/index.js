@@ -36,7 +36,7 @@ export default function Delivery({ donuts }) {
         </div>
         <div className={s.products_container}>
           <p>SIMPLES</p>
-          <p>PROMOS</p>
+          <p className={s.promos_title_pc}>PROMOS</p>
           <div className={s.single_donuts}>
             {donuts_single &&
               donuts_single.map((donut) => (
@@ -50,6 +50,7 @@ export default function Delivery({ donuts }) {
                 />
               ))}
           </div>
+          <p className={s.promos_title_mobile}>PROMOS</p>
           <div className={s.single_donuts}>
             <span>6 DONAS</span>
             {donuts_promo.six &&
