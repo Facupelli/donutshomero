@@ -7,9 +7,19 @@
     @include app_width;
     padding: 2rem 0;
 
-    .product_container {
+    .instructions {
+      display: flex;
+      align-items: center;
+
+      button {
+        margin-left: auto;
+      }
+    }
+
+    .products_container {
       display: grid;
       grid-template-columns: 50% 50%;
+      justify-items: center;
 
       .single_donuts {
         margin: 4rem 0;
