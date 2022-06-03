@@ -25,8 +25,6 @@ export default function SingleDonutCard({ donut, delivery, cart }) {
       : dispatch(addToCart(donut));
   };
 
-  console.log("SINGLE CART", cart);
-
   return (
     <div className={delivery ? s.single_donut_cart : s.single_donut}>
       <p className={s.donut_name}>{name.toUpperCase()}</p>

@@ -1,0 +1,65 @@
+@import "../../styles/app.scss";
+
+.container {
+  @include app_width;
+  padding: 3rem 0;
+
+  > p {
+    margin-bottom: 2rem;
+    font-weight: 700;
+  }
+
+  .form {
+    display: grid;
+    grid-template-columns: 30% 30%;
+    row-gap: 0.8rem;
+
+    input {
+      padding: 0.6rem;
+      border: none;
+      border: 1px solid white;
+      box-shadow: rgba(182, 182, 182, 0.24) 0px 0px 4px 1px;
+      border-radius: 0.2rem;
+
+      &:active,
+      &:focus {
+        outline: none;
+        box-shadow: none;
+        border: 1px solid $main_pink;
+      }
+    }
+
+    .payment_method {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .error {
+      color: red;
+      grid-column: 2;
+    }
+
+    .btn_container {
+      grid-column: 2;
+      margin-left: auto;
+
+      button {
+        width: 100%;
+        margin-top: 1rem;
+
+        border: none;
+        border-radius: 0.2rem;
+        background-color: $second_blue;
+        color: white;
+        padding: 0.5rem 2rem;
+        font-size: 1rem;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $main_blue;
+        }
+      }
+    }
+  }
+}
