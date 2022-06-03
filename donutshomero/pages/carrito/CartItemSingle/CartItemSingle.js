@@ -1,3 +1,6 @@
+
+import Quantity from "../Quantity/Quantity";
+
 import s from "./CartItemSingle.module.scss";
 
 export default function CartItemSingle({ cartItem }) {
@@ -5,9 +8,7 @@ export default function CartItemSingle({ cartItem }) {
     <div key={cartItem.id} className={s.cart_item_single}>
       <p>{cartItem.name}</p>
       <p className={s.price}>${cartItem.price}</p>
-      <div>
-          
-      </div>
+      <Quantity />
     </div>
   );
 }

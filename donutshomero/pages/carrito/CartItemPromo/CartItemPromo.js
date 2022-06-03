@@ -1,5 +1,6 @@
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Quantity from "../Quantity/Quantity";
 
 import s from "./CartItemPromo.module.scss";
 
@@ -19,6 +20,7 @@ export default function CartItemPromo({ cartItem }) {
         <FontAwesomeIcon icon={faAngleDown} className={s.arrow_icon} />
       </button>
       <p className={s.price}>${cartItem.price}</p>
+      <Quantity />
     </div>
   );
 }
