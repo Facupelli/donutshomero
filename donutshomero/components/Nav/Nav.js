@@ -70,7 +70,11 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
           <Link href="/contacto">
             <li className={route === "contacto" ? s.active : ""}>CONTACTO</li>
           </Link>
-          <li><FontAwesomeIcon icon={faCartShopping} width="20px" /></li>
+          <Link href="/carrito">
+            <li>
+              <FontAwesomeIcon icon={faCartShopping} width="20px" />
+            </li>
+          </Link>
         </ul>
       </div>
     </nav>

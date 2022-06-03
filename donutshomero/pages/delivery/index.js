@@ -13,8 +13,10 @@ import {
 
 import s from "./index.module.scss";
 import PromoCard from "../../components/Promos/Card/PromoCard";
+import { useRouter } from "next/router";
 
 export default function Delivery({ donuts }) {
+  const router = useRouter();
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
@@ -33,7 +35,7 @@ export default function Delivery({ donuts }) {
             Agrega los productos que quieras al carrito y luego ajustas las
             cantidades!
           </p>
-          <button>VER CARRITO</button>
+          <button onClick={() => router.push("/carrito")}>VER CARRITO</button>
         </div>
         <div className={s.products_container}>
           <p>SIMPLES</p>
