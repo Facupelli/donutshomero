@@ -12,7 +12,7 @@ import PurchaseForm from "../../components/PurchaseForm/PurchaseForm";
 
 export default function Carrito() {
   const [customerData, setCustomerData] = useState(false);
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state) => state.cart.items);
 
   const orderedCart = [...cart].sort((a, b) => a.price - b.price);
 

@@ -2,10 +2,10 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Quantity from "../Quantity/Quantity";
 import TotalPrice from "../TotalPrice/TotalPrice";
+import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../../redux/features/cart/cartSlice";
 
 import s from "./CartItemSingle.module.scss";
-import { useDispatch } from "react-redux";
 
 export default function CartItemSingle({ cartItem }) {
   const dispatch = useDispatch();

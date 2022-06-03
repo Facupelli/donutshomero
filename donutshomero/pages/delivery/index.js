@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 export default function Delivery({ donuts }) {
   const router = useRouter();
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
   const { donuts_single, donuts_promo } = donuts;

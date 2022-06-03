@@ -14,6 +14,7 @@ export default function DonutPromo({ promo_type, donuts }) {
             <PromoCard
               key={promo.title}
               promo={promo}
+              cart={[]}
             />
           ))}
       </div>

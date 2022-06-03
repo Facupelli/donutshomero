@@ -1,12 +1,17 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { setCustomerData } from "../../redux/features/customerData/customerDataSlice";
 
 import s from "./PurchaseForm.module.scss";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Nombre Completo es requiredo").min(2),
-  phone: yup.number("Deben ser Números").required("Número de celular es requerido").min(9),
+  phone: yup
+    .number("Deben ser Números")
+    .required("Número de celular es requerido")
+    .min(9),
   address: yup.string().required("Dirección es requerida"),
   number: yup.number().required("Numeración es requerida"),
   addressLink: yup.string(),
@@ -24,9 +29,12 @@ export default function PurchaseForm() {
     resolver: yupResolver(schema),
   });
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (data) => {
     console.log("DATOS USUARIO", data);
     try {
+      dispatch(setCustomerData(data));
     } catch (e) {
       console.log({ onSubmitError: e });
     }
@@ -54,7 +62,9 @@ export default function PurchaseForm() {
 
         <label htmlFor="addressLink">Link Ubicación:</label>
         <input type="text" id="addressLink" {...register("addressLink")} />
-        {errors && <span className={s.error}>{errors.addressLink?.message}</span>}
+        {errors && (
+          <span className={s.error}>{errors.addressLink?.message}</span>
+        )}
 
         <p>Método de Pago:</p>
         <div className={s.payment_method}>
@@ -76,6 +86,7 @@ export default function PurchaseForm() {
             />
             <label htmlFor="mercadopago">MERCADO PAGO</label>
           </div>
+          {errors && <span className={s.error}>{errors.paymentMethod?.message}</span>}
         </div>
         {/* </div> */}
         <div className={s.btn_container}>
