@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useSelector } from "react-redux";
 import s from "./ConfirmOrder.module.scss";
 
@@ -8,6 +9,11 @@ export default function ConfirmOrder() {
   const totalPrice = cart.reduce((prev, acc, index, array) => {
     return prev + acc.price * acc.quantity;
   }, 0);
+
+
+  const handleClickPedir = async () => {
+    await axios.post("http://localhost:3000/api/checkout", cart);
+  };
 
   return (
     <div className={s.container}>
@@ -60,7 +66,7 @@ export default function ConfirmOrder() {
         </div>
 
         <div className={s.pedir_btn_container}>
-          <button>PEDIR</button>
+          <button onClick={handleClickPedir}>PEDIR</button>
         </div>
       </div>
     </div>
