@@ -1,0 +1,14 @@
+.go_back_icon {
+  margin-bottom: 2rem;
+  width: 20px;
+  height: 20px;
+
+  @media (max-width: 600px) {
+    width: 15px;
+    height: 15px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

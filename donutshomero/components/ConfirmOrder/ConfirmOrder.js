@@ -7,6 +7,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 
 import s from "./ConfirmOrder.module.scss";
+import GoBackButton from "../GoBackButton/GoBackButton";
 
 // const FORM_ID = "payment-form";
 
@@ -40,8 +41,8 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   }, 0);
 
   const handleGoBack = () => {
-    setConfirmOrder(false)
-    setShowCustomerForm(true)
+    setConfirmOrder(false);
+    setShowCustomerForm(true);
   };
 
   const handleClickPedir = async () => {
@@ -68,11 +69,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
 
   return (
     <div className={s.container}>
-      <FontAwesomeIcon
-        icon={faArrowLeft}
-        className={s.go_back_icon}
-        onClick={handleGoBack}
-      />
+      <GoBackButton handleOnClick={handleGoBack} />
       <p>CONFRIMACIÓN DE PEDIDO</p>
       <div className={s.info}>
         <div className={s.customerData}>

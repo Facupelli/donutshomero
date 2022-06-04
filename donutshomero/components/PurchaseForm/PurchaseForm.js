@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCustomerData } from "../../redux/features/customerData/customerDataSlice";
 
 import s from "./PurchaseForm.module.scss";
+import GoBackButton from "../GoBackButton/GoBackButton";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Nombre Completo es requiredo").min(2),
@@ -20,6 +21,9 @@ const schema = yup.object().shape({
 });
 
 export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
+  const dispatch = useDispatch();
+  const customerData = useSelector((state) => state.customerData.data);
+
   const {
     register,
     handleSubmit,
@@ -29,7 +33,9 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
     resolver: yupResolver(schema),
   });
 
-  const dispatch = useDispatch();
+  const handleGoBack = () => {
+    setShowCustomerForm(false);
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -43,26 +49,52 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
 
   return (
     <div className={s.container}>
+      <GoBackButton handleOnClick={handleGoBack} />
       <p>TUS DATOS</p>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <label htmlFor="fullName">Nombre Completo:</label>
-        <input type="text" id="fullName" {...register("fullName")} />
+        <input
+          type="text"
+          id="fullName"
+          defaultValue={customerData.fullName}
+          {...register("fullName")}
+        />
         {errors && <span className={s.error}>{errors.fullName?.message}</span>}
 
         <label htmlFor="phone">Número Celular:</label>
-        <input type="text" id="phone" {...register("phone")} />
+        <input
+          type="text"
+          id="phone"
+          defaultValue={customerData.phone}
+          {...register("phone")}
+        />
         {errors && <span className={s.error}>{errors.phone?.message}</span>}
 
         <label htmlFor="address">Dirección:</label>
-        <input type="text" id="address" {...register("address")} />
+        <input
+          type="text"
+          id="address"
+          defaultValue={customerData.address}
+          {...register("address")}
+        />
         {errors && <span className={s.error}>{errors.address?.message}</span>}
 
         <label htmlFor="number">Numeración:</label>
-        <input type="text" id="number" {...register("number")} />
+        <input
+          type="text"
+          id="number"
+          defaultValue={customerData.number}
+          {...register("number")}
+        />
         {errors && <span className={s.error}>{errors.number?.message}</span>}
 
         <label htmlFor="addressLink">Link Ubicación:</label>
-        <input type="text" id="addressLink" {...register("addressLink")} />
+        <input
+          type="text"
+          id="addressLink"
+          defaultValue={customerData.addressLink}
+          {...register("addressLink")}
+        />
         {errors && (
           <span className={s.error}>{errors.addressLink?.message}</span>
         )}
