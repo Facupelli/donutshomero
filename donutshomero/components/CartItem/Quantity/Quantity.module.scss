@@ -31,11 +31,10 @@
         height: 10px;
         width: 10px;
       }
-
-      &:hover {
-        cursor: pointer;
-        background-color: $second_blue;
-      }
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: $second_blue;
     }
   }
 

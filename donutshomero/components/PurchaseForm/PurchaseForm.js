@@ -19,10 +19,7 @@ const schema = yup.object().shape({
   purchase: yup.array(),
 });
 
-export default function PurchaseForm({
-  setConfirmOrder,
-  setShowCustomerForm,
-}) {
+export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
   const {
     register,
     handleSubmit,
@@ -35,7 +32,6 @@ export default function PurchaseForm({
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    console.log("DATOS USUARIO", data);
     try {
       dispatch(setCustomerData(data));
       setConfirmOrder(true);

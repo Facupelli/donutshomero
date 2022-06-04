@@ -1,7 +1,9 @@
 import mercadopago from "mercadopago";
 
 mercadopago.configure({
-  access_token: process.env.MP_ACCESS_TOKEN,
+  access_token: process.env.TESTMP_ACCESS_TOKEN,
+  // access_token: process.env.MP_TOKEN_PRODUCTION,
+
 });
 
 export default async function handler(req, res) {
@@ -17,7 +19,7 @@ export default async function handler(req, res) {
     };
   });
 
-  console.log('ITEMS', items)
+  // console.log('ITEMS', items)
 
   let preference = {
     items,
@@ -35,6 +37,8 @@ export default async function handler(req, res) {
     id: response.body.id,
     init_point: response.body.init_point,
   });
+
+  // res.redirect(302, response.body.init_point);
 
   // mercadopago.preferences
   //   .create(preference)

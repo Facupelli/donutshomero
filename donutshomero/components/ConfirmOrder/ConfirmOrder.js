@@ -1,18 +1,53 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
 import s from "./ConfirmOrder.module.scss";
+
+const FORM_ID = "payment-form";
 
 export default function ConfirmOrder() {
   const cart = useSelector((state) => state.cart.items);
   const customerData = useSelector((state) => state.customerData.data);
 
+  //MERCADO PAGO
+  const [preferenceId, setPreferenceId] = useState();
+
+  useEffect(() => {
+    if (preferenceId) {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src =
+        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.setAttribute("data-preference-id", preferenceId);
+      const form = document.getElementById(FORM_ID);
+      form.appendChild(script);
+    }
+  }, [preferenceId]);
+
+  //---------------------------
+
+  console.log(preferenceId);
+
+  const router = useRouter();
+
   const totalPrice = cart.reduce((prev, acc, index, array) => {
     return prev + acc.price * acc.quantity;
   }, 0);
 
-
   const handleClickPedir = async () => {
-    await axios.post("http://localhost:3000/api/checkout", cart);
+    const res = await axios.post(
+      // process.env.NODE_ENV === "production"
+      // ? "https://donutshomero.vercel.app/api/checkout"
+      // :
+      "http://localhost:3000/api/checkout",
+      cart
+    );
+
+    const { id, init_point } = res.data;
+    // setPreferenceId(id);
+    window.open(init_point, "_blank");
   };
 
   return (
@@ -69,6 +104,7 @@ export default function ConfirmOrder() {
           <button onClick={handleClickPedir}>PEDIR</button>
         </div>
       </div>
+      <form id={FORM_ID} method="GET" />
     </div>
   );
 }
