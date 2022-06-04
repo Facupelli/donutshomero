@@ -16,12 +16,12 @@ import {
 import s from "./SingleDonutCard.module.scss";
 
 export default function SingleDonutCard({ donut, delivery, cart }) {
-  const { name, price } = donut;
+  const { name, price, id } = donut;
   const dispatch = useDispatch();
 
   const handleCartClick = () => {
-    cart.filter((cartItem) => cartItem.id === donut.id).length > 0
-      ? dispatch(removeFromCart(donut.id))
+    cart.filter((cartItem) => cartItem.id === id).length > 0
+      ? dispatch(removeFromCart(id))
       : dispatch(addToCart(donut));
   };
 

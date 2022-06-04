@@ -20,11 +20,11 @@ export default function CartItemCard({ cartItem }) {
     <div className={s.container}>
       <div className={s.cart}>
         <div className={s.cart_flex}>
-          {cartItem.donuts ? (
+          {cartItem.donutsQuantity ? (
             <div className={s.cart_item_promo}>
               <div className={s.flex}>
                 <p>Promo N°</p>
-                <p>{cartItem.title}</p>
+                <p>{cartItem.name}</p>
               </div>
               <div className={s.flex}>
                 <p>Donas:</p>

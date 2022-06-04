@@ -81,9 +81,9 @@ export default function ConfirmOrder() {
           {cart.map((item) => (
             <div className={s.donuts_list} key={item.id}>
               <p>
-                {item.name
-                  ? item.name
-                  : `Promo N° ${item.title} - ${item.donutsQuantity} Donas`}
+                {item.donutsQuantity
+                  ? `Promo N° ${item.name} - ${item.donutsQuantity} Donas`
+                  : item.name}
               </p>
               <p>x{item.quantity}</p>
             </div>

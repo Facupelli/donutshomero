@@ -26,7 +26,6 @@ export default function Home({ feed }) {
   //   };
   // }, []);
 
-  console.log("FEED", feed);
 
   return (
     <div>

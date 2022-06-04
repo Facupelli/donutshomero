@@ -31,12 +31,8 @@ export default function Quantity({ quantity, id }) {
           onClick={handleDecrement}
         />
       </div>
-      <div className={s.qty_arrow_icon_container}>
-        <FontAwesomeIcon
-          icon={faArrowUp}
-          className={s.qty_arrow_icon}
-          onClick={handleIncrement}
-        />
+      <div className={s.qty_arrow_icon_container} onClick={handleIncrement}>
+        <FontAwesomeIcon icon={faArrowUp} className={s.qty_arrow_icon} />
       </div>
       <p className={s.qty_total}>{quantity}</p>
     </div>

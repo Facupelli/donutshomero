@@ -10,15 +10,20 @@ import s from "./index.module.scss";
 import PromoCard from "../../components/Promos/Card/PromoCard";
 import { useRouter } from "next/router";
 
-export default function Delivery({ donuts }) {
+export default function Delivery({ donuts = [] }) {
   const router = useRouter();
   const cart = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
 
-  const { donuts_single, donuts_promo } = donuts;
+  const donuts_single = donuts.filter((donut) => donut.type === "SINGLE");
 
-  // console.log("donuts", donuts);
-  console.log("cart", cart);
+  const donutsPromoSix = donuts.filter(
+    (donut) => donut.type === "PROMO" && donut.donutsQuantity === 6
+  );
+  const donutsPromoDozen = donuts.filter(
+    (donut) => donut.type === "PROMO" && donut.donutsQuantity === 12
+  );
+
+  console.log(cart);
 
   return (
     <div className={s.container}>
@@ -38,23 +43,21 @@ export default function Delivery({ donuts }) {
           <p>SIMPLES</p>
           <p className={s.promos_title_pc}>PROMOS</p>
           <div className={s.single_donuts}>
-            {donuts_single &&
+            {donuts_single.length > 0 &&
               donuts_single.map((donut) => (
                 <SingleDonutCard
                   key={donut.id}
                   donut={donut}
                   delivery
-                  cart={cart.filter(
-                    (cartItem) => cartItem.donuts === undefined
-                  )}
+                  cart={cart.filter((item) => item.type === "SINGLE")}
                 />
               ))}
           </div>
           <p className={s.promos_title_mobile}>PROMOS</p>
           <div className={s.single_donuts}>
             <span>6 DONAS</span>
-            {donuts_promo.six &&
-              donuts_promo.six.map((promo) => (
+            {donutsPromoSix.length > 0 &&
+              donutsPromoSix.map((promo) => (
                 <PromoCard
                   key={promo.id}
                   promo={promo}
@@ -65,8 +68,8 @@ export default function Delivery({ donuts }) {
                 />
               ))}
             <span>12 DONAS</span>
-            {donuts_promo.dozen &&
-              donuts_promo.dozen.map((promo) => (
+            {donutsPromoDozen.length > 0 &&
+              donutsPromoDozen.map((promo) => (
                 <PromoCard
                   key={promo.id}
                   promo={promo}
@@ -86,17 +89,10 @@ export default function Delivery({ donuts }) {
 }
 
 export const getStaticProps = async () => {
-  const donuts_single = await prisma.donut.findMany({});
-  const donuts_promo = await prisma.donutsPromo.findMany({});
+  const donuts = await prisma.donut.findMany({});
   return {
     props: {
-      donuts: {
-        donuts_single,
-        donuts_promo: {
-          six: donuts_promo.slice(0, 4),
-          dozen: donuts_promo.slice(4),
-        },
-      },
+      donuts,
     },
   };
 };

@@ -14,7 +14,7 @@ import {
 import s from "./PromoCard.module.scss";
 
 export default function PromoCard({ promo, delivery, cart }) {
-  const { title, donuts, price } = promo;
+  const { name, donuts, price } = promo;
   const dispatch = useDispatch();
 
   const handleCartClick = () => {
@@ -26,7 +26,7 @@ export default function PromoCard({ promo, delivery, cart }) {
   return (
     <div className={delivery ? s.promo_delivery : s.promo}>
       <div className={s.id}>
-        <p>{title}</p>
+        <p>{name}</p>
       </div>
       <div className={s.info}>
         {donuts && donuts.map((donut) => <p key={donut}>{donut}</p>)}
