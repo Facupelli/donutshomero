@@ -39,11 +39,17 @@ export default function CartItemCard({ cartItem }) {
                 />
               </button>
               <p className={s.promo_price}>${cartItem.price}</p>
+              <p className={s.promo_total_price}>
+                ${cartItem.price * cartItem.quantity}
+              </p>
             </div>
           ) : (
             <div key={cartItem.id} className={s.cart_item_single}>
               <p>{cartItem.name}</p>
               <p className={s.single_price}>${cartItem.price}</p>
+              <p className={s.single_total_price}>
+                ${cartItem.price * cartItem.quantity}
+              </p>
             </div>
           )}
           <div className={s.qty_and_trash}>
