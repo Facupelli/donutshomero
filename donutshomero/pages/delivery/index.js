@@ -23,7 +23,7 @@ export default function Delivery({ donuts = [] }) {
     (donut) => donut.type === "PROMO" && donut.donutsQuantity === 12
   );
 
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <div className={s.container}>

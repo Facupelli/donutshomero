@@ -1,4 +1,5 @@
 import mercadopago from "mercadopago";
+import prisma from "../../../lib/prisma";
 
 mercadopago.configure({
   access_token: process.env.TESTMP_ACCESS_TOKEN,
@@ -10,6 +11,38 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const { cart, customerData } = req.body;
+
+      console.log("customerData", customerData.phone);
+
+      const user = await prisma.user.create({
+        data: {
+          name: customerData.fullName.split(" ")[0],
+          surname: customerData.fullName.split(" ")[1],
+          phone: Number(customerData.phone),
+          address: customerData.address,
+          addressNumber: Number(customerData.number),
+          ubiLink: customerData.addressLink,
+        },
+      });
+
+      // console.log("USER", user);
+
+      // console.log('CART', cart)
+
+      const order = await prisma.order.create({
+        data: {
+          items: cart,
+          customer: {
+            connect: {id: user.id}
+          },
+          paymentMethod: customerData.paymentMethod,
+        },
+        include: {
+          customer: true, // Include all posts in the returned object
+        },
+      });
+
+      // console.log("ORDERS", order);
 
       const items = cart.map((item) => {
         return {
@@ -25,20 +58,19 @@ export default async function handler(req, res) {
       let preference = {
         items,
         payer: {
-          name: customerData.fullName.split(" ")[0],
-          surname: customerData.fullName.split(" ")[1],
-          email: customerData.email,
+          name: user.name,
+          surname: user.surname,
           phone: {
             area_code: "264",
-            number: customerData.phone,
+            number: user.phone,
           },
           identification: {
             type: "DNI",
             number: "",
           },
           address: {
-            street_name: customerData.address,
-            street_number: Number(customerData.number),
+            street_name: user.address,
+            street_number: Number(user.addressNumber),
             zip_code: "5400",
           },
         },
@@ -53,9 +85,9 @@ export default async function handler(req, res) {
         auto_return: "approved",
         payment_methods: {
           excluded_payment_types: [
-            {
-              id: "credit_card",
-            },
+            // {
+            //   id: "credit_card",
+            // },
             {
               id: "debit_card",
             },

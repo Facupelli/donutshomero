@@ -70,7 +70,12 @@ export default function Carrito() {
         />
       )}
 
-      {confirmOrder && <ConfirmOrder />}
+      {confirmOrder && (
+        <ConfirmOrder
+          setShowCustomerForm={setShowCustomerForm}
+          setConfirmOrder={setConfirmOrder}
+        />
+      )}
       <Footer />
     </div>
   );

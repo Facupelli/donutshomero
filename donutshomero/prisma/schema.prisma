@@ -20,19 +20,7 @@ model Donut {
   quantity          Int         @default(1)
   donuts            String[]
   donutsQuantity    Int?
-  Customers         DonutsByUsers[]
-  Orders            Order[]
 }
-
-// model DonutsPromo {
-//   id                String     @default(cuid()) @id
-//   title             String
-//   price             Int
-//   quantity          Int?
-//   donuts            String[]
-//   donutsQuantity    Int
-//   Customers         DonutsPromoByUsers[]
-// }
 
 model User {
   id                      String       @default(cuid()) @id
@@ -45,15 +33,13 @@ model User {
   email                   String?   @unique
   createdAt               DateTime  @default(now()) @map(name: "created_at")
   updatedAt               DateTime  @updatedAt @map(name: "updated_at")
-  donutsBought            DonutsByUsers[]
   orders                  Order[]
-  // DonutsPromosBought      DonutsPromoByUsers[]
   @@map(name: "users")
 }
 
 model Order {
   id                      String       @default(cuid()) @id
-  items                   Donut[]
+  items                   Json[]
   customer                User       @relation(fields: [customerId], references: [id])
   customerId              String
   paymentMethod           String
@@ -62,25 +48,5 @@ model Order {
   
   @@map(name: "orders")
 }
-
-model DonutsByUsers {
-  donut       Donut     @relation(fields: [donutId], references: [id])
-  donutId     String // relation scalar field (used in the `@relation` attribute above)
-  user        User @relation(fields: [userId], references: [id])
-  userId      String // relation scalar field (used in the `@relation` attribute above)
-  assignedAt  DateTime @default(now())
-
-  @@id([donutId, userId])
-}
-
-// model DonutsPromoByUsers {
-//   donutsPromo       DonutsPromo     @relation(fields: [donutId], references: [id])
-//   donutId           String // relation scalar field (used in the `@relation` attribute above)
-//   user              User @relation(fields: [userId], references: [id])
-//   userId            String // relation scalar field (used in the `@relation` attribute above)
-//   assignedAt        DateTime @default(now())
-
-//   @@id([donutId, userId])
-// }
 
 

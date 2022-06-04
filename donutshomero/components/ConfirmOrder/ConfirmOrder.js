@@ -1,15 +1,22 @@
 import axios from "axios";
+import { DotPulse } from "@uiball/loaders";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 import s from "./ConfirmOrder.module.scss";
 
-const FORM_ID = "payment-form";
+// const FORM_ID = "payment-form";
 
-export default function ConfirmOrder() {
+export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
+  const router = useRouter();
+
   const cart = useSelector((state) => state.cart.items);
   const customerData = useSelector((state) => state.customerData.data);
+
+  const [loading, setLoading] = useState(false);
 
   //MERCADO PAGO BUTTON GENERATOR
   // const [preferenceId, setPreferenceId] = useState();
@@ -32,7 +39,13 @@ export default function ConfirmOrder() {
     return prev + acc.price * acc.quantity;
   }, 0);
 
+  const handleGoBack = () => {
+    setConfirmOrder(false)
+    setShowCustomerForm(true)
+  };
+
   const handleClickPedir = async () => {
+    setLoading(true);
     const data = {
       customerData,
       cart,
@@ -45,13 +58,21 @@ export default function ConfirmOrder() {
       data
     );
 
+    setLoading(false);
+
     const { id, init_point } = res.data;
+
     // setPreferenceId(id);
     window.open(init_point, "_blank");
   };
 
   return (
     <div className={s.container}>
+      <FontAwesomeIcon
+        icon={faArrowLeft}
+        className={s.go_back_icon}
+        onClick={handleGoBack}
+      />
       <p>CONFRIMACIÓN DE PEDIDO</p>
       <div className={s.info}>
         <div className={s.customerData}>
@@ -101,7 +122,13 @@ export default function ConfirmOrder() {
         </div>
 
         <div className={s.pedir_btn_container}>
-          <button onClick={handleClickPedir}>PEDIR</button>
+          <button type="button" onClick={handleClickPedir}>
+            {loading ? (
+              <DotPulse size={40} speed={1.3} color="white" />
+            ) : (
+              "PEDIR"
+            )}
+          </button>
         </div>
       </div>
       {/* <form id={FORM_ID} method="GET" /> */}
