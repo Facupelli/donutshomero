@@ -8,12 +8,13 @@
     padding: 2rem 0;
 
     .instructions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
       p {
         font-weight: 700;
       }
-
-      display: flex;
-      align-items: center;
 
       button {
         margin-left: auto;

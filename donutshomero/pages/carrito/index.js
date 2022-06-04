@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import Nav from "../../components/Nav/Nav";
-import CartItemPromo from "../../components/CartItem/CartItemPromo/CartItemPromo";
-import CartItemSingle from "../../components/CartItem/CartItemSingle/CartItemSingle";
+import CartItemCard from "../../components/CartItem/CartItemCard/CartItemCard";
 import { useState } from "react";
 
 import s from "./index.module.scss";
@@ -37,13 +36,9 @@ export default function Carrito() {
             <p className={s.total_title}>TOTAL</p>
           </div>
           {cart.length > 0 &&
-            orderedCart.map((cartItem) =>
-              cartItem.name ? (
-                <CartItemSingle key={cartItem.id} cartItem={cartItem} />
-              ) : (
-                <CartItemPromo key={cartItem.id} cartItem={cartItem} />
-              )
-            )}
+            orderedCart.map((cartItem) => (
+              <CartItemCard key={cartItem.id} cartItem={cartItem} />
+            ))}
           {cart.length <= 0 && (
             <p className={s.cart_empty}>
               Agregue productos a su carrito en Delivery!

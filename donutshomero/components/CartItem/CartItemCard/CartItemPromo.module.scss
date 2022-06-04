@@ -16,10 +16,39 @@
     border-radius: 0.2rem;
     background-color: white;
 
+    @media (max-width: 600px) {
+      margin: .5rem 0;
+    }
+
+    .cart_flex {
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 600px) {
+        display: block;
+      }
+    }
+
+    .cart_item_single {
+      display: flex;
+      align-items: center;
+      flex-grow: 10;
+
+      .single_price {
+        margin-left: auto;
+        margin-right: 1rem;
+
+        @media (max-width: 600px) {
+          margin-right: 0rem;
+        }
+      }
+    }
+
     .cart_item_promo {
       display: flex;
       align-items: center;
       gap: 1rem;
+      flex-grow: 10;
       flex-wrap: wrap;
 
       .flex {
@@ -38,16 +67,29 @@
 
         @media (max-width: 600px) {
           padding: 0.4rem;
-          margin-left: auto;
+          // margin-left: auto;
         }
 
         &:hover {
           cursor: pointer;
         }
 
+        .donas_mobile {
+          display: none;
+
+          @media (max-width: 600px) {
+            display: block;
+          }
+        }
+
         p {
           font-size: 0.7rem;
           font-weight: 600;
+          &:first-child {
+            @media (max-width: 600px) {
+              display: none;
+            }
+          }
         }
 
         .arrow_icon {
@@ -56,12 +98,37 @@
         }
       }
 
-      .price {
+      .promo_price {
         margin-left: auto;
+        margin-right: 1rem;
 
         @media (max-width: 600px) {
-          display: none;
+          margin-right: 0rem;
         }
+      }
+    }
+
+    .donuts_list {
+      padding: 0.4rem;
+      margin-left: 1rem;
+      display: inline-block;
+      border-left: 1px solid $main_pink;
+
+      @media (max-width: 600px) {
+        margin-top: 1rem;
+        margin-left: 0rem;
+      }
+    }
+
+    .qty_and_trash {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-left: auto;
+
+      @media (max-width: 600px) {
+        margin-left: 0;
+        margin-top: 0.5rem;
       }
 
       .trash_icon {
@@ -78,18 +145,6 @@
           cursor: pointer;
           color: $main_blue;
         }
-      }
-    }
-
-    .donuts_list {
-      padding: 0.4rem;
-      margin-left: 1rem;
-      display: inline-block;
-      border-left: 1px solid $main_pink;
-
-      @media (max-width: 600px) {
-        margin-top: 1rem;
-        margin-left: 0rem;
       }
     }
   }

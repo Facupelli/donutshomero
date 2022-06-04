@@ -1,6 +1,5 @@
 import DonutPromo from "../Promos/DonutPromo/DonutPromo";
 import Section from "../Section/Section";
-import s from "./Promos.module.scss";
 
 const six_donuts_promos = [
   {
