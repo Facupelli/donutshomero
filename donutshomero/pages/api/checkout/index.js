@@ -3,7 +3,6 @@ import mercadopago from "mercadopago";
 mercadopago.configure({
   access_token: process.env.TESTMP_ACCESS_TOKEN,
   // access_token: process.env.MP_TOKEN_PRODUCTION,
-
 });
 
 export default async function handler(req, res) {
@@ -23,12 +22,15 @@ export default async function handler(req, res) {
 
   let preference = {
     items,
-    // back_urls: {
-    //   success: "https://www.success.com",
-    //   failure: "http://www.failure.com",
-    //   pending: "http://www.pending.com",
-    // },
-    // auto_return: "approved",
+    back_urls: {
+      success:
+        process.env.NODE_ENV === "production"
+          ? "https://donutshomero.vercel.app"
+          : "http://localhost:3000/",
+      // failure: "http://www.failure.com",
+      // pending: "http://www.pending.com",
+    },
+    auto_return: "approved",
   };
 
   const response = await mercadopago.preferences.create(preference);

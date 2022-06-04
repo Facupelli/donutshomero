@@ -34,10 +34,9 @@ export default function ConfirmOrder() {
 
   const handleClickPedir = async () => {
     const res = await axios.post(
-      // process.env.NODE_ENV === "production"
-      // ? "https://donutshomero.vercel.app/api/checkout"
-      // :
-      "http://localhost:3000/api/checkout",
+      process.env.NODE_ENV === "production"
+        ? "https://donutshomero.vercel.app/api/checkout"
+        : "http://localhost:3000/api/checkout",
       cart
     );
 
