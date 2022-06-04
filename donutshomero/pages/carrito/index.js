@@ -34,7 +34,7 @@ export default function Carrito() {
         <div className={s.main}>
           <div className={s.titles}>
             <p>CARRITO</p>
-            <p>TOTAL</p>
+            <p className={s.total_title}>TOTAL</p>
           </div>
           {cart.length > 0 &&
             orderedCart.map((cartItem) =>

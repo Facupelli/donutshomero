@@ -14,6 +14,10 @@
     grid-template-columns: 48% 48%;
     column-gap: 2%;
 
+    @media (max-width: 600px) {
+      display: block;
+    }
+
     .title {
       font-weight: 700;
       margin-bottom: 0.5rem;
@@ -27,6 +31,10 @@
       padding: 1rem;
       border-radius: 0.2rem;
       box-shadow: rgba(99, 99, 99, 0.11) 0px 2px 8px 0px;
+
+      @media (max-width: 600px) {
+        margin-top: 1rem;
+      }
 
       .donuts_list {
         display: flex;
@@ -65,6 +73,11 @@
     grid-column: 2;
     margin-top: 2rem;
     margin-left: auto;
+
+    @media (max-width: 600px) {
+      display: flex;
+      justify-content: flex-end;
+    }
 
     button {
       border: none;
