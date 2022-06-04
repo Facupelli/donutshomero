@@ -58,9 +58,12 @@ export default function Carrito() {
                 maximumSignificantDigits: 12,
               }).format(totalPrice)}
             </p>
-            <div className={s.pagar_btn_container}>
+            <div className={s.pagar_btn_container_pc}>
               <button onClick={handleClickPagar}>PAGAR</button>
             </div>
+          </div>
+          <div className={s.pagar_btn_container_mobile}>
+            <button onClick={handleClickPagar}>PAGAR</button>
           </div>
         </div>
       )}

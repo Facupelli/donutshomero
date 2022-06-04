@@ -5,16 +5,22 @@
   align-items: center;
   grid-template-columns: 85% 15%;
 
+  @media (max-width: 600px) {
+    display: block;
+    // column-gap: 5%;
+  }
+
   .cart {
     margin: 0.3rem;
-    padding: .5rem 1rem;
-    border-radius: .2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
     background-color: white;
 
     .cart_item_promo {
       display: flex;
       align-items: center;
       gap: 1rem;
+      flex-wrap: wrap;
 
       .flex {
         display: flex;
@@ -29,6 +35,11 @@
         padding: 0.8rem;
         border: none;
         border-radius: 1rem;
+
+        @media (max-width: 600px) {
+          padding: 0.4rem;
+          margin-left: auto;
+        }
 
         &:hover {
           cursor: pointer;
@@ -47,13 +58,22 @@
 
       .price {
         margin-left: auto;
+
+        @media (max-width: 600px) {
+          display: none;
+        }
       }
 
       .trash_icon {
         color: $second_blue;
         width: 20px;
         height: 20px;
-  
+
+        @media (max-width: 600px) {
+          width: 15px;
+          height: 15px;
+        }
+
         &:hover {
           cursor: pointer;
           color: $main_blue;
@@ -62,10 +82,15 @@
     }
 
     .donuts_list {
-      padding: .4rem;
+      padding: 0.4rem;
       margin-left: 1rem;
       display: inline-block;
       border-left: 1px solid $main_pink;
+
+      @media (max-width: 600px) {
+        margin-top: 1rem;
+        margin-left: 0rem;
+      }
     }
   }
 }

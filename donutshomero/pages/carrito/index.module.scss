@@ -17,7 +17,7 @@
       }
     }
 
-    .cart_empty{
+    .cart_empty {
       font-weight: 600;
     }
 
@@ -27,6 +27,13 @@
       display: grid;
       grid-template-columns: 85% 15%;
       border-top: 1px solid $second_blue;
+
+      @media (max-width: 600px) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
 
       > p {
         &:first-child {
@@ -42,11 +49,15 @@
         font-size: 1.3rem;
       }
 
-      .pagar_btn_container {
+      .pagar_btn_container_pc {
         grid-column: 2;
         margin-top: 2rem;
         display: flex;
         justify-content: center;
+
+        @media (max-width: 600px) {
+          display: none;
+        }
 
         button {
           width: 75%;
@@ -54,11 +65,39 @@
           border-radius: 1rem;
           background-color: $second_blue;
           color: white;
-          padding: .7rem;
+          padding: 0.7rem;
           font-weight: 700;
           font-size: 1rem;
 
-          &:hover{
+          &:hover {
+            cursor: pointer;
+            background-color: $main_blue;
+          }
+        }
+      }
+    }
+
+    .pagar_btn_container_mobile {
+      display: none;
+      @media (max-width: 600px) {
+        display: block;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      button {
+        @media (max-width: 600px) {
+          width: 50%;
+          border: none;
+          border-radius: 1rem;
+          background-color: $second_blue;
+          color: white;
+          padding: 0.7rem;
+          font-weight: 700;
+          font-size: 1rem;
+
+          &:hover {
             cursor: pointer;
             background-color: $main_blue;
           }

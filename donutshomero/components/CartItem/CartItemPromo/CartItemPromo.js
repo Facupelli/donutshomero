@@ -25,10 +25,10 @@ export default function CartItemPromo({ cartItem }) {
             <p>{cartItem.title}</p>
           </div>
           <div className={s.flex}>
-            <p>Cantidad de donas:</p>
+            <p>Donas:</p>
             <p>{cartItem.donutsQuantity}</p>
           </div>
-          <button onClick={() => setShowDonuts(!showDonuts)}>
+          <button onClick={() => setShowDonuts(!showDonuts)} >
             <p>VER DONAS</p>
             <FontAwesomeIcon
               icon={showDonuts ? faAngleUp : faAngleDown}

@@ -1,4 +1,9 @@
-.total{
-    text-align: center;
-    font-weight: 700;
+.total {
+  text-align: center;
+  font-weight: 700;
+
+  @media (max-width: 600px) {
+    text-align: right;
+    padding: 0 .5rem .5rem .5rem;
   }
+}

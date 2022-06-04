@@ -5,6 +5,11 @@
   align-items: center;
   grid-template-columns: 85% 15%;
 
+  @media (max-width: 600px) {
+    display: block;
+    // column-gap: 5%;
+  }
+
   .cart_item_single {
     margin: 0.3rem;
     padding: 0.5rem 1rem;
@@ -13,6 +18,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
+
+    @media (max-width: 600px) {
+    }
 
     .price {
       margin-left: auto;
@@ -22,6 +31,11 @@
       color: $second_blue;
       width: 20px;
       height: 20px;
+
+      @media (max-width: 600px) {
+        width: 15px;
+        height: 15px;
+      }
 
       &:hover {
         cursor: pointer;

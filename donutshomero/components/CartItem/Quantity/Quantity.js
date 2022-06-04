@@ -24,17 +24,21 @@ export default function Quantity({ quantity, id }) {
 
   return (
     <div className={s.quantity}>
-      <FontAwesomeIcon
-        icon={faArrowDown}
-        className={s.qty_arrow_icon}
-        onClick={handleDecrement}
-      />
-      <FontAwesomeIcon
-        icon={faArrowUp}
-        className={s.qty_arrow_icon}
-        onClick={handleIncrement}
-      />
-      <p>{quantity}</p>
+      <div className={s.qty_arrow_icon_container}>
+        <FontAwesomeIcon
+          icon={faArrowDown}
+          className={s.qty_arrow_icon}
+          onClick={handleDecrement}
+        />
+      </div>
+      <div className={s.qty_arrow_icon_container}>
+        <FontAwesomeIcon
+          icon={faArrowUp}
+          className={s.qty_arrow_icon}
+          onClick={handleIncrement}
+        />
+      </div>
+      <p className={s.qty_total}>{quantity}</p>
     </div>
   );
 }

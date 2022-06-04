@@ -8,25 +8,48 @@
   padding: 0.4rem 1rem;
   border-radius: 1rem;
 
-  .qty_arrow_icon {
-    color: white;
+  @media (max-width: 600px) {
+    background-color: white;
+    padding: 0rem;
+    margin-right: auto;
+  }
+
+  .qty_arrow_icon_container {
     background-color: $main_pink;
     padding: 0.5rem;
     border-radius: 100%;
-    height: 15px;
-    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &:hover {
-      cursor: pointer;
-      background-color: $second_blue;
+    .qty_arrow_icon {
+      color: white;
+      height: 15px;
+      width: 15px;
+
+      @media (max-width: 600px) {
+        height: 10px;
+        width: 10px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $second_blue;
+      }
     }
   }
 
-  >p{
+  .qty_total {
     background-color: white;
     border-radius: 1rem;
-    padding: .5rem;
+    padding: 0.5rem;
     width: 40px;
     text-align: center;
+
+    @media (max-width: 600px) {
+      padding: 0.2rem;
+      width: 20px;
+      font-weight: 600;
+    }
   }
 }
