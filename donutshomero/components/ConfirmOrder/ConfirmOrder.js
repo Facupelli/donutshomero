@@ -33,11 +33,16 @@ export default function ConfirmOrder() {
   }, 0);
 
   const handleClickPedir = async () => {
+    const data = {
+      customerData,
+      cart,
+    };
+
     const res = await axios.post(
       process.env.NODE_ENV === "production"
         ? "https://donutshomero.vercel.app/api/checkout"
         : "http://localhost:3000/api/checkout",
-      cart
+      data
     );
 
     const { id, init_point } = res.data;
