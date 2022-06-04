@@ -16,7 +16,10 @@ const schema = yup.object().shape({
   address: yup.string().required("Dirección es requerida"),
   number: yup.number().required("Numeración es requerida"),
   addressLink: yup.string(),
-  paymentMethod: yup.string().required(),
+  paymentMethod: yup
+    .string()
+    .typeError("Debe elegir un método de pago!")
+    .required(),
   purchase: yup.array(),
 });
 
