@@ -11,26 +11,22 @@ export default function ConfirmOrder() {
   const cart = useSelector((state) => state.cart.items);
   const customerData = useSelector((state) => state.customerData.data);
 
-  //MERCADO PAGO
-  const [preferenceId, setPreferenceId] = useState();
+  //MERCADO PAGO BUTTON GENERATOR
+  // const [preferenceId, setPreferenceId] = useState();
 
-  useEffect(() => {
-    if (preferenceId) {
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src =
-        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-      script.setAttribute("data-preference-id", preferenceId);
-      const form = document.getElementById(FORM_ID);
-      form.appendChild(script);
-    }
-  }, [preferenceId]);
+  // useEffect(() => {
+  //   if (preferenceId) {
+  //     const script = document.createElement("script");
+  //     script.type = "text/javascript";
+  //     script.src =
+  //       "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+  //     script.setAttribute("data-preference-id", preferenceId);
+  //     const form = document.getElementById(FORM_ID);
+  //     form.appendChild(script);
+  //   }
+  // }, [preferenceId]);
 
   //---------------------------
-
-  console.log(preferenceId);
-
-  const router = useRouter();
 
   const totalPrice = cart.reduce((prev, acc, index, array) => {
     return prev + acc.price * acc.quantity;
@@ -104,7 +100,7 @@ export default function ConfirmOrder() {
           <button onClick={handleClickPedir}>PEDIR</button>
         </div>
       </div>
-      <form id={FORM_ID} method="GET" />
+      {/* <form id={FORM_ID} method="GET" /> */}
     </div>
   );
 }
