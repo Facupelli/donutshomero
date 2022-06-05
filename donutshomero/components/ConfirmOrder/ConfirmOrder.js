@@ -1,5 +1,4 @@
 import axios from "axios";
-import { DotPulse } from "@uiball/loaders";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +7,7 @@ import { useRouter } from "next/router";
 
 import s from "./ConfirmOrder.module.scss";
 import GoBackButton from "../GoBackButton/GoBackButton";
+import LoadingButton from "../LoadingButton/LoadingButton";
 
 // const FORM_ID = "payment-form";
 
@@ -125,13 +125,12 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
         </div>
 
         <div className={s.pedir_btn_container}>
-          <button type="button" onClick={handleClickPedir}>
-            {loading ? (
-              <DotPulse size={40} speed={1.3} color="white" />
-            ) : (
-              "PEDIR"
-            )}
-          </button>
+          <LoadingButton
+            loading={loading}
+            text="PEDIR"
+            handleClick={handleClickPedir}
+            type="button"
+          />
         </div>
       </div>
       {/* <form id={FORM_ID} method="GET" /> */}

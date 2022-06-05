@@ -8,6 +8,7 @@ import s from "./PurchaseForm.module.scss";
 import GoBackButton from "../GoBackButton/GoBackButton";
 import { useState } from "react";
 import axios from "axios";
+import LoadingButton from "../LoadingButton/LoadingButton";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Nombre Completo es requiredo").min(2),
@@ -29,8 +30,11 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
   const dispatch = useDispatch();
   const customerData = useSelector((state) => state.customerData.data);
 
-  const [showPhoneForm, setShowPhoneForm] = useState(customerData.phone ? false : true);
+  const [showPhoneForm, setShowPhoneForm] = useState(
+    customerData.phone ? false : true
+  );
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -51,29 +55,36 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
 
   const checkNumber = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const res = await axios.post(
-      process.env.NODE_ENV === "production"
-        ? `https://donutshomero.vercel.app/api/users`
-        : `http://localhost:3000/api/users`,
-      { number: phoneNumber }
-    );
-
-    if ((res.data.message = "user not found")) {
-      dispatch(setCustomerData({ phone: phoneNumber }));
-      setShowPhoneForm(false);
-    }
-
-    if (res.data.phone === phoneNumber) {
-      dispatch(
-        setCustomerData({
-          addressLink: res.data.ubiLink,
-          number: res.data.addressNumber,
-          address: res.data.address,
-          phone: res.data.phone,
-          fullName: `${res.data.name} ${res.data.surname}`,
-        })
+    try {
+      const res = await axios.post(
+        process.env.NODE_ENV === "production"
+          ? `https://donutshomero.vercel.app/api/users`
+          : `http://localhost:3000/api/users`,
+        { number: phoneNumber }
       );
+
+      if ((res.data.message = "user not found")) {
+        dispatch(setCustomerData({ phone: phoneNumber }));
+        setShowPhoneForm(false);
+      }
+
+      if (res.data.phone === phoneNumber) {
+        dispatch(
+          setCustomerData({
+            addressLink: res.data.ubiLink,
+            number: res.data.addressNumber,
+            address: res.data.address,
+            phone: res.data.phone,
+            fullName: `${res.data.name} ${res.data.surname}`,
+          })
+        );
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
     }
   };
 
@@ -102,7 +113,7 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
           />
           {errors && <span className={s.error}>{errors.phone?.message}</span>}
           <div className={s.btn_container}>
-            <button type="submit">SIGUIENTE</button>
+            <LoadingButton loading={loading} text="SIGUIENTE" type="submit" />
           </div>
         </form>
       )}
