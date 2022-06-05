@@ -14,7 +14,6 @@ export default async function mercadopagoController(req, res) {
       if (req.query.type === "payment") {
         const paymentId = req.body.data.id; // ID de payment en MercadoPago
 
-        console.log("PAYMENT ID", paymentId);
         const payment = await axios.get(
           `https://api.mercadopago.com/v1/payments/${paymentId}`,
           {
@@ -24,33 +23,21 @@ export default async function mercadopagoController(req, res) {
           }
         );
 
-        // Obtenemos los datos del pago desde MP
-
         const orderId = payment.data.external_reference;
-
-        console.log("ORDER ID", orderId);
 
         const order = await prisma.order.findUnique({ where: { id: orderId } });
 
-        console.log("PAYMENT", payment.data.status.toUpperCase());
-        console.log("ORDER", order, order.id);
-        console.log(
-          order.totalPrice,
-          payment.data.transaction_amount,
-          order.totalPrice === payment.data.transaction_amount
-        );
-
         if (order.totalPrice === payment.data.transaction_amount) {
-          console.log('entre', orderId, typeof orderId)
-          const updateOrder = await prisma.order.update({
-            where: {
-              id: orderId,
-            },
-            data: {
-              paymentStatus: "APPROVED", //APPROVED
-            },
-          });
-          console.log("updateOrder", updateOrder);
+          if (payment.data.status === "approved") {
+            await prisma.order.update({
+              where: {
+                id: orderId,
+              },
+              data: {
+                paymentStatus: "APPROVED", //APPROVED
+              },
+            });
+          }
         }
       }
       res.send(200);
