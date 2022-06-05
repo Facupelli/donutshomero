@@ -18,35 +18,30 @@ export default async function handler(req, res) {
           `https://api.mercadopago.com/v1/payments/${paymentId}`,
           {
             headers: {
-              Authorization:
-                `Bearer ${process.env.TESTMP_ACCESS_TOKEN}`,
+              Authorization: `Bearer ${process.env.TESTMP_ACCESS_TOKEN}`,
             },
           }
         );
 
         // Obtenemos los datos del pago desde MP
-        console.log("PAYMENT ", payment);
 
-        const orderId = payment.external_reference;
+        const orderId = payment.data.external_reference;
 
         const order = await prisma.order.findUnique({ where: { id: orderId } });
 
-        console.log("PAYMENT", payment, "status", payment.status)
-        console.log("ORDER", order)
-
-        if (order.totalPrice === payment.transaction_amount) {
+        if (order.totalPrice === payment.data.transaction_amount) {
           await prisma.order.update({
             where: {
               id: orderId,
             },
             data: {
-              status: payment.satus.toUpperCase(), //APPROVED
+              status: payment.data.satus.toUpperCase(), //APPROVED
             },
           });
         }
       }
 
-      res.send(200)
+      res.send(200);
     } catch (err) {
       res.status(400).json({ error: err });
     }
