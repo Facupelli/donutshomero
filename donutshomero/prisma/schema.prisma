@@ -43,6 +43,8 @@ model Order {
   customer                User       @relation(fields: [customerId], references: [id])
   customerId              String
   totalPrice              Int
+  address                 String
+  ubiLink                 String
   paymentMethod           String
   paymentStatus           String    @default("PENDING")
   deliverStatus           String    @default("PENDING")

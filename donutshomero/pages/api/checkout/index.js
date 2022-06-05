@@ -45,6 +45,8 @@ export default async function checkout(req, res) {
           paymentStatus: "PENDING",
           deliverStatus: "PENDING",
           totalPrice,
+          address: `${customerData.address} ${customerData.number}`,
+          ubiLink: customerData.addressLink,
           paymentMethod: customerData.paymentMethod,
         },
         include: {
