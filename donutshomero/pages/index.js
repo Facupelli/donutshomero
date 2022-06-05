@@ -1,4 +1,4 @@
-// import prisma from "../lib/prisma";
+import prisma from "../lib/prisma";
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 
