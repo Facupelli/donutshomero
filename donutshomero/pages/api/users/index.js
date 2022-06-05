@@ -3,9 +3,9 @@ import axios from "axios";
 
 export default async function usersController(req, res) {
   // Crea un objeto de preferencia
-  if (req.method === "GET") {
+  if (req.method === "POST") {
     try {
-      const phoneNumber = req.query.number;
+      const phoneNumber = req.body.number;
 
       const user = await prisma.user.findUnique({
         where: {

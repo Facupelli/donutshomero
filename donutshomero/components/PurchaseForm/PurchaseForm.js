@@ -29,7 +29,7 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
   const dispatch = useDispatch();
   const customerData = useSelector((state) => state.customerData.data);
 
-  const [showPhoneForm, setShowPhoneForm] = useState(true);
+  const [showPhoneForm, setShowPhoneForm] = useState(customerData.phone ? false : true);
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const {
@@ -52,10 +52,11 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
   const checkNumber = async (e) => {
     e.preventDefault();
 
-    const res = await axios.get(
+    const res = await axios.post(
       process.env.NODE_ENV === "production"
-        ? `https://donutshomero.vercel.app/api/users?number=${phoneNumber}`
-        : `http://localhost:3000/api/users?number=${phoneNumber}`
+        ? `https://donutshomero.vercel.app/api/users`
+        : `http://localhost:3000/api/users`,
+      { number: phoneNumber }
     );
 
     if ((res.data.message = "user not found")) {
