@@ -47,7 +47,8 @@ export default async function handler(req, res) {
           customer: {
             connect: { id: user.id },
           },
-          status: "PENDING",
+          paymentStatus: "PENDING",
+          deliverStatus: "PENDING",
           totalPrice,
           paymentMethod: customerData.paymentMethod,
         },
@@ -71,10 +72,10 @@ export default async function handler(req, res) {
 
       let preference = {
         external_reference: order.id,
-        notification_url:
-          process.env.NODE_ENV === "production"
-            ? "https://donutshomero.vercel.app/api/mercadopago"
-            : "http://localhost:3000/api/mercadopago",
+        notification_url: "https://donutshomero.vercel.app/api/mercadopago",
+        //   process.env.NODE_ENV === "production"
+        //     ? "https://donutshomero.vercel.app/api/mercadopago"
+        //     : "http://localhost:3000/api/mercadopago",
         items,
         payer: {
           name: user.name,

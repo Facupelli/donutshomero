@@ -37,9 +37,14 @@ model User {
   @@map(name: "users")
 }
 
-enum Status{
+enum paymentStatus{
   PENDING
   APPROVED
+}
+
+enum deliverStatus{
+  DELIVERED
+  PENDING
 }
 
 model Order {
@@ -49,7 +54,8 @@ model Order {
   customerId              String
   totalPrice              Int
   paymentMethod           String
-  status                  Status
+  paymentStatus           paymentStatus
+  deliverStatus           deliverStatus
   createdAt               DateTime  @default(now()) @map(name: "created_at")
   updatedAt               DateTime  @updatedAt @map(name: "updated_at")
   

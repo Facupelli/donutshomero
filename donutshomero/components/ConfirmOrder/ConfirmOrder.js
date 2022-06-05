@@ -64,7 +64,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       setLoading(false);
 
       const { id, init_point } = res.data;
-
+      console.log(init_point)
       // setPreferenceId(id);
       window.open(init_point, "_blank");
     } catch (err) {
