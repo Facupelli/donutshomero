@@ -9,13 +9,16 @@ mercadopago.configure({
 export default async function handler(req, res) {
   // Crea un objeto de preferencia
   if (req.method === "POST") {
-    console.log(req);
     try {
-      if (req.params.type === "payment") {
-        const paymentId = req.params.data.id; // ID de payment en MercadoPago
+      if (req.query.type === "payment") {
+        const paymentId = req.body.data.id; // ID de payment en MercadoPago
+
+        console.log("PATMENT ID", paymentId);
 
         const payment = await mercadopago.payments.get(paymentId);
         // Obtenemos los datos del pago desde MP
+        console.log("PATMENT ", payment);
+
         const orderId = payment.external_reference;
 
         const order = await prisma.order.findUnique({ where: { id: orderId } });
