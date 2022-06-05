@@ -144,6 +144,7 @@ export default async function handler(req, res) {
       res.status(400).json({ error: err });
     }
   } else {
+    console.log('only post')
     res.status(500).json({ error: "only post" });
   }
 }
