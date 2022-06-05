@@ -13,6 +13,8 @@ export default async function handler(req, res) {
       if (req.params.type === "payment") {
         const paymentId = req.params.data.id; // ID de payment en MercadoPago
 
+        console.log(paymentId)
+
         const payment = await mercadopago.payments.get(paymentId);
         // Obtenemos los datos del pago desde MP
         const orderId = payment.external_reference;
