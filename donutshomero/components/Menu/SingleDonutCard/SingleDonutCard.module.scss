@@ -31,7 +31,7 @@
   box-shadow: rgba(99, 99, 99, 0.11) 0px 2px 8px 0px;
 
   @media (max-width: 480px) {
-    grid-template-columns: 50% 20% 18% 12%;
+    grid-template-columns: 56% 17% 15% 12%;
     width: 350px;
   }
 
@@ -46,7 +46,6 @@
   flex-grow: 1;
   font-weight: 600;
   border-right: 1px solid $second_blue;
-  // background-color: red;
 }
 
 .price {
@@ -56,6 +55,8 @@
 
   @media (max-width: 600px) {
     font-size: 1rem;
+    margin: 0;
+    justify-self: center;
   }
 }
 
@@ -73,6 +74,7 @@
   @media (max-width: 380px) {
     // margin-left: auto;
     display: block;
+    justify-self: center;
   }
 }
 

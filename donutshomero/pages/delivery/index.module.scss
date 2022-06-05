@@ -11,6 +11,8 @@
       display: flex;
       align-items: center;
       gap: 2rem;
+      border-bottom: 1px solid $second_blue;
+      padding-bottom: 2rem;
 
       p {
         font-weight: 700;
@@ -38,6 +40,7 @@
       display: grid;
       grid-template-columns: 50% 50%;
       justify-items: center;
+      margin-bottom: 4rem;
 
       @media (max-width: 600px) {
         display: block;
@@ -57,7 +60,7 @@
       }
 
       > p {
-        margin: 3rem 0 1rem 0;
+        margin: 2rem 0 1rem 0;
         font-weight: 800;
       }
 
@@ -70,6 +73,10 @@
           font-weight: 600;
           margin: 1rem 0;
           text-align: center;
+
+          @media (max-width: 480px) {
+            margin: .5rem 0;
+          }
         }
       }
     }

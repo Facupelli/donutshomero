@@ -40,20 +40,8 @@ export default function Delivery({ donuts = [] }) {
           <button onClick={() => router.push("/carrito")}>VER CARRITO</button>
         </div>
         <div className={s.products_container}>
-          <p>SIMPLES</p>
-          <p className={s.promos_title_pc}>PROMOS</p>
-          <div className={s.single_donuts}>
-            {donuts_single.length > 0 &&
-              donuts_single.map((donut) => (
-                <SingleDonutCard
-                  key={donut.id}
-                  donut={donut}
-                  delivery
-                  cart={cart.filter((item) => item.type === "SINGLE")}
-                />
-              ))}
-          </div>
-          <p className={s.promos_title_mobile}>PROMOS</p>
+          <p>PROMOS</p>
+          <p className={s.promos_title_pc}>SIMPLES</p>
           <div className={s.single_donuts}>
             <span>6 DONAS</span>
             {donutsPromoSix.length > 0 &&
@@ -77,6 +65,18 @@ export default function Delivery({ donuts = [] }) {
                   cart={cart.filter(
                     (cartItem) => cartItem.donuts !== undefined
                   )}
+                />
+              ))}
+          </div>
+          <p className={s.promos_title_mobile}>SIMPLES</p>
+          <div className={s.single_donuts}>
+            {donuts_single.length > 0 &&
+              donuts_single.map((donut) => (
+                <SingleDonutCard
+                  key={donut.id}
+                  donut={donut}
+                  delivery
+                  cart={cart.filter((item) => item.type === "SINGLE")}
                 />
               ))}
           </div>

@@ -34,14 +34,29 @@
       }
     }
 
+    p {
+      align-self: flex-start;
+    }
+
     .payment_method {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: .6rem;
 
-      >div{
+      > div {
         display: flex;
         align-items: center;
+      }
+
+      input{
+        margin-right: .5rem;
+      }
+
+      input[type="radio"]:checked {
+        + label {
+          // color: $second_blue;
+          font-weight: 700;
+        }
       }
     }
 
