@@ -27,7 +27,11 @@ export default async function handler(req, res) {
 
         const orderId = payment.data.external_reference;
 
+        console.log("ORDER ID", orderId);
+
         const order = await prisma.order.findUnique({ where: { id: orderId } });
+
+        console.log("ORDER", order);
 
         if (order.totalPrice === payment.data.transaction_amount) {
           await prisma.order.update({
