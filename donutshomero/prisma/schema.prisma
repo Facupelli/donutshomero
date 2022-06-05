@@ -26,13 +26,13 @@ model User {
   id                      String       @default(cuid()) @id
   name                    String
   surname                 String
-  phone                   String
+  phone                   String       @unique
   address                 String
   addressNumber           Int
   ubiLink                 String?
-  email                   String?   @unique
-  createdAt               DateTime  @default(now()) @map(name: "created_at")
-  updatedAt               DateTime  @updatedAt @map(name: "updated_at")
+  email                   String?      @unique
+  createdAt               DateTime     @default(now()) @map(name: "created_at")
+  updatedAt               DateTime     @updatedAt @map(name: "updated_at")
   orders                  Order[]
   @@map(name: "users")
 }

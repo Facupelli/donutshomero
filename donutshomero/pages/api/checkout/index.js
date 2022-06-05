@@ -14,10 +14,9 @@ export default async function checkout(req, res) {
 
       let user;
 
-      const userExist = await prisma.user.findFirst({
+      const userExist = await prisma.user.findUnique({
         where: {
           phone: String(customerData.phone),
-          name: customerData.fullName.split(" ")[0],
         },
       });
 

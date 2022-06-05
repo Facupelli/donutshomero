@@ -6,6 +6,8 @@ import { setCustomerData } from "../../redux/features/customerData/customerDataS
 
 import s from "./PurchaseForm.module.scss";
 import GoBackButton from "../GoBackButton/GoBackButton";
+import { useState } from "react";
+import axios from "axios";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Nombre Completo es requiredo").min(2),
@@ -27,6 +29,9 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
   const dispatch = useDispatch();
   const customerData = useSelector((state) => state.customerData.data);
 
+  const [showPhoneForm, setShowPhoneForm] = useState(true);
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -38,6 +43,37 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
 
   const handleGoBack = () => {
     setShowCustomerForm(false);
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+
+  const checkNumber = async (e) => {
+    e.preventDefault();
+
+    const res = await axios.get(
+      process.env.NODE_ENV === "production"
+        ? `https://donutshomero.vercel.app/api/users?number=${phoneNumber}`
+        : `http://localhost:3000/api/users?number=${phoneNumber}`
+    );
+
+    if ((res.data.message = "user not found")) {
+      dispatch(setCustomerData({ phone: phoneNumber }));
+      setShowPhoneForm(false);
+    }
+
+    if (res.data.phone === phoneNumber) {
+      dispatch(
+        setCustomerData({
+          addressLink: res.data.ubiLink,
+          number: res.data.addressNumber,
+          address: res.data.address,
+          phone: res.data.phone,
+          fullName: `${res.data.name} ${res.data.surname}`,
+        })
+      );
+    }
   };
 
   const onSubmit = async (data) => {
@@ -54,83 +90,102 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
     <div className={s.container}>
       <GoBackButton handleOnClick={handleGoBack} />
       <p>TUS DATOS</p>
-      <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-        <label htmlFor="fullName">Nombre Completo:</label>
-        <input
-          type="text"
-          id="fullName"
-          defaultValue={customerData.fullName}
-          {...register("fullName")}
-        />
-        {errors && <span className={s.error}>{errors.fullName?.message}</span>}
-
-        <label htmlFor="phone">Número Celular:</label>
-        <input
-          type="text"
-          id="phone"
-          defaultValue={customerData.phone}
-          {...register("phone")}
-        />
-        {errors && <span className={s.error}>{errors.phone?.message}</span>}
-
-        <label htmlFor="address">Dirección:</label>
-        <input
-          type="text"
-          id="address"
-          defaultValue={customerData.address}
-          {...register("address")}
-        />
-        {errors && <span className={s.error}>{errors.address?.message}</span>}
-
-        <label htmlFor="number">Numeración:</label>
-        <input
-          type="text"
-          id="number"
-          defaultValue={customerData.number}
-          {...register("number")}
-        />
-        {errors && <span className={s.error}>{errors.number?.message}</span>}
-
-        <label htmlFor="addressLink">Link Ubicación:</label>
-        <input
-          type="text"
-          id="addressLink"
-          defaultValue={customerData.addressLink}
-          {...register("addressLink")}
-        />
-        {errors && (
-          <span className={s.error}>{errors.addressLink?.message}</span>
-        )}
-
-        <p>Método de Pago:</p>
-        <div className={s.payment_method}>
-          <div>
-            <input
-              type="radio"
-              id="cash"
-              value="efectivo"
-              {...register("paymentMethod")}
-            />
-            <label htmlFor="cash">EFECTIVO</label>
+      {showPhoneForm && (
+        <form onSubmit={checkNumber} className={s.phone_form}>
+          <label>Número Celular:</label>
+          <input
+            type="text"
+            id="phone"
+            value={phoneNumber}
+            onChange={(e) => handlePhoneChange(e)}
+          />
+          {errors && <span className={s.error}>{errors.phone?.message}</span>}
+          <div className={s.btn_container}>
+            <button type="submit">SIGUIENTE</button>
           </div>
-          <div>
-            <input
-              type="radio"
-              id="mercadopago"
-              value="mercadopago"
-              {...register("paymentMethod")}
-            />
-            <label htmlFor="mercadopago">MERCADO PAGO</label>
-          </div>
+        </form>
+      )}
+      {!showPhoneForm && (
+        <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+          <label htmlFor="fullName">Nombre Completo:</label>
+          <input
+            type="text"
+            id="fullName"
+            defaultValue={customerData.fullName}
+            {...register("fullName")}
+          />
           {errors && (
-            <span className={s.error}>{errors.paymentMethod?.message}</span>
+            <span className={s.error}>{errors.fullName?.message}</span>
           )}
-        </div>
-        {/* </div> */}
-        <div className={s.btn_container}>
-          <button type="submit">SIGUIENTE</button>
-        </div>
-      </form>
+
+          <label htmlFor="phone">Número Celular:</label>
+          <input
+            type="text"
+            id="phone"
+            defaultValue={customerData.phone}
+            {...register("phone")}
+          />
+          {errors && <span className={s.error}>{errors.phone?.message}</span>}
+
+          <label htmlFor="address">Dirección:</label>
+          <input
+            type="text"
+            id="address"
+            defaultValue={customerData.address}
+            {...register("address")}
+          />
+          {errors && <span className={s.error}>{errors.address?.message}</span>}
+
+          <label htmlFor="number">Numeración:</label>
+          <input
+            type="text"
+            id="number"
+            defaultValue={customerData.number}
+            {...register("number")}
+          />
+          {errors && <span className={s.error}>{errors.number?.message}</span>}
+
+          <label htmlFor="addressLink">Link Ubicación:</label>
+          <input
+            type="text"
+            id="addressLink"
+            defaultValue={customerData.addressLink}
+            {...register("addressLink")}
+          />
+          {errors && (
+            <span className={s.error}>{errors.addressLink?.message}</span>
+          )}
+
+          <p>Método de Pago:</p>
+          <div className={s.payment_method}>
+            <div>
+              <input
+                type="radio"
+                id="cash"
+                value="efectivo"
+                {...register("paymentMethod")}
+              />
+              <label htmlFor="cash">EFECTIVO</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="mercadopago"
+                value="mercadopago"
+                {...register("paymentMethod")}
+              />
+              <label htmlFor="mercadopago">MERCADO PAGO</label>
+            </div>
+            {errors && (
+              <span className={s.error}>{errors.paymentMethod?.message}</span>
+            )}
+          </div>
+          {/* </div> */}
+          <div className={s.btn_container}>
+            <button type="submit">SIGUIENTE</button>
+          </div>
+        </form>
+      )}
     </div>
   );
 }

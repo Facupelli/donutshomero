@@ -1,12 +1,42 @@
 @import "../../styles/app.scss";
 
+@mixin inputForm {
+  padding: 0.6rem;
+  border: none;
+  border: 1px solid white;
+  box-shadow: rgba(182, 182, 182, 0.24) 0px 0px 4px 1px;
+  border-radius: 0.2rem;
+
+  &:active,
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid $main_pink;
+  }
+}
+
 .container {
   @include app_width;
   padding: 3rem 0;
+  min-height: 400px;
 
   > p {
     margin-bottom: 2rem;
     font-weight: 700;
+  }
+
+  .phone_form {
+    display: grid;
+    grid-template-columns: 30% 30%;
+    align-items: center;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 50% 50%;
+    }
+
+    input {
+      @include inputForm;
+    }
   }
 
   .form {
@@ -20,18 +50,7 @@
     }
 
     input {
-      padding: 0.6rem;
-      border: none;
-      border: 1px solid white;
-      box-shadow: rgba(182, 182, 182, 0.24) 0px 0px 4px 1px;
-      border-radius: 0.2rem;
-
-      &:active,
-      &:focus {
-        outline: none;
-        box-shadow: none;
-        border: 1px solid $main_pink;
-      }
+      @include inputForm;
     }
 
     p {
@@ -41,15 +60,15 @@
     .payment_method {
       display: flex;
       flex-direction: column;
-      gap: .6rem;
+      gap: 0.6rem;
 
       > div {
         display: flex;
         align-items: center;
       }
 
-      input{
-        margin-right: .5rem;
+      input {
+        margin-right: 0.5rem;
       }
 
       input[type="radio"]:checked {
@@ -64,27 +83,27 @@
       color: red;
       grid-column: 2;
     }
+  }
+}
 
-    .btn_container {
-      grid-column: 2;
-      margin-left: auto;
+.btn_container {
+  grid-column: 2;
+  margin-left: auto;
 
-      button {
-        width: 100%;
-        margin-top: 1rem;
+  button {
+    width: 100%;
+    margin-top: 1rem;
 
-        border: none;
-        border-radius: 0.2rem;
-        background-color: $second_blue;
-        color: white;
-        padding: 0.5rem 2rem;
-        font-size: 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: $second_blue;
+    color: white;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
 
-        &:hover {
-          cursor: pointer;
-          background-color: $main_blue;
-        }
-      }
+    &:hover {
+      cursor: pointer;
+      background-color: $main_blue;
     }
   }
 }
