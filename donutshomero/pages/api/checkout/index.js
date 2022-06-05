@@ -12,18 +12,30 @@ export default async function handler(req, res) {
     try {
       const { cart, customerData } = req.body;
 
-      console.log("customerData", customerData.phone);
+      let user;
 
-      const user = await prisma.user.create({
-        data: {
+      const userExist = await prisma.user.findFirst({
+        where: {
+          phone: String(customerData.phone),
           name: customerData.fullName.split(" ")[0],
-          surname: customerData.fullName.split(" ")[1],
-          phone: Number(customerData.phone),
-          address: customerData.address,
-          addressNumber: Number(customerData.number),
-          ubiLink: customerData.addressLink,
         },
       });
+
+      if (userExist) {
+        user = userExist;
+      }
+      if (!userExist) {
+        user = await prisma.user.create({
+          data: {
+            name: customerData.fullName.split(" ")[0],
+            surname: customerData.fullName.split(" ")[1],
+            phone: String(customerData.phone),
+            address: customerData.address,
+            addressNumber: Number(customerData.number),
+            ubiLink: customerData.addressLink,
+          },
+        });
+      }
 
       // console.log("USER", user);
 
@@ -33,7 +45,7 @@ export default async function handler(req, res) {
         data: {
           items: cart,
           customer: {
-            connect: {id: user.id}
+            connect: { id: user.id },
           },
           paymentMethod: customerData.paymentMethod,
         },
@@ -62,7 +74,7 @@ export default async function handler(req, res) {
           surname: user.surname,
           phone: {
             area_code: "264",
-            number: user.phone,
+            number: Number(user.phone),
           },
           identification: {
             type: "DNI",

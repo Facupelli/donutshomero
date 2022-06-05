@@ -26,7 +26,7 @@ model User {
   id                      String       @default(cuid()) @id
   name                    String
   surname                 String
-  phone                   Int
+  phone                   String
   address                 String
   addressNumber           Int
   ubiLink                 String?

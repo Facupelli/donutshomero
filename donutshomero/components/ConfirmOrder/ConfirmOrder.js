@@ -46,25 +46,30 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   };
 
   const handleClickPedir = async () => {
-    setLoading(true);
-    const data = {
-      customerData,
-      cart,
-    };
+    try {
+      setLoading(true);
+      const data = {
+        customerData,
+        cart,
+      };
 
-    const res = await axios.post(
-      process.env.NODE_ENV === "production"
-        ? "https://donutshomero.vercel.app/api/checkout"
-        : "http://localhost:3000/api/checkout",
-      data
-    );
+      const res = await axios.post(
+        process.env.NODE_ENV === "production"
+          ? "https://donutshomero.vercel.app/api/checkout"
+          : "http://localhost:3000/api/checkout",
+        data
+      );
 
-    setLoading(false);
+      setLoading(false);
 
-    const { id, init_point } = res.data;
+      const { id, init_point } = res.data;
 
-    // setPreferenceId(id);
-    window.open(init_point, "_blank");
+      // setPreferenceId(id);
+      window.open(init_point, "_blank");
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   };
 
   return (
