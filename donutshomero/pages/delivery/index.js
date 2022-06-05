@@ -14,16 +14,16 @@ export default function Delivery({ donuts = [] }) {
   const router = useRouter();
   const cart = useSelector((state) => state.cart.items);
 
-  const donuts_single = donuts.filter((donut) => donut.type === "SINGLE");
+  const { single, promos } = donuts;
 
-  const donutsPromoSix = donuts.filter(
-    (donut) => donut.type === "PROMO" && donut.donutsQuantity === 6
-  );
-  const donutsPromoDozen = donuts.filter(
-    (donut) => donut.type === "PROMO" && donut.donutsQuantity === 12
-  );
+  const promoDonuts = JSON.parse(promos);
 
-  // console.log(cart);
+  const donutsPromoSix = promoDonuts.filter(
+    (donut) => donut.donutsQuantity === 6
+  );
+  const donutsPromoDozen = promoDonuts.filter(
+    (donut) => donut.donutsQuantity === 12
+  );
 
   return (
     <div className={s.container}>
@@ -51,7 +51,7 @@ export default function Delivery({ donuts = [] }) {
                   promo={promo}
                   delivery
                   cart={cart.filter(
-                    (cartItem) => cartItem.donuts !== undefined
+                    (cartItem) => cartItem.donutsQuantity === 6
                   )}
                 />
               ))}
@@ -63,20 +63,20 @@ export default function Delivery({ donuts = [] }) {
                   promo={promo}
                   delivery
                   cart={cart.filter(
-                    (cartItem) => cartItem.donuts !== undefined
+                    (cartItem) => cartItem.donutsQuantity === 12
                   )}
                 />
               ))}
           </div>
           <p className={s.promos_title_mobile}>SIMPLES</p>
           <div className={s.single_donuts}>
-            {donuts_single.length > 0 &&
-              donuts_single.map((donut) => (
+            {single.length > 0 &&
+              single.map((donut) => (
                 <SingleDonutCard
                   key={donut.id}
                   donut={donut}
                   delivery
-                  cart={cart.filter((item) => item.type === "SINGLE")}
+                  cart={cart}
                 />
               ))}
           </div>
@@ -89,10 +89,24 @@ export default function Delivery({ donuts = [] }) {
 }
 
 export const getStaticProps = async () => {
-  const donuts = await prisma.donut.findMany({});
+  const single = await prisma.donut.findMany({});
+
+  const promos = await prisma.promo.findMany({
+    include: {
+      donutsPromo: {
+        include: {
+          donut: true,
+        },
+      },
+    },
+  });
+
   return {
     props: {
-      donuts,
+      donuts: {
+        single,
+        promos: JSON.stringify(promos),
+      },
     },
   };
 };

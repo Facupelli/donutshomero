@@ -13,7 +13,7 @@ import WsButton from "../components/WsButton/WsButton";
 
 import s from "../styles/index.module.scss";
 
-export default function Home({ feed }) {
+export default function Home({ donuts }) {
   const menuDivRef = useRef(null);
   const promosDivRef = useRef(null);
   const localDivRef = useRef(null);
@@ -25,7 +25,6 @@ export default function Home({ feed }) {
   //     setScrollY(window.scrollY); // Value of scroll Y in px
   //   };
   // }, []);
-
 
   return (
     <div>
@@ -41,8 +40,8 @@ export default function Home({ feed }) {
           <Portrait />
         </div>
         <div className={s.promos}>
-          <Promos promosDivRef={promosDivRef} />
-          <Menu menuDivRef={menuDivRef} />
+          <Promos promosDivRef={promosDivRef} donuts={donuts.promos} />
+          <Menu menuDivRef={menuDivRef} donuts={donuts.single}/>
           <Local localDivRef={localDivRef} />
         </div>
         <WsButton scrollY={scrollY} />
@@ -54,14 +53,25 @@ export default function Home({ feed }) {
   );
 }
 
-// export const getStaticProps = async () => {
-  // const feed = await prisma.post.findMany({
-  //   where: { published: true },
-  //   include: {
-  //     author: {
-  //       select: { name: true },
-  //     },
-  //   },
-  // });
-  // return { props: { feed:[] } };
-// };
+export const getStaticProps = async () => {
+  const single = await prisma.donut.findMany({});
+
+  const promos = await prisma.promo.findMany({
+    include: {
+      donutsPromo: {
+        include: {
+          donut: true,
+        },
+      },
+    },
+  });
+
+  return {
+    props: {
+      donuts: {
+        single,
+        promos: JSON.stringify(promos),
+      },
+    },
+  };
+};

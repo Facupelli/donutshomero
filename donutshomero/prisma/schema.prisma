@@ -7,19 +7,36 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum Type{
-  SINGLE
-  PROMO
-}
-
 model Donut {
   id                String     @default(cuid()) @id
   name              String
-  type              Type
   price             Int
   quantity          Int         @default(1)
-  donuts            String[]
-  donutsQuantity    Int?
+  stock             Int         @default(30)
+  available         Boolean    @default(true)
+  donutsPromo       DonutsPromo[]
+}
+
+model Promo {
+  id                String    @default(cuid()) @id
+  name              String
+  price             Int
+  quantity          Int        @default(1)
+  available         Boolean    @default(true)
+  donutsQuantity    Int
+  donutsPromo       DonutsPromo[]
+}
+
+model DonutsPromo {
+  donut             Donut       @relation(fields: [donutId], references: [id])
+  donutId           String 
+  donutQuantity     Int
+  promo             Promo       @relation(fields: [promoId], references: [id])
+  promoId           String 
+  assignedAt        DateTime    @default(now())
+  assignedBy        String
+
+  @@id([donutId, promoId])
 }
 
 model User {

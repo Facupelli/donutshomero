@@ -64,8 +64,10 @@ export default function CartItemCard({ cartItem }) {
 
         {showDonuts && (
           <div className={s.donuts_list}>
-            {cartItem.donuts.map((donut) => (
-              <p key={donut}>{donut}</p>
+            {cartItem.donutsPromo.map((promoDonut, i) => (
+              <p key={i}>
+                {promoDonut.donutQuantity} {promoDonut.donut.name}
+              </p>
             ))}
           </div>
         )}

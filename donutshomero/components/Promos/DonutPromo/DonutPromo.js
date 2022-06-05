@@ -2,6 +2,7 @@ import PromoCard from "../Card/PromoCard";
 import s from "./DonutPromo.module.scss";
 
 export default function DonutPromo({ promo_type, donuts }) {
+
   return (
     <div className={s.container}>
       <div className={s.donuts_quantity_promo}>
@@ -12,7 +13,7 @@ export default function DonutPromo({ promo_type, donuts }) {
         {donuts.length > 0 &&
           donuts.map((promo) => (
             <PromoCard
-              key={promo.name}
+              key={promo.id}
               promo={promo}
               cart={[]}
             />
