@@ -13,8 +13,17 @@ export default async function handler(req, res) {
     }
   );
 
+  await prisma.order.update({
+    where: {
+      id: "cl40u7pum000909lbyblsbinr",
+    },
+    data: {
+      paymentStatus: payment.data.status, //APPROVED
+    },
+  });
+
   // Obtenemos los datos del pago desde MP
-  console.log("PAYMENT ", payment.data , payment.data.transaction_amount);
+  console.log("PAYMENT ", payment.data.status);
 
   const orderId = payment.external_reference;
 

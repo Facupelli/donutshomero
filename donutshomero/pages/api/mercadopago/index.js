@@ -33,6 +33,7 @@ export default async function mercadopagoController(req, res) {
         const order = await prisma.order.findUnique({ where: { id: orderId } });
 
         console.log("PAYMENT", payment.data.status.toUpperCase());
+        console.log("ORDER", order, order.id);
         console.log(
           order.totalPrice,
           payment.data.transaction_amount,
