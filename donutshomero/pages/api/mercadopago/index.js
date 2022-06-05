@@ -42,15 +42,15 @@ export default async function mercadopagoController(req, res) {
 
         if (order.totalPrice === payment.data.transaction_amount) {
           console.log('entre', orderId, typeof orderId)
-          const orderApproved = await prisma.order.update({
+          const updateOrder = await prisma.order.update({
             where: {
-              totalPrice: order.totalPrice,
+              id: orderId,
             },
             data: {
-              paymentStatus: payment.data.satus.toUpperCase(), //APPROVED
+              paymentStatus: "APPROVED", //APPROVED
             },
           });
-          console.log("orderApproved", orderApproved);
+          console.log("updateOrder", updateOrder);
         }
       }
       res.send(200);
