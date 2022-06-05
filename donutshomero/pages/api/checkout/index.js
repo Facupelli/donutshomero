@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   // Crea un objeto de preferencia
   if (req.method === "POST") {
     try {
-      const { cart, customerData } = req.body;
+      const { cart, customerData, totalPrice } = req.body;
 
       let user;
 
@@ -47,6 +47,8 @@ export default async function handler(req, res) {
           customer: {
             connect: { id: user.id },
           },
+          status: "PENDING",
+          totalPrice,
           paymentMethod: customerData.paymentMethod,
         },
         include: {
@@ -68,6 +70,11 @@ export default async function handler(req, res) {
       // console.log('ITEMS', items)
 
       let preference = {
+        external_reference: order.id,
+        notification_url:
+          process.env.NODE_ENV === "production"
+            ? "https://donutshomero.vercel.app/api/mercadopago"
+            : "http://localhost:3000/api/mercadopago",
         items,
         payer: {
           name: user.name,

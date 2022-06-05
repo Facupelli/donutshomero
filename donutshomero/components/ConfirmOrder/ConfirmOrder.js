@@ -51,6 +51,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       const data = {
         customerData,
         cart,
+        totalPrice,
       };
 
       const res = await axios.post(

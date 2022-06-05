@@ -37,12 +37,19 @@ model User {
   @@map(name: "users")
 }
 
+enum Status{
+  PENDING
+  APPROVED
+}
+
 model Order {
   id                      String       @default(cuid()) @id
   items                   Json[]
   customer                User       @relation(fields: [customerId], references: [id])
   customerId              String
+  totalPrice              Int
   paymentMethod           String
+  status                  Status
   createdAt               DateTime  @default(now()) @map(name: "created_at")
   updatedAt               DateTime  @updatedAt @map(name: "updated_at")
   
