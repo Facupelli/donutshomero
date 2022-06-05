@@ -1,6 +1,6 @@
 import mercadopago from "mercadopago";
 import prisma from "../../../lib/prisma";
-import axios from 'axios';
+import axios from "axios";
 
 mercadopago.configure({
   access_token: process.env.TESTMP_ACCESS_TOKEN,
@@ -33,6 +33,7 @@ export default async function mercadopagoController(req, res) {
         const order = await prisma.order.findUnique({ where: { id: orderId } });
 
         console.log("ORDER", order);
+        console.log("PAYMENT", payment.data.status.toUpperCase());
 
         if (order.totalPrice === payment.data.transaction_amount) {
           await prisma.order.update({
@@ -44,9 +45,8 @@ export default async function mercadopagoController(req, res) {
             },
           });
         }
+        res.send(200);
       }
-
-      res.send(200);
     } catch (err) {
       res.status(400).json({ error: err });
     }
