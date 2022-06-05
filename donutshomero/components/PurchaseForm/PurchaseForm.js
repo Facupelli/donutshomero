@@ -119,7 +119,9 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
       )}
       {!showPhoneForm && (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-          <label htmlFor="fullName">Nombre Completo:</label>
+          <label htmlFor="fullName">
+            Nombre Completo:<span>*</span>
+          </label>
           <input
             type="text"
             id="fullName"
@@ -130,7 +132,9 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
             <span className={s.error}>{errors.fullName?.message}</span>
           )}
 
-          <label htmlFor="phone">Número Celular:</label>
+          <label htmlFor="phone">
+            Número Celular:<span>*</span>
+          </label>
           <input
             type="text"
             id="phone"
@@ -139,7 +143,9 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
           />
           {errors && <span className={s.error}>{errors.phone?.message}</span>}
 
-          <label htmlFor="address">Dirección:</label>
+          <label htmlFor="address">
+            Dirección:<span>*</span>
+          </label>
           <input
             type="text"
             id="address"
@@ -148,7 +154,9 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
           />
           {errors && <span className={s.error}>{errors.address?.message}</span>}
 
-          <label htmlFor="number">Numeración:</label>
+          <label htmlFor="number">
+            Numeración:<span>*</span>
+          </label>
           <input
             type="text"
             id="number"
@@ -162,13 +170,16 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
             type="text"
             id="addressLink"
             defaultValue={customerData.addressLink}
+            placeholder="opcional"
             {...register("addressLink")}
           />
           {errors && (
             <span className={s.error}>{errors.addressLink?.message}</span>
           )}
 
-          <p>Método de Pago:</p>
+          <p>
+            Método de Pago:<span>*</span>
+          </p>
           <div className={s.payment_method}>
             <div>
               <input

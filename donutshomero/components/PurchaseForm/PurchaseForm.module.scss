@@ -49,6 +49,13 @@
       grid-template-columns: 50% 50%;
     }
 
+    label, p{
+
+      span{
+        color: $second_pink;
+      }
+    }
+
     input {
       @include inputForm;
     }
