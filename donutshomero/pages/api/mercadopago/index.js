@@ -1,12 +1,13 @@
 import mercadopago from "mercadopago";
 import prisma from "../../../lib/prisma";
+import axios from 'axios';
 
 mercadopago.configure({
   access_token: process.env.TESTMP_ACCESS_TOKEN,
   // access_token: process.env.MP_TOKEN_PRODUCTION,
 });
 
-export default async function handler(req, res) {
+export default async function mercadopagoController(req, res) {
   // Crea un objeto de preferencia
   if (req.method === "POST") {
     try {

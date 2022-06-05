@@ -6,7 +6,7 @@ mercadopago.configure({
   // access_token: process.env.MP_TOKEN_PRODUCTION,
 });
 
-export default async function handler(req, res) {
+export default async function checkout(req, res) {
   // Crea un objeto de preferencia
   if (req.method === "POST") {
     try {
