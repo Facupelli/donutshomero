@@ -44,7 +44,7 @@ export default async function mercadopagoController(req, res) {
           console.log('entre', orderId, typeof orderId)
           const orderApproved = await prisma.order.update({
             where: {
-              id: orderId,
+              totalPrice: order.totalPrice,
             },
             data: {
               paymentStatus: payment.data.satus.toUpperCase(), //APPROVED
