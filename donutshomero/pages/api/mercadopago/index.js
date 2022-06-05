@@ -9,11 +9,10 @@ mercadopago.configure({
 export default async function handler(req, res) {
   // Crea un objeto de preferencia
   if (req.method === "POST") {
+    console.log(req.params);
     try {
       if (req.params.type === "payment") {
         const paymentId = req.params.data.id; // ID de payment en MercadoPago
-
-        console.log(paymentId)
 
         const payment = await mercadopago.payments.get(paymentId);
         // Obtenemos los datos del pago desde MP
