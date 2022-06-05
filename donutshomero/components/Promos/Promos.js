@@ -3,22 +3,22 @@ import Section from "../Section/Section";
 
 const six_donuts_promos = [
   {
-    title: 1,
+    name: 1,
     donuts: ["3 azucaradas", "3 glaseadas de limón"],
     price: "700",
   },
   {
-    title: 2,
+    name: 2,
     donuts: ["3 glaseadas de limón", "3 dulce de leche"],
     price: "750",
   },
   {
-    title: 3,
+    name: 3,
     donuts: ["1 azucarada", "2 oreo", "3 chocotorta"],
     price: "850",
   },
   {
-    title: 4,
+    name: 4,
     donuts: ["3 glaseadas de limón", "3 nutella"],
     price: "900",
   },
@@ -26,7 +26,7 @@ const six_donuts_promos = [
 
 const dozen_donuts_promos = [
   {
-    title: 1,
+    name: 1,
     donuts: [
       "3 azucaradas",
       "3 glaseadas de limón",
@@ -36,12 +36,12 @@ const dozen_donuts_promos = [
     price: "1350",
   },
   {
-    title: 2,
+    name: 2,
     donuts: ["4 azucaradas", "4 rellenas a elección", "4 oreo"],
     price: "1500",
   },
   {
-    title: 3,
+    name: 3,
     donuts: [
       "6 chocolate rosado",
       "2 oreo",
@@ -51,12 +51,12 @@ const dozen_donuts_promos = [
     price: "1600",
   },
   {
-    title: 4,
+    name: 4,
     donuts: ["3 nutella", "3 chocolate rosado", "3 oreo", "3 azucaradas"],
     price: "1750",
   },
   {
-    title: 5,
+    name: 5,
     donuts: ["6 glaseadas de limón", "6 dulce de leche"],
     price: "1300",
   },
