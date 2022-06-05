@@ -41,12 +41,12 @@ export default async function mercadopagoController(req, res) {
               id: orderId,
             },
             data: {
-              status: payment.data.satus.toUpperCase(), //APPROVED
+              paymentStatus: payment.data.satus.toUpperCase(), //APPROVED
             },
           });
         }
-        res.send(200);
       }
+      res.send(200);
     } catch (err) {
       res.status(400).json({ error: err });
     }
