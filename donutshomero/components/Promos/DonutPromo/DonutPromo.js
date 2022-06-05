@@ -12,7 +12,7 @@ export default function DonutPromo({ promo_type, donuts }) {
         {donuts.length > 0 &&
           donuts.map((promo) => (
             <PromoCard
-              key={promo.title}
+              key={promo.name}
               promo={promo}
               cart={[]}
             />
