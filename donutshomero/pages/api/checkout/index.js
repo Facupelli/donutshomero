@@ -37,10 +37,6 @@ export default async function checkout(req, res) {
         });
       }
 
-      // console.log("USER", user);
-
-      // console.log('CART', cart)
-
       const order = await prisma.order.create({
         data: {
           items: cart,
@@ -57,8 +53,6 @@ export default async function checkout(req, res) {
         },
       });
 
-      // console.log("ORDERS", order);
-
       const items = cart.map((item) => {
         return {
           id: item.id,
@@ -68,14 +62,9 @@ export default async function checkout(req, res) {
         };
       });
 
-      // console.log('ITEMS', items)
-
       let preference = {
         external_reference: order.id,
         notification_url: "https://donutshomero.vercel.app/api/mercadopago",
-        //   process.env.NODE_ENV === "production"
-        //     ? "https://donutshomero.vercel.app/api/mercadopago"
-        //     : "http://localhost:3000/api/mercadopago",
         items,
         payer: {
           name: user.name,
@@ -128,23 +117,11 @@ export default async function checkout(req, res) {
       });
 
       // res.redirect(302, response.body.init_point);
-
-      // mercadopago.preferences
-      //   .create(preference)
-      //   .then((res) => {
-      //     res.json({
-      //       id: response.body.id,
-      //       init_point: response.body.init_point,
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     console.log("MERCADOPAGO:", error);
-      //   });
     } catch (err) {
       res.status(400).json({ error: err });
     }
   } else {
-    console.log('only post')
+    console.log("only post");
     res.status(500).json({ error: "only post" });
   }
 }
