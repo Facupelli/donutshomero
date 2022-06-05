@@ -32,11 +32,15 @@ export default async function mercadopagoController(req, res) {
 
         const order = await prisma.order.findUnique({ where: { id: orderId } });
 
-        console.log("ORDER", order);
         console.log("PAYMENT", payment.data.status.toUpperCase());
+        console.log(
+          order.totalPrice,
+          payment.data.transaction_amount,
+          order.totalPrice === payment.data.transaction_amount
+        );
 
         if (order.totalPrice === payment.data.transaction_amount) {
-          await prisma.order.update({
+          const orderApproved = await prisma.order.update({
             where: {
               id: orderId,
             },
@@ -44,6 +48,7 @@ export default async function mercadopagoController(req, res) {
               paymentStatus: payment.data.satus.toUpperCase(), //APPROVED
             },
           });
+          console.log("orderApproved", orderApproved);
         }
       }
       res.send(200);

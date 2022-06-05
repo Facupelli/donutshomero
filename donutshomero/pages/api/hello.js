@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   );
 
   // Obtenemos los datos del pago desde MP
-  console.log("PAYMENT ", payment.data , payment.data.external_reference);
+  console.log("PAYMENT ", payment.data , payment.data.transaction_amount);
 
   const orderId = payment.external_reference;
 
