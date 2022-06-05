@@ -31,6 +31,9 @@ export default async function handler(req, res) {
 
         const order = await prisma.order.findUnique({ where: { id: orderId } });
 
+        console.log("PAYMENT", payment, "status", payment.status)
+        console.log("ORDER", order)
+
         if (order.totalPrice === payment.transaction_amount) {
           await prisma.order.update({
             where: {
