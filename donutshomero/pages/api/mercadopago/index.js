@@ -13,11 +13,19 @@ export default async function handler(req, res) {
       if (req.query.type === "payment") {
         const paymentId = req.body.data.id; // ID de payment en MercadoPago
 
-        console.log("PATMENT ID", paymentId);
+        console.log("PAYMENT ID", paymentId);
+        const payment = await axios.get(
+          `https://api.mercadopago.com/v1/payments/${paymentId}`,
+          {
+            headers: {
+              Authorization:
+                `Bearer ${process.env.TESTMP_ACCESS_TOKEN}`,
+            },
+          }
+        );
 
-        const payment = await mercadopago.payments.get(paymentId);
         // Obtenemos los datos del pago desde MP
-        console.log("PATMENT ", payment);
+        console.log("PAYMENT ", payment);
 
         const orderId = payment.external_reference;
 
@@ -29,11 +37,13 @@ export default async function handler(req, res) {
               id: orderId,
             },
             data: {
-              status: payment.satus, //APPROVED
+              status: payment.satus.toUpperCase(), //APPROVED
             },
           });
         }
       }
+
+      res.send(200)
     } catch (err) {
       res.status(400).json({ error: err });
     }
