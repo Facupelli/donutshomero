@@ -60,7 +60,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
         };
         await axios.put(
           process.env.NODE_ENV === "production"
-            ? "https://donutshomero.vercel.app/api/checkout"
+            ? "https://donutshomero.vercel.app/api/stock"
             : "http://localhost:3000/api/stock",
           data
         );
