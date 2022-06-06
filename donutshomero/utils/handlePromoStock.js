@@ -14,7 +14,7 @@ export const handlePromoStock = (qty, single_donuts, setStockMessage) => {
       console.log("NO HAY STOCK", donut.name);
       if (setStockMessage) {
         setStockMessage(
-          `LO SENTIMOS NO HAY STOCK DE: ${donut.name} STOCK: ${donut.stock}`
+          `NO HAY STOCK :( | ${donut.name} STOCK: ${donut.stock}`
         );
       }
       stock = false;

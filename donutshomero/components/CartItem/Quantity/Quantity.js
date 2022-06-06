@@ -1,5 +1,6 @@
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   incrementQuantity,
@@ -13,7 +14,7 @@ import { handlePromoStock } from "../../../utils/handlePromoStock";
 
 import s from "./Quantity.module.scss";
 
-export default function Quantity({ quantity, id, promo }) {
+export default function Quantity({ quantity, id, promo, setStockMessage,setShowStockModal }) {
   const dispatch = useDispatch();
   const single_donuts = useSelector((state) => state.donuts.single_donuts);
   const cart = useSelector((state) => state.cart.items);
@@ -28,7 +29,8 @@ export default function Quantity({ quantity, id, promo }) {
         qty: promo.donutQuantity,
       }));
 
-      if (!handlePromoStock(qty, single_donuts)) {
+      if (!handlePromoStock(qty, single_donuts, setStockMessage)) {
+        setShowStockModal(true)
         return;
       }
 
@@ -39,6 +41,8 @@ export default function Quantity({ quantity, id, promo }) {
       const stock = single_donuts.filter((donut) => donut.id === id)[0].stock;
       if (stock <= 0) {
         console.log("NO HAY STOCK");
+        setStockMessage("NO HAY MÁS STOCK :(");
+        setShowStockModal(true)
         return;
       }
       dispatch(incrementQuantity(id));

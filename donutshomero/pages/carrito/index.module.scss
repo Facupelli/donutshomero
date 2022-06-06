@@ -6,6 +6,7 @@
   .main {
     @include app_width;
     padding: 4rem 0;
+    position: relative;
 
     .titles {
       display: grid;

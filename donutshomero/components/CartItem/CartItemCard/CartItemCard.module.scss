@@ -18,7 +18,7 @@
 
     @media (max-width: 600px) {
       margin: 0.5rem 0;
-      padding: .7rem;
+      padding: 0.7rem;
     }
 
     .cart_flex {
@@ -150,6 +150,7 @@
       align-items: center;
       gap: 1rem;
       margin-left: auto;
+      position: relative;
 
       @media (max-width: 600px) {
         margin-left: 0;
@@ -172,5 +173,43 @@
         }
       }
     }
+  }
+}
+
+@mixin modalArrowDown($right) {
+  position: absolute;
+  z-index: 2;
+  right: $right;
+  top: -20px;
+  background-color: white;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    border-top: 15px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+}
+
+.modal_available {
+  position: relative;
+
+  .stock_modal_single {
+    @include modalArrowDown(160px);
+  }
+
+  .stock_modal_promo {
+    @include modalArrowDown(59px)
+  }
+
+  .no_stock {
+    @include noStock;
   }
 }
