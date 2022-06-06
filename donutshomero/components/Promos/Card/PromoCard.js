@@ -25,18 +25,19 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
   const [stockMessage, setStockMessage] = useState("");
 
   const handleCartClick = () => {
+    const qty = promo.donutsPromo.map((promo) => ({
+      id: promo.donutId,
+      qty: promo.donutQuantity,
+    }));
+
     const isInCart = cart.filter((cartItem) => cartItem.id === promo.id);
+
     if (isInCart.length > 0) {
       //el producto ya esta en el carrito, lo elimino y devuelvo el stock
       dispatch(removeFromCart(promo.id));
       qty.map((el) => dispatch(incrementStock(el)));
     } else {
       //controlo stock
-      const qty = promo.donutsPromo.map((promo) => ({
-        id: promo.donutId,
-        qty: promo.donutQuantity,
-      }));
-
       if (!handlePromoStock(qty, single_donuts, setStockMessage)) {
         return;
       }
