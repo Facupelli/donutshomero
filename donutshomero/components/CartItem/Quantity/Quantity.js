@@ -9,6 +9,7 @@ import {
   decrementStock,
   incrementStock,
 } from "../../../redux/features/donuts/donutsSlice";
+import { handlePromoStock } from "../../../utils/handlePromoStock";
 
 import s from "./Quantity.module.scss";
 
@@ -26,31 +27,13 @@ export default function Quantity({ quantity, id, promo }) {
         id: promo.donutId,
         qty: promo.donutQuantity,
       }));
-      //selecciono la cantidad de single donuts que pertenecen a la promo
 
-      const promoDonutsIds = qty.map((donut) => donut.id);
-
-      const promoDonuts = single_donuts.filter((donut) =>
-        promoDonutsIds.includes(donut.id)
-      );
-      //selecciono las donas singles que pertenecen a la promo
-
-      let stock = true;
-
-      promoDonuts.map((donut) => {
-        const match = qty.filter((el) => el.id === donut.id);
-        if (donut.stock - match[0].qty < 0) {
-          console.log("NO HAY STOCK");
-          stock = false;
-        }
-      });
-
-      if (stock) {
-        dispatch(incrementQuantity(id));
-        qty.map((el) => dispatch(decrementStock(el)));
-      } else {
+      if (!handlePromoStock(qty, single_donuts)) {
         return;
       }
+
+      dispatch(incrementQuantity(id));
+      qty.map((el) => dispatch(decrementStock(el)));
     } else {
       //si es una single
       const stock = single_donuts.filter((donut) => donut.id === id)[0].stock;

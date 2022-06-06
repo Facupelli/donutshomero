@@ -18,18 +18,19 @@ import s from "./SingleDonutCard.module.scss";
 export default function SingleDonutCard({ donut, delivery, cart }) {
   const { name, price, id } = donut;
   const dispatch = useDispatch();
-  const single_donuts = useSelector(state => state.donuts.single_donuts)
+  const single_donuts = useSelector((state) => state.donuts.single_donuts);
 
   const handleCartClick = () => {
+    const stock = single_donuts.filter((item) => item.id === donut.id)[0].stock;
+    if (stock <= 0) {
+      console.log("NO HAY STOCK");
+      return;
+    }
+
     cart.filter((cartItem) => cartItem.id === id).length > 0
       ? dispatch(removeFromCart(id))
       : dispatch(addToCart(donut));
 
-    const stock = single_donuts.filter((item) => item.id === donut.id)[0].stock;
-    if (stock <= 0) {
-      console.log('NO HAY STOCK')
-      return;
-    }
     dispatch(decrementStock({ id, qty: 1 }));
   };
 

@@ -53,6 +53,7 @@ export default function Delivery({ donuts = [] }) {
                   cart={cart.filter(
                     (cartItem) => cartItem.donutsQuantity === 6
                   )}
+                  single_donuts={single}
                 />
               ))}
             <span>12 DONAS</span>
@@ -65,6 +66,7 @@ export default function Delivery({ donuts = [] }) {
                   cart={cart.filter(
                     (cartItem) => cartItem.donutsQuantity === 12
                   )}
+                  single_donuts={single}
                 />
               ))}
           </div>
