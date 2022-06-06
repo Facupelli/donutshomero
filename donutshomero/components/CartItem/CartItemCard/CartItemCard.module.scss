@@ -28,6 +28,10 @@
       @media (max-width: 600px) {
         display: block;
       }
+
+      .name{
+        font-weight: 500;
+      }
     }
 
     .cart_item_single {
@@ -158,6 +162,7 @@
       }
 
       .stock_container {
+        width: 75px;
         @media (max-width: 600px) {
           text-align: center;
           flex-grow: 2;
@@ -187,4 +192,3 @@
     }
   }
 }
-

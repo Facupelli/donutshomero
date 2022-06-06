@@ -19,7 +19,8 @@ export default function Delivery({ donuts = [] }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const cart = useSelector((state) => state.cart.items);
-  const donutsState = useSelector((state) => state.dounts);
+  const donutsState = useSelector((state) => state.donuts);
+
   const { single, promos } = donuts;
   const promoDonuts = JSON.parse(promos);
 
@@ -31,7 +32,11 @@ export default function Delivery({ donuts = [] }) {
   );
 
   useEffect(() => {
-    if (!donutsState) {
+    if (
+      donutsState.single_donuts.length === 0 &&
+      donutsState.promos.length === 0
+    ) {
+      console.log("NO HAY REDUX STATE", donutsState);
       dispatch(setSingleDonuts(single));
       dispatch(setPromos(promoDonuts));
     }

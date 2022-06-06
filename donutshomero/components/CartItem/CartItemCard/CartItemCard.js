@@ -48,7 +48,7 @@ export default function CartItemCard({ cartItem }) {
             <div className={s.cart_item_promo}>
               <div className={s.flex}>
                 <p>Promo N°</p>
-                <p>{cartItem.name}</p>
+                <p className={s.name}>{cartItem.name}</p>
               </div>
               <div className={s.flex}>
                 <p>Donas:</p>
@@ -69,7 +69,7 @@ export default function CartItemCard({ cartItem }) {
             </div>
           ) : (
             <div key={cartItem.id} className={s.cart_item_single}>
-              <p>{cartItem.name}</p>
+              <p className={s.name}>{cartItem.name}</p>
               <p className={s.single_price}>${cartItem.price}</p>
               <p className={s.single_total_price}>
                 ${cartItem.price * cartItem.quantity}
@@ -81,8 +81,6 @@ export default function CartItemCard({ cartItem }) {
               quantity={cartItem.quantity}
               id={cartItem.id}
               promo={cartItem.donutsQuantity}
-              // setStockMessage={setStockMessage}
-              // setShowStockModal={setShowStockModal}
             />
             {!cartItem.donutsQuantity && (
               <div className={s.stock_container}>
