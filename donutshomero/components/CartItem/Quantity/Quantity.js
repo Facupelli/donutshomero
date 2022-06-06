@@ -1,6 +1,6 @@
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   incrementQuantity,
@@ -14,10 +14,31 @@ import { handlePromoStock } from "../../../utils/handlePromoStock";
 
 import s from "./Quantity.module.scss";
 
-export default function Quantity({ quantity, id, promo, setStockMessage,setShowStockModal }) {
+export default function Quantity({
+  quantity,
+  id,
+  promo,
+  // setStockMessage,
+  // setShowStockModal,
+}) {
   const dispatch = useDispatch();
   const single_donuts = useSelector((state) => state.donuts.single_donuts);
   const cart = useSelector((state) => state.cart.items);
+
+  const [stockMessage, setStockMessage] = useState("");
+  const [showStockModal, setShowStockModal] = useState(false);
+
+  useEffect(() => {
+    const handler = () => {
+      setShowStockModal(false);
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
 
   const handleIncrement = () => {
     if (!!promo) {
@@ -30,7 +51,7 @@ export default function Quantity({ quantity, id, promo, setStockMessage,setShowS
       }));
 
       if (!handlePromoStock(qty, single_donuts, setStockMessage)) {
-        setShowStockModal(true)
+        setShowStockModal(true);
         return;
       }
 
@@ -42,7 +63,7 @@ export default function Quantity({ quantity, id, promo, setStockMessage,setShowS
       if (stock <= 0) {
         console.log("NO HAY STOCK");
         setStockMessage("NO HAY MÁS STOCK :(");
-        setShowStockModal(true)
+        setShowStockModal(true);
         return;
       }
       dispatch(incrementQuantity(id));
@@ -71,14 +92,25 @@ export default function Quantity({ quantity, id, promo, setStockMessage,setShowS
   };
 
   return (
-    <div className={s.quantity}>
-      <div className={s.qty_arrow_icon_container} onClick={handleDecrement}>
-        <FontAwesomeIcon icon={faArrowDown} className={s.qty_arrow_icon} />
+    <div className={s.modal_available}>
+      {showStockModal && stockMessage && (
+        <div
+          className={
+            !!promo ? s.stock_modal_promo : s.stock_modal_single
+          }
+        >
+          <p className={s.no_stock}>{stockMessage}</p>
+        </div>
+      )}
+      <div className={s.quantity}>
+        <div className={s.qty_arrow_icon_container} onClick={handleDecrement}>
+          <FontAwesomeIcon icon={faArrowDown} className={s.qty_arrow_icon} />
+        </div>
+        <div className={s.qty_arrow_icon_container} onClick={handleIncrement}>
+          <FontAwesomeIcon icon={faArrowUp} className={s.qty_arrow_icon} />
+        </div>
+        <p className={s.qty_total}>{quantity}</p>
       </div>
-      <div className={s.qty_arrow_icon_container} onClick={handleIncrement}>
-        <FontAwesomeIcon icon={faArrowUp} className={s.qty_arrow_icon} />
-      </div>
-      <p className={s.qty_total}>{quantity}</p>
     </div>
   );
 }
