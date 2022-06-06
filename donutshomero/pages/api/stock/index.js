@@ -12,7 +12,7 @@ export default async function stock(req, res) {
           prisma.donut.update({
             where: { id: item.id },
             data: {
-              stock: item.stock,
+              stock: { decrement: item.quantity },
             },
           })
         )

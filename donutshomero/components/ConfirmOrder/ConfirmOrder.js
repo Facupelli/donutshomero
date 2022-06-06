@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import s from "./ConfirmOrder.module.scss";
 import GoBackButton from "../GoBackButton/GoBackButton";
 import LoadingButton from "../LoadingButton/LoadingButton";
+import { updateDbStock } from "../../utils/updateDbStock";
 
 // const FORM_ID = "payment-form";
 
@@ -50,38 +51,14 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
     setLoading(true);
 
     try {
-      const updateStock = async () => {
-        const promoDonutsIds = cart
-          .filter((item) => item.donutsQuantity >= 6)
-          .map((promo) => promo.donutsPromo)
-          .flat()
-          .map((donut) => donut.donutId);
+      const data = updateDbStock(cart);
 
-        const singleDonutsIds = cart
-          .filter((item) => item.name.length > 2)
-          .map((donut) => donut.id);
-
-        const cartIds = [...promoDonutsIds, ...singleDonutsIds].filter(
-          (id, i, a) => a.indexOf(id) === i
-        );
-
-        const donutsCart = single_donuts.filter((donut) =>
-          cartIds.includes(donut.id)
-        );
-
-        const data = {
-          cart: donutsCart,
-        };
-
-        await axios.put(
-          process.env.NODE_ENV === "production"
-            ? "https://donutshomero.vercel.app/api/stock"
-            : "http://localhost:3000/api/stock",
-          data
-        );
-      };
-
-      updateStock();
+      await axios.put(
+        process.env.NODE_ENV === "production"
+          ? "https://donutshomero.vercel.app/api/stock"
+          : "http://localhost:3000/api/stock",
+        data
+      );
     } catch (err) {
       console.log("unable to update stock:", err);
     }
