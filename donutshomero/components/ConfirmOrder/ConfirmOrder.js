@@ -15,6 +15,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   const router = useRouter();
 
   const cart = useSelector((state) => state.cart.items);
+  const single_donuts = useSelector((state) => state.donuts.single_donuts);
   const customerData = useSelector((state) => state.customerData.data);
 
   const [loading, setLoading] = useState(false);
@@ -46,8 +47,31 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   };
 
   const handleClickPedir = async () => {
+    setLoading(true);
+
     try {
-      setLoading(true);
+      const updateStock = async () => {
+        const cartIds = cart.map((item) => item.id);
+        const newCart = single_donuts.filter((donut) =>
+          cartIds.includes(donut.id)
+        );
+        const data = {
+          cart: newCart,
+        };
+        await axios.put(
+          process.env.NODE_ENV === "production"
+            ? "https://donutshomero.vercel.app/api/checkout"
+            : "http://localhost:3000/api/stock",
+          data
+        );
+      };
+
+      updateStock();
+    } catch (err) {
+      console.log("unable to update stock:", err);
+    }
+
+    try {
       const data = {
         customerData,
         cart,
