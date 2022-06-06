@@ -31,6 +31,7 @@ export default function Quantity({ quantity, id, promo }) {
     } else {
       const stock = single_donuts.filter((donut) => donut.id === id)[0].stock;
       if (stock <= 0) {
+        console.log("NO HAY STOCK");
         return;
       }
       dispatch(incrementQuantity(id));

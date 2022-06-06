@@ -10,6 +10,7 @@ import {
   addToCart,
   removeFromCart,
 } from "../../../redux/features/cart/cartSlice";
+import { decrementStock } from "../../../redux/features/donuts/donutsSlice";
 
 import s from "./PromoCard.module.scss";
 
@@ -21,6 +22,13 @@ export default function PromoCard({ promo, delivery, cart }) {
     cart.filter((cartItem) => cartItem.id === promo.id).length > 0
       ? dispatch(removeFromCart(promo.id))
       : dispatch(addToCart(promo));
+
+    const qty = promo.donutsPromo.map((promo) => ({
+      id: promo.donutId,
+      qty: promo.donutQuantity,
+    }));
+
+    qty.map((el) => dispatch(decrementStock(el)));
   };
 
   return (

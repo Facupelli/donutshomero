@@ -13,7 +13,6 @@ export default function Carrito() {
   const [confirmOrder, setConfirmOrder] = useState(false);
 
   const cart = useSelector((state) => state.cart.items);
-
   const orderedCart = [...cart].sort((a, b) => a.price - b.price);
 
   const totalPrice = cart.reduce((prev, acc, index, array) => {
