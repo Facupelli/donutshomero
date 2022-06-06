@@ -157,6 +157,18 @@
         margin-top: 0.5rem;
       }
 
+      .stock_container {
+        @media (max-width: 600px) {
+          text-align: center;
+          flex-grow: 2;
+        }
+
+        span {
+          padding-right: 0.5rem;
+          font-weight: 600;
+        }
+      }
+
       .trash_icon {
         color: $second_blue;
         width: 20px;
@@ -176,7 +188,7 @@
   }
 }
 
-@mixin modalArrowDown($right) {
+@mixin modalArrowDown($right, $right_responsive) {
   position: absolute;
   z-index: 2;
   right: $right;
@@ -188,7 +200,7 @@
 
   @media (max-width: 480px) {
     top: 0px;
-    right: $right - 20px;
+    right: $right_responsive;
   }
 
   &::before {
@@ -207,11 +219,11 @@
   position: relative;
 
   .stock_modal_single {
-    @include modalArrowDown(160px);
+    @include modalArrowDown(15rem, 10.5rem);
   }
 
   .stock_modal_promo {
-    @include modalArrowDown(59px)
+    @include modalArrowDown(3.5rem, 4.3rem);
   }
 
   .no_stock {

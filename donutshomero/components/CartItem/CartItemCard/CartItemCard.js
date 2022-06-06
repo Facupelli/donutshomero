@@ -44,9 +44,7 @@ export default function CartItemCard({ cartItem }) {
       }));
 
       qty.map((el) =>
-        dispatch(
-          incrementStock({ id: el.id, qty: el.qty * cartItem.quantity })
-        )
+        dispatch(incrementStock({ id: el.id, qty: el.qty * cartItem.quantity }))
       );
     } else {
       //si es una single
@@ -109,6 +107,18 @@ export default function CartItemCard({ cartItem }) {
                 setStockMessage={setStockMessage}
                 setShowStockModal={setShowStockModal}
               />
+              {!cartItem.donutsQuantity && (
+                <div className={s.stock_container}>
+                  <p>
+                    <span>stock:</span>
+                    {
+                      single_donuts.filter(
+                        (donut) => donut.id === cartItem.id
+                      )[0].stock
+                    }
+                  </p>
+                </div>
+              )}
               <FontAwesomeIcon
                 icon={faTrashCan}
                 className={s.trash_icon}
@@ -128,15 +138,6 @@ export default function CartItemCard({ cartItem }) {
           )}
         </div>
         <TotalPrice price={cartItem.price} quantity={cartItem.quantity} />
-        {/* STOCK */}
-        {/* <div>
-          <p>
-            {cartItem.donutsQuantity
-              ? null
-              : single_donuts.filter((donut) => donut.id === cartItem.id)[0]
-                  .stock}
-          </p>
-        </div> */}
       </div>
     </div>
   );

@@ -5,17 +5,22 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import SingleDonutCard from "../../components/Menu/SingleDonutCard/SingleDonutCard";
 import Nav from "../../components/Nav/Nav";
-
-import s from "./index.module.scss";
 import PromoCard from "../../components/Promos/Card/PromoCard";
 import { useRouter } from "next/router";
+import {
+  setPromos,
+  setSingleDonuts,
+} from "../../redux/features/donuts/donutsSlice";
+import { useEffect } from "react";
+
+import s from "./index.module.scss";
 
 export default function Delivery({ donuts = [] }) {
+  const dispatch = useDispatch();
   const router = useRouter();
   const cart = useSelector((state) => state.cart.items);
-
+  const donutsState = useSelector((state) => state.dounts);
   const { single, promos } = donuts;
-
   const promoDonuts = JSON.parse(promos);
 
   const donutsPromoSix = promoDonuts.filter(
@@ -24,6 +29,13 @@ export default function Delivery({ donuts = [] }) {
   const donutsPromoDozen = promoDonuts.filter(
     (donut) => donut.donutsQuantity === 12
   );
+
+  useEffect(() => {
+    if (!donutsState) {
+      dispatch(setSingleDonuts(single));
+      dispatch(setPromos(promoDonuts));
+    }
+  }, []);
 
   return (
     <div className={s.container}>
@@ -91,7 +103,11 @@ export default function Delivery({ donuts = [] }) {
 }
 
 export const getStaticProps = async () => {
-  const single = await prisma.donut.findMany({});
+  const single = await prisma.donut.findMany({
+    orderBy: {
+      price: "asc",
+    },
+  });
 
   const promos = await prisma.promo.findMany({
     include: {

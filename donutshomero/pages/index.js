@@ -1,7 +1,11 @@
 import prisma from "../lib/prisma";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
+import {
+  setSingleDonuts,
+  setPromos,
+} from "../redux/features/donuts/donutsSlice";
 
 //COMPONENTS
 import Portrait from "../components/Portrait/Portrait";
@@ -11,17 +15,22 @@ import Promos from "../components/Promos/Promos";
 import Local from "../components/Local/Local";
 import Footer from "../components/Footer/Footer";
 import WsButton from "../components/WsButton/WsButton";
-import { setSingleDonuts, setPromos } from "../redux/features/donuts/donutsSlice";
 
 import s from "../styles/index.module.scss";
 
 export default function Home({ donuts }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const donutsState = useSelector((state) => state.donuts);
 
   useEffect(() => {
-    dispatch(setSingleDonuts(donuts.single))
-    dispatch(setPromos(JSON.parse(donuts.promos)))
-  },[])
+    if (
+      donutsState.single_donuts.length === 0 &&
+      donutsState.promos.length === 0
+    ) {
+      dispatch(setSingleDonuts(donuts.single));
+      dispatch(setPromos(JSON.parse(donuts.promos)));
+    }
+  }, []);
 
   const menuDivRef = useRef(null);
   const promosDivRef = useRef(null);
@@ -50,7 +59,7 @@ export default function Home({ donuts }) {
         </div>
         <div className={s.promos}>
           <Promos promosDivRef={promosDivRef} donuts={donuts.promos} />
-          <Menu menuDivRef={menuDivRef} donuts={donuts.single}/>
+          <Menu menuDivRef={menuDivRef} donuts={donuts.single} />
           <Local localDivRef={localDivRef} />
         </div>
         <WsButton scrollY={scrollY} />
@@ -63,7 +72,11 @@ export default function Home({ donuts }) {
 }
 
 export const getStaticProps = async () => {
-  const single = await prisma.donut.findMany({});
+  const single = await prisma.donut.findMany({
+    orderBy: {
+      price: "asc",
+    },
+  });
 
   const promos = await prisma.promo.findMany({
     include: {
