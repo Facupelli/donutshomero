@@ -10,7 +10,10 @@ import {
   addToCart,
   removeFromCart,
 } from "../../../redux/features/cart/cartSlice";
-import { decrementStock } from "../../../redux/features/donuts/donutsSlice";
+import {
+  decrementStock,
+  incrementStock,
+} from "../../../redux/features/donuts/donutsSlice";
 
 import s from "./PromoCard.module.scss";
 import { handlePromoStock } from "../../../utils/handlePromoStock";
@@ -29,11 +32,16 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
       return;
     }
 
-    cart.filter((cartItem) => cartItem.id === promo.id).length > 0
-      ? dispatch(removeFromCart(promo.id))
-      : dispatch(addToCart(promo));
-
-    qty.map((el) => dispatch(decrementStock(el)));
+    const isInCart = cart.filter((cartItem) => cartItem.id === promo.id);
+    if (isInCart.length > 0) {
+      //el producto ya esta en el carrito, lo elimino y devuelvo el stock
+      dispatch(removeFromCart(promo.id));
+      qty.map((el) => dispatch(incrementStock(el)));
+    } else {
+      //agrego el producto al carrito y decremento el stock
+      dispatch(addToCart(promo));
+      qty.map((el) => dispatch(decrementStock(el)));
+    }
   };
 
   return (
