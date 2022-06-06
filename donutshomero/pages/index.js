@@ -1,4 +1,5 @@
 import prisma from "../lib/prisma";
+import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 
@@ -10,10 +11,18 @@ import Promos from "../components/Promos/Promos";
 import Local from "../components/Local/Local";
 import Footer from "../components/Footer/Footer";
 import WsButton from "../components/WsButton/WsButton";
+import { setSingleDonuts, setPromos } from "../redux/features/donuts/donutsSlice";
 
 import s from "../styles/index.module.scss";
 
 export default function Home({ donuts }) {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(setSingleDonuts(donuts.single))
+    dispatch(setPromos(JSON.parse(donuts.promos)))
+  },[])
+
   const menuDivRef = useRef(null);
   const promosDivRef = useRef(null);
   const localDivRef = useRef(null);

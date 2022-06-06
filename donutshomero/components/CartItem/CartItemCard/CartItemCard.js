@@ -5,7 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../../redux/features/cart/cartSlice";
 import Quantity from "../Quantity/Quantity";
 import TotalPrice from "../TotalPrice/TotalPrice";
@@ -15,6 +15,10 @@ import s from "./CartItemPromo.module.scss";
 export default function CartItemCard({ cartItem }) {
   const dispatch = useDispatch();
   const [showDonuts, setShowDonuts] = useState(false);
+
+  const single_donuts = useSelector((state) => state.donuts.single_donuts);
+
+  const donut = single_donuts.filter((donut) => donut.id === cartItem.id)[0];
 
   return (
     <div className={s.container}>
@@ -53,7 +57,11 @@ export default function CartItemCard({ cartItem }) {
             </div>
           )}
           <div className={s.qty_and_trash}>
-            <Quantity quantity={cartItem.quantity} id={cartItem.id} />
+            <Quantity
+              quantity={cartItem.quantity}
+              id={cartItem.id}
+              promo={cartItem.donutsQuantity}
+            />
             <FontAwesomeIcon
               icon={faTrashCan}
               className={s.trash_icon}
@@ -73,6 +81,13 @@ export default function CartItemCard({ cartItem }) {
         )}
       </div>
       <TotalPrice price={cartItem.price} quantity={cartItem.quantity} />
+      <div>
+        <p>
+          {cartItem.donutsQuantity
+            ? null
+            : single_donuts.filter((donut) => donut.id === cartItem.id)[0].stock}
+        </p>
+      </div>
     </div>
   );
 }
