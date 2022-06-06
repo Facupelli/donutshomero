@@ -25,20 +25,22 @@ export default function SingleDonutCard({ donut, delivery, cart }) {
   const [stockState, setStockState] = useState("");
 
   const handleCartClick = () => {
-    const stock = single_donuts.filter((item) => item.id === donut.id)[0].stock;
-    if (stock <= 0) {
-      console.log("NO HAY STOCK");
-      setStockState(`LO SENTIMOS NO HAY STOCK DE: ${donut.name} :(`);
-      return;
-    }
-
     const isInCart = cart.filter((cartItem) => cartItem.id === id);
     if (isInCart.length > 0) {
       //el producto ya esta en el carrito, lo elimino y devuelvo el stock
       dispatch(removeFromCart(id));
       dispatch(incrementStock({ id, qty: 1 }));
     } else {
+      //controlo stock
+      const stock = single_donuts.filter((item) => item.id === donut.id)[0]
+        .stock;
+      if (stock <= 0) {
+        console.log("NO HAY STOCK");
+        setStockState(`NO HAY STOCK DE: ${donut.name} :(`);
+        return;
+      }
       //agrego el producto al carrito y decremento el stock
+      setStockState("");
       dispatch(addToCart(donut));
       dispatch(decrementStock({ id, qty: 1 }));
     }
