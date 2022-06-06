@@ -128,14 +128,15 @@ export default function CartItemCard({ cartItem }) {
           )}
         </div>
         <TotalPrice price={cartItem.price} quantity={cartItem.quantity} />
-        <div>
+        {/* STOCK */}
+        {/* <div>
           <p>
             {cartItem.donutsQuantity
               ? null
               : single_donuts.filter((donut) => donut.id === cartItem.id)[0]
                   .stock}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
