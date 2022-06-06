@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../../redux/features/cart/cartSlice";
+import { incrementStock } from "../../../redux/features/donuts/donutsSlice";
 import Quantity from "../Quantity/Quantity";
 import TotalPrice from "../TotalPrice/TotalPrice";
 
@@ -15,10 +16,26 @@ import s from "./CartItemPromo.module.scss";
 export default function CartItemCard({ cartItem }) {
   const dispatch = useDispatch();
   const [showDonuts, setShowDonuts] = useState(false);
+  const [stockMessage, setStockMessage] = useState("");
 
   const single_donuts = useSelector((state) => state.donuts.single_donuts);
 
   const donut = single_donuts.filter((donut) => donut.id === cartItem.id)[0];
+
+  const handleRemoveFromCart = () => {
+    if (cartItem.donutsQuantity) {
+      const qty = cartItem.donutsPromo.map((promo) => ({
+        id: promo.donutId,
+        qty: promo.donutQuantity,
+      }));
+
+      qty.map((el) => dispatch(incrementStock(el)));
+    } else {
+      //si es una single
+      dispatch(incrementStock({ id: cartItem.id, qty: 1 }));
+    }
+    dispatch(removeFromCart(cartItem.id));
+  };
 
   return (
     <div className={s.container}>
@@ -65,7 +82,7 @@ export default function CartItemCard({ cartItem }) {
             <FontAwesomeIcon
               icon={faTrashCan}
               className={s.trash_icon}
-              onClick={() => dispatch(removeFromCart(cartItem.id))}
+              onClick={handleRemoveFromCart}
             />
           </div>
         </div>
@@ -85,7 +102,8 @@ export default function CartItemCard({ cartItem }) {
         <p>
           {cartItem.donutsQuantity
             ? null
-            : single_donuts.filter((donut) => donut.id === cartItem.id)[0].stock}
+            : single_donuts.filter((donut) => donut.id === cartItem.id)[0]
+                .stock}
         </p>
       </div>
     </div>
