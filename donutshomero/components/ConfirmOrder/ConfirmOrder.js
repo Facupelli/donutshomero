@@ -51,13 +51,28 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
 
     try {
       const updateStock = async () => {
-        const cartIds = cart.map((item) => item.id);
-        const newCart = single_donuts.filter((donut) =>
+        const promoDonutsIds = cart
+          .filter((item) => item.donutsQuantity >= 6)
+          .map((promo) => promo.donutsPromo)
+          .flat()
+          .map((donut) => donut.donutId);
+
+        const singleDonutsIds = cart
+          .filter((item) => item.name.length > 2)
+          .map((donut) => donut.id);
+
+        const cartIds = [...promoDonutsIds, ...singleDonutsIds].filter(
+          (id, i, a) => a.indexOf(id) === i
+        );
+
+        const donutsCart = single_donuts.filter((donut) =>
           cartIds.includes(donut.id)
         );
+
         const data = {
-          cart: newCart,
+          cart: donutsCart,
         };
+
         await axios.put(
           process.env.NODE_ENV === "production"
             ? "https://donutshomero.vercel.app/api/stock"
