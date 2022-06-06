@@ -96,3 +96,7 @@
 .none {
   display: none;
 }
+
+.no_stock{
+  @include noStock;
+}

@@ -29,3 +29,9 @@ $second_blue: #0081b7;
   font-weight: 500;
   color: $main_pink;
 }
+
+@mixin noStock {
+  color: rgb(255, 103, 43);
+  font-size: .8rem;
+  font-weight: 700;
+}
