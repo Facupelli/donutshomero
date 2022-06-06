@@ -37,15 +37,20 @@ export default function CartItemCard({ cartItem }) {
 
   const handleRemoveFromCart = () => {
     if (cartItem.donutsQuantity) {
+      //si es una promo
       const qty = cartItem.donutsPromo.map((promo) => ({
         id: promo.donutId,
         qty: promo.donutQuantity,
       }));
 
-      qty.map((el) => dispatch(incrementStock(el)));
+      qty.map((el) =>
+        dispatch(
+          incrementStock({ id: el.id, qty: el.qty * cartItem.quantity })
+        )
+      );
     } else {
       //si es una single
-      dispatch(incrementStock({ id: cartItem.id, qty: 1 }));
+      dispatch(incrementStock({ id: cartItem.id, qty: cartItem.quantity }));
     }
     dispatch(removeFromCart(cartItem.id));
   };
