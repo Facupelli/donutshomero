@@ -113,7 +113,9 @@ export default function PurchaseForm({ setConfirmOrder, setShowCustomerForm }) {
           />
           {errors && <span className={s.error}>{errors.phone?.message}</span>}
           <div className={s.btn_container}>
-            <LoadingButton loading={loading} text="SIGUIENTE" type="submit" />
+            <LoadingButton loading={loading} type="submit">
+              SIGUIENTE
+            </LoadingButton>
           </div>
         </form>
       )}

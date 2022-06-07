@@ -143,10 +143,11 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
         <div className={s.pedir_btn_container}>
           <LoadingButton
             loading={loading}
-            text="PEDIR"
             handleClick={handleClickPedir}
             type="button"
-          />
+          >
+            PEDIR
+          </LoadingButton>
         </div>
       </div>
       {/* <form id={FORM_ID} method="GET" /> */}

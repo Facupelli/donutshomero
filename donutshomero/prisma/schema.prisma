@@ -75,4 +75,9 @@ model Order {
   @@map(name: "orders")
 }
 
-
+model Admin {
+  id              String      @default(cuid()) @id
+  email           String      @unique
+  role            String
+  passwordHash    String
+}
