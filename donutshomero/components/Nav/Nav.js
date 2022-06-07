@@ -1,14 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faCartShopping,
+  faUserTie,
+} from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import s from "./Nav.module.scss";
-import { useState } from "react";
 
 export default function Nav({ route, menuDivRef, localDivRef }) {
   const router = useRouter();
+  const admin = useSelector((state) => state.admin.data);
+
+  console.log(admin);
 
   const hanldeScrollTo = (ref) => {
     if (route === "nosotros" || route === "contacto") {
@@ -53,29 +61,40 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
             onClick={handleClickMenu}
           />
         </label>
-        <ul className={s.links}>
-          <Link href="/delivery">
-            <li>
-              DELIVERY
-              <ul className={s.proximamente}>
-                <li>PROXIMAMENTE</li>
-              </ul>
-            </li>
-          </Link>
-          <li onClick={() => hanldeScrollTo(menuDivRef)}> MENÚ</li>
-          <li onClick={() => hanldeScrollTo(localDivRef)}>LOCALES</li>
-          <Link href="/nosotros">
-            <li className={route === "nosotros" ? s.active : ""}>NOSOTROS</li>
-          </Link>
-          <Link href="/contacto">
-            <li className={route === "contacto" ? s.active : ""}>CONTACTO</li>
-          </Link>
-          <Link href="/carrito">
-            <li>
-              <FontAwesomeIcon icon={faCartShopping} width="20px" />
-            </li>
-          </Link>
-        </ul>
+        {admin.accessToken ? (
+          <ul className={s.links}>
+            <Link href="/admin">
+              <li className={s.admin_link}>
+                <FontAwesomeIcon icon={faUserTie} className={s.admin_icon} />
+                ADMIN
+              </li>
+            </Link>
+          </ul>
+        ) : (
+          <ul className={s.links}>
+            <Link href="/delivery">
+              <li>
+                DELIVERY
+                <ul className={s.proximamente}>
+                  <li>PROXIMAMENTE</li>
+                </ul>
+              </li>
+            </Link>
+            <li onClick={() => hanldeScrollTo(menuDivRef)}> MENÚ</li>
+            <li onClick={() => hanldeScrollTo(localDivRef)}>LOCALES</li>
+            <Link href="/nosotros">
+              <li className={route === "nosotros" ? s.active : ""}>NOSOTROS</li>
+            </Link>
+            <Link href="/contacto">
+              <li className={route === "contacto" ? s.active : ""}>CONTACTO</li>
+            </Link>
+            <Link href="/carrito">
+              <li>
+                <FontAwesomeIcon icon={faCartShopping} width="20px" />
+              </li>
+            </Link>
+          </ul>
+        )}
       </div>
     </nav>
   );

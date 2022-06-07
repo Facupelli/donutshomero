@@ -135,6 +135,17 @@
         }
       }
 
+      .admin_link{
+        display: flex;
+        gap: .2rem;
+        align-items: center;
+
+        .admin_icon{
+          width: 20px;
+          height: 20px;
+        }
+      }
+
       .active {
         color: $second_blue;
 
