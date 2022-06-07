@@ -6,7 +6,7 @@
   grid-template-columns: 49% 49%;
   column-gap: 2%;
 
-  @media (max-width:480px) {
+  @media (max-width:600px) {
     grid-template-columns: 100%;
     row-gap: 1rem;
   }

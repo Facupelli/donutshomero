@@ -16,8 +16,6 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
   const router = useRouter();
   const admin = useSelector((state) => state.admin.data);
 
-  console.log(admin);
-
   const hanldeScrollTo = (ref) => {
     if (route === "nosotros" || route === "contacto") {
       router.push("/");

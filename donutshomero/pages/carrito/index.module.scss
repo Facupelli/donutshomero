@@ -9,6 +9,7 @@
     position: relative;
 
     .titles {
+      padding-top: 70px;
       display: grid;
       grid-template-columns: 85% 15%;
       margin-bottom: 1rem;
@@ -18,7 +19,7 @@
         font-weight: 600;
         @media (max-width: 600px) {
           text-align: left;
-          padding-left: .5rem;
+          padding-left: 0.5rem;
         }
       }
 

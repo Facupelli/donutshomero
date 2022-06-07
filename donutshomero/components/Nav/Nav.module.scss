@@ -5,6 +5,9 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   background-color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
 
   > div {
     @include app_width;
@@ -135,12 +138,12 @@
         }
       }
 
-      .admin_link{
+      .admin_link {
         display: flex;
-        gap: .2rem;
+        gap: 0.2rem;
         align-items: center;
 
-        .admin_icon{
+        .admin_icon {
           width: 20px;
           height: 20px;
         }

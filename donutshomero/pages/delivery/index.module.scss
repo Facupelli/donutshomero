@@ -6,8 +6,9 @@
   .main {
     @include app_width;
     padding: 2rem 0;
-
+    
     .instructions {
+      padding-top: 70px;
       display: flex;
       align-items: center;
       gap: 2rem;
