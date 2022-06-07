@@ -36,11 +36,25 @@ export default async function checkout(req, res) {
         });
       }
 
+      const singleDonutsIds = cart
+        .filter((item) => item.name.length > 2)
+        .map((donut) => ({ id: donut.id }));
+      const promosIds = cart
+        .filter((item) => item.donutsQuantity >= 6)
+        .map((promo) => ({ id: promo.id }));
+
+      //creo la order y la asocio con el user, las donas y promos adquiridas
       const order = await prisma.order.create({
         data: {
           items: cart,
           customer: {
             connect: { id: user.id },
+          },
+          singleDonuts: {
+            connect: singleDonutsIds,
+          },
+          promoDonuts: {
+            connect: promosIds,
           },
           paymentStatus: "PENDING",
           deliverStatus: "PENDING",
@@ -49,11 +63,9 @@ export default async function checkout(req, res) {
           ubiLink: customerData.addressLink,
           paymentMethod: customerData.paymentMethod,
         },
-        include: {
-          customer: true, // Include all posts in the returned object
-        },
       });
 
+      //MERCADO PAGO
       const items = cart.map((item) => {
         return {
           id: item.id,
@@ -63,6 +75,7 @@ export default async function checkout(req, res) {
         };
       });
 
+      //defino la preferencia para MP
       let preference = {
         external_reference: order.id,
         notification_url: "https://donutshomero.vercel.app/api/mercadopago",

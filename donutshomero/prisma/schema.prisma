@@ -9,23 +9,25 @@ generator client {
 }
 
 model Donut {
-  id                String     @default(cuid()) @id
+  id                String            @default(cuid()) @id
   name              String
   price             Int
-  quantity          Int         @default(1)
-  stock             Int         @default(30)
-  available         Boolean    @default(true)
+  quantity          Int               @default(1)
+  stock             Int               @default(30)
+  available         Boolean           @default(true)
   donutsPromo       DonutsPromo[]
+  orders            Order[]
 }
 
 model Promo {
-  id                String    @default(cuid()) @id
+  id                String             @default(cuid()) @id
   name              String
   price             Int
-  quantity          Int        @default(1)
-  available         Boolean    @default(true)
+  quantity          Int                @default(1)
+  available         Boolean            @default(true)
   donutsQuantity    Int
   donutsPromo       DonutsPromo[]
+  orders            Order[]
 }
 
 model DonutsPromo {
@@ -35,7 +37,6 @@ model DonutsPromo {
   promo             Promo       @relation(fields: [promoId], references: [id])
   promoId           String 
   assignedAt        DateTime    @default(now())
-  assignedBy        String
 
   @@id([donutId, promoId])
 }
@@ -56,18 +57,20 @@ model User {
 }
 
 model Order {
-  id                      String       @default(cuid()) @id
+  id                      String        @default(cuid()) @id
   items                   Json[]
-  customer                User       @relation(fields: [customerId], references: [id])
+  customer                User          @relation(fields: [customerId], references: [id])
   customerId              String
+  singleDonuts            Donut[]
+  promoDonuts             Promo[]
   totalPrice              Int
   address                 String
   ubiLink                 String
   paymentMethod           String
-  paymentStatus           String    @default("PENDING")
-  deliverStatus           String    @default("PENDING")
-  createdAt               DateTime  @default(now()) @map(name: "created_at")
-  updatedAt               DateTime  @updatedAt @map(name: "updated_at")
+  paymentStatus           String        @default("PENDING")
+  deliverStatus           String        @default("PENDING")
+  createdAt               DateTime      @default(now()) @map(name: "created_at")
+  updatedAt               DateTime      @updatedAt @map(name: "updated_at")
   
   @@map(name: "orders")
 }
