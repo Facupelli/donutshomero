@@ -1,8 +1,17 @@
 export const updateDbStock = (cart) => {
   const promoDonuts = cart
     .filter((item) => item.donutsQuantity >= 6)
-    .map((promo) => promo.donutsPromo)
+    //dejo la cantidad de promos y el objeto de la promo con su info
+    .map((promo) => ({ promoQty: promo.quantity, promo: promo.donutsPromo }))
+    //multiplico las donas por la cantidad de promo
+    .map((el) => {
+      return el.promo.map((donut) => ({
+        ...donut,
+        donutQuantity: donut.donutQuantity * el.promoQty,
+      }));
+    })
     .flat()
+    //devuelvo solo el id y la cantidad de donas
     .map((donut) => ({
       id: donut.donutId,
       quantity: donut.donutQuantity,
