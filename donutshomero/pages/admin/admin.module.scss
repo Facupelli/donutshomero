@@ -3,34 +3,5 @@
 .container {
   @include app_width;
 
-  .nav {
-    color: $second_blue;
-
-    ul {
-      display: flex;
-      align-items: center;
-    //   justify-content: space-around;
-
-      li {
-        padding: 1rem 0;
-        text-decoration: none;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        text-align: center;
-
-        &:hover{
-            cursor: pointer;
-        }
-      }
-
-      .active {
-        padding: 1rem 0;
-        color: $second_pink;
-        font-weight: 700;
-        border-bottom: 2px solid $second_pink;
-      }
-    }
-  }
+  
 }
