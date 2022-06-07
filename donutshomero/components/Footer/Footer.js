@@ -71,6 +71,9 @@ export default function Footer({ route, menuDivRef, promosDivRef }) {
                 <FontAwesomeIcon icon={faTwitter} width="25px" />
               </p>
             </div>
+            <div className={s.admin_link}>
+              <Link href="/login">Admin</Link>
+            </div>
           </div>
         </div>
         <div className={s.facupelli}>
