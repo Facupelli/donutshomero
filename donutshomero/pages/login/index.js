@@ -2,11 +2,14 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
-import s from "./login.module.scss";
+import { useDispatch } from "react-redux";
+import { setAdminUser } from "../../redux/features/adminUser/adminUserSlice";
 import LoadingButton from "../../components/LoadingButton/LoadingButton";
 
+import s from "./login.module.scss";
+
 export default function Login() {
+  const dispatch = useDispatch();
   const [loginErr, setLoginErr] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -23,27 +26,28 @@ export default function Login() {
     //   setLoginErr("Ya estas logueado!");
     //   return;
     // }
-    // try {
-    //   setLoginErr("");
+    try {
+      setLoginErr("");
       setLoading(true);
-    //   const response = await axios.post(
-    //     // "http://localhost:3000/api/login",
-    //     "https://www.alalacampo.com/api/login",
-    //     data,
-    //     {
-    //       headers: { "Content-Type": "application/json" },
-    //       withCredentials: true,
-    //     }
-    //   );
-    //   const accessToken = response?.data?.token;
-    //   setAuth({ email: data.email, accessToken });
-    //   localStorage.setItem("accessToken", accessToken);
-    //   setLoginErr("");
-    //   router.push("/");
-    // } catch (err) {
-    //   setLoginErr(err?.response?.data?.error);
-    //   setLoading(false);
-    // }
+      const response = await axios.post(
+        process.env.NODE_ENV === "production"
+          ? "https://donutshomero.vercel.app/api/login"
+          : "http://localhost:3000/api/login",
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      const accessToken = response?.data?.token;
+      dispatch(setAdminUser({ email: data.email, accessToken }));
+      localStorage.setItem("accessToken", accessToken);
+      setLoginErr("");
+      router.push("/");
+    } catch (err) {
+      setLoginErr(err?.response?.data?.error);
+      setLoading(false);
+    }
   };
 
   return (
