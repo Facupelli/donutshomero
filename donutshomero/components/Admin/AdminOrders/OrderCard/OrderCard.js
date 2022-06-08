@@ -4,15 +4,31 @@ import { useState } from "react";
 import SwitchButton from "../../../SwitchButton/SwitchButton";
 
 import s from "./OrderCard.module.scss";
+import axios from "axios";
 
 export default function OrderCard({ order }) {
   const [showItems, setShowItems] = useState(true);
   const [delivered, setDelivered] = useState(
     order.deliverStatus === "PENDING" ? false : true
   );
+  const [loading, setLoading] = useState(false);
 
   const handleDelivered = async () => {
     setDelivered(!delivered);
+    try {
+      setLoading(true);
+      const data = { id: order.id, deilverStatus: !delivered };
+      const res = await axios.put(
+        process.env.NODE_ENV === "production"
+          ? "https://donutshomero.vercel.app/api/admin/deliverstatus"
+          : "http://localhost:3000/api/admin/deliverstatus",
+        data
+      );
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   };
 
   return (
@@ -44,11 +60,16 @@ export default function OrderCard({ order }) {
           </p>
           <p
             className={
-              order.deliverStatus === "APPROVED" ? s.approved : s.pending
+              order.deliverStatus === "DELIVERED" ? s.approved : s.pending
             }
           >
             {order.deliverStatus}
-            <SwitchButton isOn={delivered} handleToggle={handleDelivered} />
+            <SwitchButton
+              id={order.id}
+              loading={loading}
+              isOn={delivered}
+              handleToggle={handleDelivered}
+            />
           </p>
           <div className={s.date}>
             <p>
