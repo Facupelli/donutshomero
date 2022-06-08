@@ -43,7 +43,7 @@ export default function Login() {
       dispatch(setAdminUser({ email: data.email, accessToken }));
       localStorage.setItem("accessToken", accessToken);
       setLoginErr("");
-      router.push("/");
+      router.push("/admin");
     } catch (err) {
       setLoginErr(err?.response?.data?.error);
       setLoading(false);

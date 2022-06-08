@@ -17,17 +17,31 @@ import Footer from "../components/Footer/Footer";
 import WsButton from "../components/WsButton/WsButton";
 
 import s from "../styles/index.module.scss";
+import { setAdminUser } from "../redux/features/adminUser/adminUserSlice";
+import { verify } from "jsonwebtoken";
 
 export default function Home({ donuts }) {
   const dispatch = useDispatch();
   const donutsState = useSelector((state) => state.donuts);
 
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
+      if (tokenVerifyed) {
+        dispatch(setAdminUser({ accessToken: token }));
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  }, []);
+
+  useEffect(() => {
     if (
       donutsState.single_donuts.length === 0 &&
       donutsState.promos.length === 0
     ) {
-      console.log('NO HAY REDUX STATE')
+      console.log("NO HAY REDUX STATE");
       dispatch(setSingleDonuts(donuts.single));
       dispatch(setPromos(JSON.parse(donuts.promos)));
     }
