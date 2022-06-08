@@ -18,7 +18,7 @@ export default function DonutStockCard({ donut, register }) {
         />
         <div className={s.available}>
           <p>Disponible:</p>
-          <select {...register(`${donut.id}.available`)}>
+          <select defaultValue={donut.available} {...register(`${donut.id}.available`)}>
             <option value={true}>SI</option>
             <option value={false}>NO</option>
           </select>

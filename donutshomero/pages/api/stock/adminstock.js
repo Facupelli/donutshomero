@@ -1,17 +1,17 @@
 import prisma from "../../../lib/prisma";
 
-export default async function stock(req, res) {
-  // Crea un objeto de preferencia
+export default async function adminstock(req, res) {
   if (req.method === "PUT") {
     try {
-      const { cart } = req.body;
+      const donuts = req.body;
 
       await prisma.$transaction(
-        cart.map((item) =>
+        donuts.map((donut) =>
           prisma.donut.update({
-            where: { id: item.id },
+            where: { id: donut.id },
             data: {
-              stock: { decrement: item.quantity },
+              stock: Number(donut.data.newStock),
+              available: donut.data.available === 'true' ? true : false,
             },
           })
         )
