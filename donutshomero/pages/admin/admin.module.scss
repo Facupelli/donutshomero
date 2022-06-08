@@ -12,12 +12,16 @@
       column-gap: 1%;
       padding-bottom: 4rem;
 
-      .loading_btn_container{
+      .loading_btn_container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 1rem;
+        > p {
+          font-weight: 600;
+          color: $second_blue;
+        }
       }
-
     }
   }
 }

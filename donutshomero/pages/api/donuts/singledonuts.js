@@ -3,7 +3,9 @@ import prisma from "../../../lib/prisma";
 export default async function adminstock(req, res) {
   if (req.method === "GET") {
     try {
-      const singleDonuts = await prisma.donut.findMany({});
+      const singleDonuts = await prisma.donut.findMany({
+        orderBy: { price: "asc" },
+      });
 
       res.json(singleDonuts);
     } catch (err) {

@@ -1,10 +1,14 @@
+import axios from "axios";
+import { supabase } from "../../lib/supabase";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+
+//COMPONENTS
 import AdminNav from "../../components/Admin/AdminNav/AdminNav";
 import DonutStockCard from "../../components/Admin/AdminStock/DonutStockCard/DonutStockCard";
-import s from "./admin.module.scss";
 import LoadingButton from "../../components/LoadingButton/LoadingButton";
-import axios from "axios";
+
+import s from "./admin.module.scss";
 
 export default function Admin() {
   const [showPanel, setShowPanel] = useState({
@@ -14,9 +18,7 @@ export default function Admin() {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [donuts, setDonuts] = useState();
-
-  console.log(message)
+  const [donuts, setDonuts] = useState([]);
 
   const getSingleDonuts = async () => {
     const response = await axios.get(
@@ -30,6 +32,20 @@ export default function Admin() {
 
   useEffect(() => {
     getSingleDonuts();
+  }, []);
+
+  useEffect(() => {
+    const stockListener = supabase
+      .from("Donut")
+      .on("UPDATE", (payload) => {
+        console.log("Change Received!", payload.new);
+        getSingleDonuts();
+      })
+      .subscribe();
+
+    return () => {
+      stockListener.unsubscribe();
+    };
   }, []);
 
   const {
@@ -76,6 +92,7 @@ export default function Admin() {
             <div></div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className={s.loading_btn_container}>
+                <p>STOCK EN TIEMPO REAL</p>
                 <LoadingButton loading={loading} type="submit">
                   SETEAR
                 </LoadingButton>
