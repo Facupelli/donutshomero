@@ -1,11 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import SwitchButton from "../../../SwitchButton/SwitchButton";
 
 import s from "./OrderCard.module.scss";
 
 export default function OrderCard({ order }) {
   const [showItems, setShowItems] = useState(true);
+  const [delivered, setDelivered] = useState(
+    order.deliverStatus === "PENDING" ? false : true
+  );
+
+  const handleDelivered = async () => {
+    setDelivered(!delivered);
+  };
 
   return (
     <div className={s.container}>
@@ -40,6 +48,7 @@ export default function OrderCard({ order }) {
             }
           >
             {order.deliverStatus}
+            <SwitchButton isOn={delivered} handleToggle={handleDelivered} />
           </p>
           <div className={s.date}>
             <p>
