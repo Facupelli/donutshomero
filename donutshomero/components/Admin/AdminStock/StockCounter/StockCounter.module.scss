@@ -1,0 +1,33 @@
+@import "../../../../styles/app.scss";
+
+.quantity_container {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .qty_arrow_icon_container {
+    color: white;
+    background-color: $second_blue;
+    padding: 0.5rem;
+    border-radius: 100%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $main_blue;
+    }
+
+    .qty_arrow_icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .qty_total {
+    margin-left: 1rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}

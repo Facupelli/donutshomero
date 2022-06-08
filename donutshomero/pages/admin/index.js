@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 //COMPONENTS
 import AdminNav from "../../components/Admin/AdminNav/AdminNav";
 import DonutStockCard from "../../components/Admin/AdminStock/DonutStockCard/DonutStockCard";
+import StockCounter from "../../components/Admin/AdminStock/StockCounter/StockCounter";
 import LoadingButton from "../../components/LoadingButton/LoadingButton";
 
 import s from "./admin.module.scss";
@@ -19,6 +20,7 @@ export default function Admin() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [donuts, setDonuts] = useState([]);
+  const [quantity, setQuantity] = useState(0);
 
   const getSingleDonuts = async () => {
     const response = await axios.get(
@@ -89,7 +91,22 @@ export default function Admin() {
         <AdminNav showPanel={showPanel} setShowPanel={setShowPanel} />
         {showPanel.stock && donuts.length > 0 && (
           <div className={s.cards_container}>
-            <div></div>
+            <div className={s.stock_by_unit}>
+              <div className={s.loading_btn_container}>
+                <p>STOCK POR UNIDAD</p>
+                <LoadingButton loading={loading} type="submit">
+                  SETEAR
+                </LoadingButton>
+              </div>
+              <select>
+                {donuts.map((donut) => (
+                  <option key={donut.id} value={donut.id}>
+                    {donut.name}
+                  </option>
+                ))}
+              </select>
+              <StockCounter counter={quantity} setCounter={setQuantity} />
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className={s.loading_btn_container}>
                 <p>STOCK EN TIEMPO REAL</p>

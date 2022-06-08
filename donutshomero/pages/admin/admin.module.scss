@@ -5,18 +5,37 @@
   .main {
     @include app_width(1200px);
 
+    .stock_by_unit{
+      select{
+        width: 100%;
+        padding: .5rem;
+        border: 1px solid white;
+        border-radius: .2rem;
+        font-weight: 500;
+        font-size: 1rem;
+
+        &:active, &:focus{
+          outline: none;
+          border: 1px solid $main_pink;
+        }
+      }
+
+      
+    }
+
+
     .cards_container {
       display: grid;
-      grid-template-columns: 30% 69%;
+      grid-template-columns: 25% 69%;
       row-gap: 4%;
-      column-gap: 1%;
+      column-gap: 5%;
       padding-bottom: 4rem;
 
       .loading_btn_container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         > p {
           font-weight: 600;
           color: $second_blue;

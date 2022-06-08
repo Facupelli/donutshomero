@@ -61,14 +61,6 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
         </label>
         {admin.accessToken ? (
           <ul className={s.links}>
-            <Link href="/delivery">
-              <li>
-                DELIVERY
-                <ul className={s.proximamente}>
-                  <li>PROXIMAMENTE</li>
-                </ul>
-              </li>
-            </Link>
             <Link href="/admin">
               <li className={s.admin_link}>
                 <FontAwesomeIcon icon={faUserTie} className={s.admin_icon} />
