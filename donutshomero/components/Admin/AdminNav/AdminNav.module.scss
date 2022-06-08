@@ -2,6 +2,8 @@
 
 .nav {
   color: $second_blue;
+  margin-bottom: 3rem;
+  background-color: white;
 
   ul {
     display: flex;
@@ -9,10 +11,10 @@
     //   justify-content: space-around;
 
     li {
-      padding: 1rem 0;
+      padding-top: 2rem;
+      padding-bottom: 1rem;
       text-decoration: none;
       list-style: none;
-      padding: 0;
       margin: 0;
       width: 100%;
       text-align: center;
@@ -24,7 +26,8 @@
     }
 
     .active {
-      padding: 1rem 0;
+      padding-top: 2rem;
+      padding-bottom: 1rem;
       font-weight: 700;
       color: $second_pink;
       border-bottom: 2px solid $second_pink;

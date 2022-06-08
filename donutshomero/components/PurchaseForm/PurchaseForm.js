@@ -1,14 +1,14 @@
-import { useForm } from "react-hook-form";
+import axios from "axios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { setCustomerData } from "../../redux/features/customerData/customerDataSlice";
+import { useState } from "react";
+import GoBackButton from "../GoBackButton/GoBackButton";
+import LoadingButton from "../LoadingButton/LoadingButton";
 
 import s from "./PurchaseForm.module.scss";
-import GoBackButton from "../GoBackButton/GoBackButton";
-import { useState } from "react";
-import axios from "axios";
-import LoadingButton from "../LoadingButton/LoadingButton";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Nombre Completo es requiredo").min(2),

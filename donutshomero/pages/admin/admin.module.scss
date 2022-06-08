@@ -1,7 +1,23 @@
 @import "../../styles/app.scss";
 
 .container {
-  @include app_width;
+  background-color: #f1f1f0;
+  .main {
+    @include app_width(1200px);
 
-  
+    .cards_container {
+      display: grid;
+      grid-template-columns: 30% 69%;
+      row-gap: 4%;
+      column-gap: 1%;
+      padding-bottom: 4rem;
+
+      .loading_btn_container{
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+      }
+
+    }
+  }
 }

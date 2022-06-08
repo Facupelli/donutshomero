@@ -1,0 +1,54 @@
+@import "../../../../styles/app.scss";
+
+.donut_stock_card {
+  display: grid;
+  grid-template-columns: 32% 20% 47%;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 0.2rem;
+  height: 60px;
+
+  .donut_name {
+    font-weight: 600;
+  }
+
+  > p {
+    span {
+      font-weight: 700;
+    }
+  }
+
+  .form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    span {
+      font-size: 0.8rem;
+    }
+
+    > input {
+      width: 50px;
+      height: 40px;
+      font-size: 1.1rem;
+      border: 1px solid $main_pink;
+      border-radius: .5rem;
+      padding: .5rem;
+      text-align: center;
+
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .available {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}
