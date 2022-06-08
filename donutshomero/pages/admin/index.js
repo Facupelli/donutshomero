@@ -1,8 +1,10 @@
 import { supabase } from "../../lib/supabase";
+import { verify } from "jsonwebtoken";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getSingleDonuts, getOrders } from "../../utils/admin";
+import { setAdminUser } from "../../redux/features/adminUser/adminUserSlice";
 
 //COMPONENTS
 import AdminNav from "../../components/Admin/AdminNav/AdminNav";
@@ -13,20 +15,28 @@ import AdminOrders from "../../components/Admin/AdminOrders/AdminOrders";
 
 import s from "./admin.module.scss";
 
-
 export default function Admin() {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [showPanel, setShowPanel] = useState({
     orders: true,
     stock: false,
     users: false,
   });
-  const admin = useSelector((state) => state.admin.data);
   const [donuts, setDonuts] = useState([]);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    if (!admin.accessToken) {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
+      if (tokenVerifyed) {
+        dispatch(setAdminUser({ accessToken: token }));
+      } else {
+        router.push("/login");
+      }
+    } catch (e) {
+      console.log(e.message);
       router.push("/login");
     }
   }, []);
