@@ -30,8 +30,8 @@ export default function StockByTotal({ donuts }) {
 
       const response = await axios.put(
         process.env.NODE_ENV === "production"
-          ? "https://donutshomero.vercel.app/api/stock/adminstock"
-          : "http://localhost:3000/api/stock/adminstock",
+          ? "https://donutshomero.vercel.app/api/admin/stock/adminstock"
+          : "http://localhost:3000/api/admin/stock/adminstock",
         mapedData
       );
 

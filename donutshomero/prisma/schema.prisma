@@ -58,6 +58,7 @@ model User {
 
 model Order {
   id                      String        @default(cuid()) @id
+  number                  Int           @default(autoincrement())
   items                   Json[]
   customer                User          @relation(fields: [customerId], references: [id])
   customerId              String

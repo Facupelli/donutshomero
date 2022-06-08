@@ -5,10 +5,10 @@ export default function AdminNav({ showPanel, setShowPanel }) {
     <nav className={s.nav}>
       <ul>
         <li
-          className={showPanel.pedidos ? s.active : null}
+          className={showPanel.orders ? s.active : null}
           onClick={() =>
             setShowPanel({
-              pedidos: true,
+              orders: true,
               stock: false,
               users: false,
             })
@@ -20,7 +20,7 @@ export default function AdminNav({ showPanel, setShowPanel }) {
           className={showPanel.stock ? s.active : null}
           onClick={() =>
             setShowPanel({
-              pedidos: false,
+              orders: false,
               stock: true,
               users: false,
             })
@@ -32,7 +32,7 @@ export default function AdminNav({ showPanel, setShowPanel }) {
           className={showPanel.users ? s.active : null}
           onClick={() =>
             setShowPanel({
-              pedidos: false,
+              orders: false,
               stock: false,
               users: true,
             })
