@@ -11,6 +11,7 @@
     background-color: $second_blue;
     padding: 0.5rem;
     border-radius: 100%;
+    display: flex;
 
     &:hover {
       cursor: pointer;

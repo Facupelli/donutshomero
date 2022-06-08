@@ -4,6 +4,7 @@
   background-color: #f1f1f0;
   .main {
     @include app_width(1200px);
+    padding-top: 1rem;
 
     .cards_container {
       display: grid;

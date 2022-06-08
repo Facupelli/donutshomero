@@ -1,14 +1,12 @@
-@import '../../../styles/app.scss';
+@import "../../../styles/app.scss";
 
 .nav {
   color: $second_blue;
   margin-bottom: 3rem;
-  background-color: white;
 
   ul {
     display: flex;
     align-items: center;
-    //   justify-content: space-around;
 
     li {
       padding-top: 2rem;

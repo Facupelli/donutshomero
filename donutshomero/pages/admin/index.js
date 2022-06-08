@@ -1,13 +1,12 @@
 import axios from "axios";
 import { supabase } from "../../lib/supabase";
 import { useEffect, useState } from "react";
-
-//COMPONENTS
 import AdminNav from "../../components/Admin/AdminNav/AdminNav";
-
-import s from "./admin.module.scss";
 import StockByTotal from "../../components/Admin/AdminStock/StockByTotal/StockByTotal";
 import StockByUnit from "../../components/Admin/AdminStock/StockByUnit/StockByUnit";
+import Nav from '../../components/Nav/Nav'
+
+import s from "./admin.module.scss";
 
 export default function Admin() {
   const [showPanel, setShowPanel] = useState({
@@ -48,6 +47,7 @@ export default function Admin() {
 
   return (
     <div className={s.container}>
+      <Nav route="admin"/>
       <div className={s.main}>
         <AdminNav showPanel={showPanel} setShowPanel={setShowPanel} />
         {showPanel.stock && donuts.length > 0 && (

@@ -1,5 +1,12 @@
 @import "../../styles/app.scss";
 
+.nav_admin {
+  font-family: $karla;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  background-color: white;
+}
+
 .nav {
   font-family: $karla;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
@@ -8,169 +15,170 @@
   position: fixed;
   width: 100%;
   z-index: 10000;
+}
 
-  > div {
-    @include app_width;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 1.2rem 0;
-    width: 100%;
+.nav>div,
+.nav_admin > div {
+  @include app_width;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1.2rem 0;
+  width: 100%;
 
-    @media (max-width: 920px) {
-      padding: 1rem 0;
+  @media (max-width: 920px) {
+    padding: 1rem 0;
 
-      .click:checked ~ ul {
-        left: 0;
+    .click:checked ~ ul {
+      left: 0;
+    }
+  }
+
+  .logo {
+    p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      span {
+        font-weight: 800;
       }
     }
-
-    .logo {
-      p {
-        font-size: 1.2rem;
-        font-weight: 300;
-        span {
-          font-weight: 800;
-        }
-      }
-      &:hover {
-        cursor: pointer;
-      }
+    &:hover {
+      cursor: pointer;
     }
+  }
 
-    .ws {
-      a {
-        margin-right: auto;
-        margin-left: 2rem;
-        background-color: #00d455;
-        padding: 0.2rem 1rem;
-        font-size: 0.8rem;
-        border-radius: 1rem;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-
-        @media (max-width: 920px) {
-          // padding: 0;
-          // margin-left: 1rem;
-          // border-radius: 100%;
-          display: none;
-        }
-
-        > div {
-          &:first-child {
-            font-size: 1.5rem;
-            @media (max-width: 920px) {
-              height: 30px;
-              width: 30px;
-              padding: 0.25rem;
-              font-size: 1rem;
-              text-align: center;
-            }
-          }
-
-          &:last-child {
-            @media (max-width: 920px) {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-
-    .links {
+  .ws {
+    a {
+      margin-right: auto;
+      margin-left: 2rem;
+      background-color: #00d455;
+      padding: 0.2rem 1rem;
+      font-size: 0.8rem;
+      border-radius: 1rem;
+      color: white;
       display: flex;
       align-items: center;
-      margin-left: auto;
-      gap: 2rem;
-      color: $main_pink;
-      font-weight: 600;
+      justify-content: center;
+      gap: 0.5rem;
 
       @media (max-width: 920px) {
-        position: absolute;
-        z-index: 2;
-        top: 65px;
-        left: -100%;
-        background: #111;
-        height: 100vh;
-        width: 100%;
-        transition: all 0.3s ease;
-
-        display: flex;
-        flex-direction: column;
-        row-gap: 1.5rem;
-        align-items: flex-end;
-        padding: 3rem;
-        font-size: 1.5rem;
+        // padding: 0;
+        // margin-left: 1rem;
+        // border-radius: 100%;
+        display: none;
       }
 
-      li {
-        text-decoration: none;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        position: relative;
-        z-index: 2;
-
-        .proximamente {
-          position: absolute;
-          z-index: 0;
-          top: 30px;
-          color: white;
-          background-color: $second_pink;
-          padding: 0.5rem;
-          border-radius: 0.2rem;
-          font-size: 0.8rem;
-          display: none;
-        }
-
+      > div {
         &:first-child {
-          &:hover .proximamente {
-            display: block;
+          font-size: 1.5rem;
+          @media (max-width: 920px) {
+            height: 30px;
+            width: 30px;
+            padding: 0.25rem;
+            font-size: 1rem;
+            text-align: center;
           }
         }
 
-        &:hover {
-          cursor: pointer;
-          color: $second_pink;
-        }
-      }
-
-      .admin_link {
-        display: flex;
-        gap: 0.2rem;
-        align-items: center;
-
-        .admin_icon {
-          width: 20px;
-          height: 20px;
-        }
-      }
-
-      .active {
-        color: $second_blue;
-
-        &:hover {
-          color: $main_blue;
+        &:last-child {
+          @media (max-width: 920px) {
+            display: none;
+          }
         }
       }
     }
+  }
 
-    .icon_container {
-      font-size: 22px;
-      cursor: pointer;
-      display: none;
+  .links {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 2rem;
+    color: $main_pink;
+    font-weight: 600;
 
-      @media (max-width: 920px) {
-        display: block;
-        margin-left: auto;
+    @media (max-width: 920px) {
+      position: absolute;
+      z-index: 2;
+      top: 65px;
+      left: -100%;
+      background: #111;
+      height: 100vh;
+      width: 100%;
+      transition: all 0.3s ease;
+
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5rem;
+      align-items: flex-end;
+      padding: 3rem;
+      font-size: 1.5rem;
+    }
+
+    li {
+      text-decoration: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      z-index: 2;
+
+      .proximamente {
+        position: absolute;
+        z-index: 0;
+        top: 30px;
+        color: white;
+        background-color: $second_pink;
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        font-size: 0.8rem;
+        display: none;
+      }
+
+      &:first-child {
+        &:hover .proximamente {
+          display: block;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: $second_pink;
       }
     }
 
-    input[type="checkbox"] {
-      display: none;
+    .admin_link {
+      display: flex;
+      gap: 0.2rem;
+      align-items: center;
+
+      .admin_icon {
+        width: 20px;
+        height: 20px;
+      }
     }
+
+    .active {
+      color: $second_blue;
+
+      &:hover {
+        color: $main_blue;
+      }
+    }
+  }
+
+  .icon_container {
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+
+    @media (max-width: 920px) {
+      display: block;
+      margin-left: auto;
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
   }
 }

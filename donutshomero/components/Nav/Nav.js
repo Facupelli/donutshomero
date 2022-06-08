@@ -31,7 +31,7 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
   };
 
   return (
-    <nav className={s.nav}>
+    <nav className={route === 'admin' ? s.nav_admin : s.nav}>
       <div>
         <div className={s.logo}>
           <Link href="/">
