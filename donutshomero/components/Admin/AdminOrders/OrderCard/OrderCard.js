@@ -5,7 +5,7 @@ import { useState } from "react";
 import s from "./OrderCard.module.scss";
 
 export default function OrderCard({ order }) {
-  const [showItems, setShowItems] = useState(false);
+  const [showItems, setShowItems] = useState(true);
 
   return (
     <div className={s.container}>
@@ -27,8 +27,20 @@ export default function OrderCard({ order }) {
             {order.ubiLink ? order.ubiLink : "-"}
           </p>
           <p>{order.paymentMethod}</p>
-          <p className={s.bold_500}>{order.paymentStatus}</p>
-          <p className={s.bold_500}>{order.deliverStatus}</p>
+          <p
+            className={
+              order.paymentStatus === "APPROVED" ? s.approved : s.pending
+            }
+          >
+            {order.paymentStatus}
+          </p>
+          <p
+            className={
+              order.deliverStatus === "APPROVED" ? s.approved : s.pending
+            }
+          >
+            {order.deliverStatus}
+          </p>
           <div className={s.date}>
             <p>
               {new Date(order.createdAt)
