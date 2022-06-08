@@ -1,4 +1,3 @@
-import axios from "axios";
 import { supabase } from "../../lib/supabase";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

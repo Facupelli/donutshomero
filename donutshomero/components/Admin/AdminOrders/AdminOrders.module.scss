@@ -15,30 +15,4 @@
   }
 }
 
-.orders_card_container {
-  display: grid;
-  grid-template-columns: 4% 96%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  background-color: white;
 
-  .id {
-    font-weight: 700;
-  }
-
-  > div {
-    display: grid;
-    grid-template-columns: 10% 22% repeat(4, 14%) 10% 2%;
-    align-items: center;
-
-    .date {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .angle_icon {
-      width: 15px;
-      height: 15px;
-    }
-  }
-}
