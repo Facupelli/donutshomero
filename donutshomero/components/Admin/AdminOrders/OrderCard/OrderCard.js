@@ -7,22 +7,28 @@ import s from "./OrderCard.module.scss";
 export default function OrderCard({ order }) {
   const [showItems, setShowItems] = useState(false);
 
-  console.log(order)
-
   return (
     <div className={s.container}>
       <div className={s.orders_card_container}>
         <p className={s.id}>{order.number}</p>
         <div>
-          <p>{order.totalPrice}</p>
-          <div>
+          <p className={s.bold_500}>
+            {new Intl.NumberFormat("es-AR", {
+              style: "currency",
+              currency: "ARS",
+              maximumSignificantDigits: 12,
+            }).format(order.totalPrice)}
+          </p>
+          <div className={s.child_padding}>
             <p>{order.address}</p>
             <p>{order.addressNumber}</p>
           </div>
-          <p>{order.ubiLink ? order.ubiLink : "-"}</p>
+          <p className={s.child_padding}>
+            {order.ubiLink ? order.ubiLink : "-"}
+          </p>
           <p>{order.paymentMethod}</p>
-          <p>{order.paymentStatus}</p>
-          <p>{order.deliverStatus}</p>
+          <p className={s.bold_500}>{order.paymentStatus}</p>
+          <p className={s.bold_500}>{order.deliverStatus}</p>
           <div className={s.date}>
             <p>
               {new Date(order.createdAt)
@@ -46,6 +52,20 @@ export default function OrderCard({ order }) {
           />
         </div>
       </div>
+      {showItems && (
+        <div className={s.show_donuts_container}>
+          {order.items.map((item, i) => (
+            <div key={i} className={s.show_donuts}>
+              <p className={s.donut_name}>
+                {item.donutsQuantity
+                  ? `Promo N° ${item.name} - ${item.donutsQuantity} Donas`
+                  : item.name}
+              </p>
+              <p className={s.qty}>x{item.quantity}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

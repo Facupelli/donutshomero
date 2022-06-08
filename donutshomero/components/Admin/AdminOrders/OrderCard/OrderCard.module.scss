@@ -4,6 +4,27 @@
   padding: 0.5rem;
   margin: 0.5rem 0;
   background-color: white;
+
+  .show_donuts_container {
+    padding: 1rem 0rem;
+    margin-left: 4%;
+
+    .show_donuts {
+      display: grid;
+      grid-template-columns: 18% 20%;
+      align-items: center;
+      //   gap: 1rem;
+      margin-bottom: 0.2rem;
+
+      .donut_name {
+        font-weight: 400;
+      }
+
+      .qty {
+        font-weight: 600;
+      }
+    }
+  }
 }
 
 .orders_card_container {
@@ -11,7 +32,12 @@
   grid-template-columns: 4% 96%;
 
   .id {
-    font-weight: 700;
+    font-weight: 800;
+    align-self: center;
+  }
+
+  .child_padding {
+    padding: 0 0.5rem;
   }
 
   > div {
@@ -33,4 +59,8 @@
       }
     }
   }
+}
+
+.bold_500 {
+  font-weight: 500;
 }
