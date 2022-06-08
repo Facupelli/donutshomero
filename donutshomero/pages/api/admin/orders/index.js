@@ -4,6 +4,7 @@ export default async function getOrders(req, res) {
   if (req.method === "GET") {
     try {
       const orders = await prisma.order.findMany({
+        // include: { singleDonuts: true, promoDonuts: true },
         orderBy: { createdAt: "desc" },
       });
 

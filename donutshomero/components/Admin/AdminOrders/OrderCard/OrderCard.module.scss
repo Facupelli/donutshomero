@@ -1,11 +1,14 @@
 @import "../../../../styles/app.scss";
 
-.orders_card_container {
-  display: grid;
-  grid-template-columns: 4% 96%;
+.container {
   padding: 0.5rem;
   margin: 0.5rem 0;
   background-color: white;
+}
+
+.orders_card_container {
+  display: grid;
+  grid-template-columns: 4% 96%;
 
   .id {
     font-weight: 700;
@@ -24,6 +27,10 @@
     .angle_icon {
       width: 15px;
       height: 15px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

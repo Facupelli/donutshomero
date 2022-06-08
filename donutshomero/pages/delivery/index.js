@@ -36,7 +36,6 @@ export default function Delivery({ donuts = [] }) {
       donutsState.single_donuts.length === 0 &&
       donutsState.promos.length === 0
     ) {
-      console.log("NO HAY REDUX STATE", donutsState);
       dispatch(setSingleDonuts(single));
       dispatch(setPromos(promoDonuts));
     }
