@@ -2,6 +2,8 @@
 
 .container {
   background-color: #f1f1f0;
+  min-height: 100vh;
+
   .main {
     @include app_width(1200px);
     padding-top: 1rem;
@@ -12,33 +14,6 @@
       row-gap: 4%;
       column-gap: 5%;
       padding-bottom: 4rem;
-    }
-
-    .table_titles_container {
-      display: grid;
-      grid-template-columns: 2% 98%;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-      font-size: 0.9rem;
-
-      .table_titles {
-        display: grid;
-        grid-template-columns: repeat(7, 14%);
-      }
-    }
-
-    .orders_card_container {
-      display: grid;
-      grid-template-columns: 2% 98%;
-
-      > div {
-        display: grid;
-        grid-template-columns: repeat(7, 14%);
-
-        .date {
-          display: flex;
-        }
-      }
     }
   }
 }
