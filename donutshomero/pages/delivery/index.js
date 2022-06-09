@@ -45,6 +45,10 @@ export default function Delivery({ donuts = [] }) {
     <div className={s.container}>
       <Head>
         <title>Delivery</title>
+        <meta
+          name="description"
+          content="Delivery de donas, las mejores de San Juan. Te las llevamos a tu casa!"
+        />
       </Head>
       <Nav route="delivery" />
       <div className={s.main}>

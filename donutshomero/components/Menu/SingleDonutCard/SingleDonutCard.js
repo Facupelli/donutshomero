@@ -54,8 +54,8 @@ export default function SingleDonutCard({ donut, delivery, cart }) {
         <div className={s.image_container}>
           <Image
             src={single_donut}
-            width="65px"
-            height="65px"
+            width="65"
+            height="65"
             objectFit="contain"
             alt="single_donut_2"
           />
@@ -63,8 +63,8 @@ export default function SingleDonutCard({ donut, delivery, cart }) {
         <div className={s.image_container_phone}>
           <Image
             src={single_donut}
-            width="45px"
-            height="45px"
+            width="45"
+            height="45"
             objectFit="contain"
             alt="single_donut_phone"
           />
