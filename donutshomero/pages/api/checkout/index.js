@@ -108,7 +108,7 @@ export default async function checkout(req, res) {
             success:
               process.env.NODE_ENV === "production"
                 ? "https://donutshomero.vercel.app"
-                : "http://localhost:3000/",
+                : "http://localhost:3000/?ordersuccess=true",
             // failure: "http://www.failure.com",
             // pending: "http://www.pending.com",
           },
