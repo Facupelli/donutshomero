@@ -11,12 +11,21 @@
     padding: 1rem 0rem;
     margin-left: 4%;
 
+    @media (max-width: 600px) {
+      border-top: 1px solid $second_pink;
+    }
+
     .show_donuts {
       display: grid;
       grid-template-columns: 18% 20%;
       align-items: center;
-      //   gap: 1rem;
       margin-bottom: 0.2rem;
+
+      @media (max-width: 600px) {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+      }
 
       .donut_name {
         font-weight: 400;
@@ -33,6 +42,13 @@
   display: grid;
   grid-template-columns: 4% 96%;
 
+  @media (max-width: 600px) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
   .id {
     font-weight: 800;
     align-self: center;
@@ -44,12 +60,25 @@
 
   > div {
     display: grid;
-    grid-template-columns: 10% 22% repeat(4, 14%) 10% 2%;
+    grid-template-columns: 10% 22% repeat(2, 14%) 38% 2%;
     align-items: center;
+
+    @media (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
 
     .date {
       display: flex;
       gap: 0.5rem;
+
+      @media (max-width: 600px) {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: $second_blue;
+      }
     }
 
     .angle_icon {
@@ -63,8 +92,15 @@
   }
 }
 
-.bold_500 {
+.total_price {
   font-weight: 500;
+
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    border-bottom: 2px solid $second_pink;
+    // background-color: $second_pink;
+    // padding: .2rem;
+  }
 }
 
 .approved {
@@ -77,4 +113,33 @@
   color: #d10000;
   font-weight: 500;
   display: flex;
+}
+
+.info_mobile {
+  display: none;
+
+  @media (max-width: 600px) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    row-gap: 0.5rem;
+    width: 100%;
+  }
+
+  .title_mobile {
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+}
+
+.info_pc {
+  display: grid;
+  grid-template-columns: 36.8% 36.8% 26.31%;
+
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 }

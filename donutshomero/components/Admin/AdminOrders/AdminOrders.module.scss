@@ -9,6 +9,10 @@
   font-weight: 600;
   padding: 0rem 0.5rem;
 
+  @media (max-width:600px) {
+    display: none;
+  }
+
   .table_titles {
     display: grid;
     grid-template-columns: 10% 22% repeat(4, 14%) 10% 2%;

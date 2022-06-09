@@ -36,7 +36,7 @@ export default function OrderCard({ order }) {
       <div className={s.orders_card_container}>
         <p className={s.id}>{order.number}</p>
         <div>
-          <p className={s.bold_500}>
+          <p className={s.total_price}>
             {new Intl.NumberFormat("es-AR", {
               style: "currency",
               currency: "ARS",
@@ -51,41 +51,86 @@ export default function OrderCard({ order }) {
             {order.ubiLink ? order.ubiLink : "-"}
           </p>
           <p>{order.paymentMethod}</p>
-          <p
-            className={
-              order.paymentStatus === "APPROVED" ? s.approved : s.pending
-            }
-          >
-            {order.paymentStatus}
-          </p>
-          <p
-            className={
-              order.deliverStatus === "DELIVERED" ? s.approved : s.pending
-            }
-          >
-            {order.deliverStatus}
-            <SwitchButton
-              id={order.id}
-              loading={loading}
-              isOn={delivered}
-              handleToggle={handleDelivered}
-            />
-          </p>
-          <div className={s.date}>
-            <p>
-              {new Date(order.createdAt)
-                .toDateString()
-                .split(" ")
-                .slice(1, 3)
-                .join(" ")}
+          {/* -------------------  MOBILE -------------------------- */}
+          <div className={s.info_mobile}>
+            <p className={s.title_mobile}>ESTADO PAGO:</p>
+            <p
+              className={
+                order.paymentStatus === "APPROVED" ? s.approved : s.pending
+              }
+            >
+              {order.paymentStatus}
             </p>
-            <p>
-              {new Date(order.createdAt)
-                .toLocaleTimeString()
-                .split(":")
-                .slice(0, 2)
-                .join(":")}
+            <p className={s.title_mobile}>ESTADO ENTREGA:</p>
+            <p
+              className={
+                order.deliverStatus === "DELIVERED" ? s.approved : s.pending
+              }
+            >
+              {order.deliverStatus}
+              <SwitchButton
+                id={order.id}
+                loading={loading}
+                isOn={delivered}
+                handleToggle={handleDelivered}
+              />
             </p>
+            <p className={s.title_mobile}>FECHA:</p>
+            <div className={s.date}>
+              <p>
+                {new Date(order.createdAt)
+                  .toDateString()
+                  .split(" ")
+                  .slice(1, 3)
+                  .join(" ")}
+              </p>
+              <p>
+                {new Date(order.createdAt)
+                  .toLocaleTimeString()
+                  .split(":")
+                  .slice(0, 2)
+                  .join(":")}
+              </p>
+            </div>
+          </div>
+          {/* ------------------ PC --------------------------- */}
+          <div className={s.info_pc}>
+            <p
+              className={
+                order.paymentStatus === "APPROVED" ? s.approved : s.pending
+              }
+            >
+              {order.paymentStatus}
+            </p>
+            <p
+              className={
+                order.deliverStatus === "DELIVERED" ? s.approved : s.pending
+              }
+            >
+              {order.deliverStatus}
+              <SwitchButton
+                id={order.id}
+                loading={loading}
+                isOn={delivered}
+                handleToggle={handleDelivered}
+              />
+            </p>
+            <div className={s.date}>
+              <p>
+                {new Date(order.createdAt)
+                  .toDateString()
+                  .split(" ")
+                  .slice(1, 3)
+                  .join(" ")}
+              </p>
+              <p>
+                {new Date(order.createdAt)
+                  .toLocaleTimeString()
+                  .split(":")
+                  .slice(0, 2)
+                  .join(":")}
+              </p>
+            </div>
           </div>
           <FontAwesomeIcon
             icon={showItems ? faAngleUp : faAngleDown}
