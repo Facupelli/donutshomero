@@ -1,7 +1,35 @@
+import { supabase } from "../../../lib/supabase";
 import OrderCard from "./OrderCard/OrderCard";
+import { useEffect, useState } from "react";
+import { getOrders } from "../../../utils/admin";
+
 import s from "./AdminOrders.module.scss";
 
-export default function AdminOrders({ orders }) {
+export default function AdminOrders() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    getOrders(setOrders);
+  }, []);
+
+  useEffect(() => {
+    const ordersListener = supabase
+      .from("orders")
+      .on("UPDATE", (payload) => {
+        console.log("Order change Received!", payload.new);
+        getOrders(setOrders);
+      })
+      .on("INSERT", (payload) => {
+        console.log("Order insert Received!", payload.new);
+        getOrders(setOrders);
+      })
+      .subscribe();
+
+    return () => {
+      ordersListener.unsubscribe();
+    };
+  }, []);
+
   return (
     <div>
       <div className={s.table_titles_container}>
@@ -16,9 +44,8 @@ export default function AdminOrders({ orders }) {
           <p>FECHA</p>
         </div>
       </div>
-      {orders.map((order) => (
-        <OrderCard key={order.id} order={order} />
-      ))}
+      {orders.length > 0 &&
+        orders.map((order) => <OrderCard key={order.id} order={order} />)}
     </div>
   );
 }

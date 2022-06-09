@@ -17,7 +17,7 @@
   z-index: 10000;
 }
 
-.nav>div,
+.nav > div,
 .nav_admin > div {
   @include app_width;
   display: flex;

@@ -24,7 +24,6 @@ export default function Admin() {
     users: false,
   });
   const [donuts, setDonuts] = useState([]);
-  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -43,7 +42,6 @@ export default function Admin() {
 
   useEffect(() => {
     getSingleDonuts(setDonuts);
-    getOrders(setOrders);
   }, []);
 
   useEffect(() => {
@@ -71,9 +69,7 @@ export default function Admin() {
             <StockByTotal donuts={donuts} />
           </div>
         )}
-        {showPanel.orders && orders.length > 0 && (
-          <AdminOrders orders={orders} />
-        )}
+        {showPanel.orders && <AdminOrders />}
       </div>
     </div>
   );
