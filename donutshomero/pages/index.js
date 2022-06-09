@@ -93,11 +93,11 @@ export default function Home({ donuts, modal }) {
 export const getServerSideProps = async ({ query }) => {
   const modal = query.ordersuccess;
 
-  // const single = await prisma.donut.findMany({
-  //   orderBy: {
-  //     price: "asc",
-  //   },
-  // });
+  const single = await prisma.donut.findMany({
+    orderBy: {
+      price: "asc",
+    },
+  });
 
   const promos = await prisma.promo.findMany({
     include: {
@@ -112,7 +112,7 @@ export const getServerSideProps = async ({ query }) => {
   return {
     props: {
       donuts: {
-        single: [],
+        single,
         promos: JSON.stringify(promos),
       },
       modal: modal ? modal : null,
