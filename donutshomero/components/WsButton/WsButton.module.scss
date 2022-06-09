@@ -16,9 +16,11 @@
     border-radius: 100%;
   }
 
-  a {
+  button {
     @media (max-width: 920px) {
       color: white;
+      background-color: transparent;
+      border: none;
     }
   }
 }
@@ -42,7 +44,9 @@
     box-shadow: rgba(0, 0, 0, 0.295) 0px 0px 15px 2px;
   }
 
-  a {
+  button {
     color: white;
+    background-color: transparent;
+    border: none;
   }
 }
