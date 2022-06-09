@@ -51,7 +51,7 @@ export default function Admin() {
       .from("Donut")
       .on("UPDATE", (payload) => {
         console.log("Change Received!", payload.new);
-        getSingleDonuts();
+        getSingleDonuts(setDonuts);
       })
       .subscribe();
 

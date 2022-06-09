@@ -7,7 +7,6 @@ export default async function adminstock(req, res) {
 
       
       let status = deilverStatus === true ? "DELIVERED" : "PENDING";
-      console.log(status)
 
       await prisma.order.update({
         where: { id },

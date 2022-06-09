@@ -10,11 +10,13 @@ export default function StockByTotal({ donuts }) {
   const [message, setMessage] = useState("");
 
   const {
+    watch,
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
+
 
   const onSubmit = async (data) => {
     try {
@@ -26,7 +28,7 @@ export default function StockByTotal({ donuts }) {
         data: data[id],
       }));
 
-      console.log(mapedData)
+      console.log(mapedData);
 
       const response = await axios.put(
         process.env.NODE_ENV === "production"
@@ -54,7 +56,13 @@ export default function StockByTotal({ donuts }) {
         </LoadingButton>
       </div>
       {donuts.map((donut) => (
-        <DonutStockCard key={donut.id} donut={donut} register={register} />
+        <DonutStockCard
+          key={donut.id}
+          donut={donut}
+          register={register}
+          loading={loading}
+          watch={watch}
+        />
       ))}
     </form>
   );
