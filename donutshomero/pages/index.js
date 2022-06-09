@@ -1,6 +1,4 @@
 import prisma from "../lib/prisma";
-import nookies from "nookies";
-import { verify } from "jsonwebtoken";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
@@ -20,22 +18,23 @@ import WsButton from "../components/WsButton/WsButton";
 
 import s from "../styles/index.module.scss";
 import { setAdminUser } from "../redux/features/adminUser/adminUserSlice";
+import { verify } from "jsonwebtoken";
 
-export default function Home({ donuts, admin }) {
+export default function Home({ donuts }) {
   const dispatch = useDispatch();
   const donutsState = useSelector((state) => state.donuts);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("accessToken");
-  //   try {
-  //     const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
-  //     if (tokenVerifyed) {
-  //       dispatch(setAdminUser({ accessToken: token }));
-  //     }
-  //   } catch (e) {
-  //     console.log(e.message);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
+      if (tokenVerifyed) {
+        dispatch(setAdminUser({ accessToken: token }));
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  }, []);
 
   useEffect(() => {
     if (
@@ -68,7 +67,7 @@ export default function Home({ donuts, admin }) {
       </Head>
 
       <main className={s.main}>
-        <Nav admin={admin} menuDivRef={menuDivRef} localDivRef={localDivRef} />
+        <Nav menuDivRef={menuDivRef} localDivRef={localDivRef} />
         <div className={s.portrait}>
           <Portrait />
         </div>
@@ -86,11 +85,7 @@ export default function Home({ donuts, admin }) {
   );
 }
 
-export const getStaticProps = async (ctx) => {
-  const cookies = nookies.get(ctx);
-
-  console.log(cookies)
-
+export const getStaticProps = async () => {
   const single = await prisma.donut.findMany({
     orderBy: {
       price: "asc",
@@ -107,38 +102,8 @@ export const getStaticProps = async (ctx) => {
     },
   });
 
-  const token = cookies.auth;
-
-  if (token) {
-    let tokenVerifyed;
-    try {
-      tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
-    } catch (e) {
-      return {
-        props: {
-          admin: false,
-          donuts: {
-            single,
-            promos: JSON.stringify(promos),
-          },
-        },
-      };
-    }
-    if (tokenVerifyed) {
-      return {
-        props: {
-          admin: true,
-          donuts: {
-            single,
-            promos: JSON.stringify(promos),
-          },
-        },
-      };
-    }
-  }
   return {
     props: {
-      admin: false,
       donuts: {
         single,
         promos: JSON.stringify(promos),
