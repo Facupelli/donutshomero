@@ -13,6 +13,7 @@ export default function Portrait() {
           objectFit="cover"
           height="1110px"
           width="1920px"
+          priority
         />
       </div>
       <div className={s.image_phone}>
@@ -22,6 +23,7 @@ export default function Portrait() {
           objectFit="cover"
           height="1512px"
           width="1080px"
+          priority
         />
       </div>
     </div>
