@@ -10,7 +10,7 @@ import OrderModal from "../OrderModal/OrderModal";
 
 import s from "./ConfirmOrder.module.scss";
 
-// const FORM_ID = "payment-form";
+const FORM_ID = "payment-form";
 
 export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   const dispatch = useDispatch();
@@ -22,19 +22,19 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   const [showModal, setShowModal] = useState(false);
 
   //MERCADO PAGO BUTTON GENERATOR
-  // const [preferenceId, setPreferenceId] = useState();
+  const [preferenceId, setPreferenceId] = useState();
 
-  // useEffect(() => {
-  //   if (preferenceId) {
-  //     const script = document.createElement("script");
-  //     script.type = "text/javascript";
-  //     script.src =
-  //       "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-  //     script.setAttribute("data-preference-id", preferenceId);
-  //     const form = document.getElementById(FORM_ID);
-  //     form.appendChild(script);
-  //   }
-  // }, [preferenceId]);
+  useEffect(() => {
+    if (preferenceId) {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src =
+        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.setAttribute("data-preference-id", preferenceId);
+      const form = document.getElementById(FORM_ID);
+      form.appendChild(script);
+    }
+  }, [preferenceId]);
 
   //---------------------------
 
@@ -85,9 +85,9 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       }
 
       const { id, init_point } = res.data;
-      console.log(init_point);
-      // setPreferenceId(id);
-      window.open(init_point, "_blank");
+      console.log(id, init_point);
+      setPreferenceId(id);
+      // window.open(init_point, "_blank");
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -102,7 +102,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
 
   return (
     <>
-      {showModal && <OrderModal payment={customerData.paymentMethod} handleClick={handleClickModal} />}
+      {showModal && <OrderModal handleClick={handleClickModal} />}
       <div className={s.container}>
         <GoBackButton handleOnClick={handleGoBack} />
         <p>CONFRIMACIÓN DE PEDIDO</p>
@@ -154,16 +154,21 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
           </div>
 
           <div className={s.pedir_btn_container}>
-            <LoadingButton
-              loading={loading}
-              handleClick={handleClickPedir}
-              type="button"
-            >
-              PEDIR
-            </LoadingButton>
+            {preferenceId ? (
+              <form id={FORM_ID} method="GET" />
+            ) : (
+              <LoadingButton
+                loading={loading}
+                handleClick={handleClickPedir}
+                type="button"
+              >
+                {customerData.paymentMethod === "mercadopago"
+                  ? "CONFIRMAR"
+                  : "PEDIR"}
+              </LoadingButton>
+            )}
           </div>
         </div>
-        {/* <form id={FORM_ID} method="GET" /> */}
       </div>
     </>
   );
