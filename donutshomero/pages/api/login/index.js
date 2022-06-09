@@ -26,7 +26,7 @@ export default async function login(req, res) {
     };
 
     const token = jwt.sign(userForToken, process.env.TOKEN_SECRET_WORD, {
-      expiresIn: "1d",
+      expiresIn: "60m",
     });
 
     nookies.set({ res }, "auth", token, {

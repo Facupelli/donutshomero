@@ -72,7 +72,7 @@ export default function Footer({ route, menuDivRef, promosDivRef }) {
               </p>
             </div>
             <div className={s.admin_link}>
-              <Link href="/login">Admin</Link>
+              <Link href="/admin">Admin</Link>
             </div>
           </div>
         </div>
