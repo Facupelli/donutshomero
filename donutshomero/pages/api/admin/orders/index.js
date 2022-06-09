@@ -6,6 +6,7 @@ export default async function getOrders(req, res) {
       const orders = await prisma.order.findMany({
         // include: { singleDonuts: true, promoDonuts: true },
         orderBy: { createdAt: "desc" },
+        include: { customer: true },
       });
 
       res.json(orders);

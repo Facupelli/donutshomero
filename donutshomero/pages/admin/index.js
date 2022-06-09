@@ -1,8 +1,6 @@
 import { supabase } from "../../lib/supabase";
 import { verify } from "jsonwebtoken";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { getSingleDonuts, getOrders } from "../../utils/admin";
 import nookies from "nookies";
 
@@ -16,8 +14,6 @@ import AdminOrders from "../../components/Admin/AdminOrders/AdminOrders";
 import s from "./admin.module.scss";
 
 export default function Admin({ admin }) {
-  const dispatch = useDispatch();
-  const router = useRouter();
   const [showPanel, setShowPanel] = useState({
     orders: true,
     stock: false,
@@ -25,6 +21,8 @@ export default function Admin({ admin }) {
   });
   const [donuts, setDonuts] = useState([]);
   const [orders, setOrders] = useState([]);
+
+  console.log(orders);
 
   useEffect(() => {
     getSingleDonuts(setDonuts);

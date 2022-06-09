@@ -141,16 +141,21 @@ export default function OrderCard({ order }) {
       </div>
       {showItems && (
         <div className={s.show_donuts_container}>
-          {order.items.map((item, i) => (
-            <div key={i} className={s.show_donuts}>
-              <p className={s.donut_name}>
-                {item.donutsQuantity
-                  ? `Promo N° ${item.name} - ${item.donutsQuantity} Donas`
-                  : item.name}
-              </p>
-              <p className={s.qty}>x{item.quantity}</p>
-            </div>
-          ))}
+          <div>
+            {order.items.map((item, i) => (
+              <div key={i} className={s.show_donuts}>
+                <p className={s.donut_name}>
+                  {item.donutsQuantity
+                    ? `Promo N° ${item.name} - ${item.donutsQuantity} Donas`
+                    : item.name}
+                </p>
+                <p className={s.qty}>x{item.quantity}</p>
+              </div>
+            ))}
+          </div>
+          <p className={s.order_phone}>
+            CELULAR: <span>{order.customer.phone}</span>
+          </p>
         </div>
       )}
     </div>
