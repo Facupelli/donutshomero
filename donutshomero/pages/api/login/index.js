@@ -32,6 +32,7 @@ export default async function login(req, res) {
     nookies.set({ res }, "auth", token, {
       secure: process.env.NODE_ENV === "production",
       path: "/",
+      domain: "https://donutshomero.vercel.app",
     });
 
     res.json({

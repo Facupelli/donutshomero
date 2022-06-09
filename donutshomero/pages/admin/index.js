@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getSingleDonuts, getOrders } from "../../utils/admin";
-import { setAdminUser } from "../../redux/features/adminUser/adminUserSlice";
 import nookies from "nookies";
 
 //COMPONENTS
@@ -16,7 +15,7 @@ import AdminOrders from "../../components/Admin/AdminOrders/AdminOrders";
 
 import s from "./admin.module.scss";
 
-export default function Admin() {
+export default function Admin({ admin }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const [showPanel, setShowPanel] = useState({
@@ -68,7 +67,7 @@ export default function Admin() {
 
   return (
     <div className={s.container}>
-      <Nav route="admin" />
+      <Nav admin={admin} route="admin" />
       <div className={s.main}>
         <AdminNav showPanel={showPanel} setShowPanel={setShowPanel} />
         {showPanel.stock && donuts.length > 0 && (
@@ -86,6 +85,8 @@ export default function Admin() {
 export const getServerSideProps = async (ctx) => {
   const cookies = nookies.get(ctx);
 
+  console.log(cookies);
+
   const token = cookies.auth;
   if (token) {
     let tokenVerifyed;
@@ -101,7 +102,7 @@ export const getServerSideProps = async (ctx) => {
       };
     }
     if (tokenVerifyed) {
-      return { props: {} };
+      return { props: { admin: true } };
     }
   }
   return {

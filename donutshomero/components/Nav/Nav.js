@@ -8,13 +8,11 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 import s from "./Nav.module.scss";
 
-export default function Nav({ route, menuDivRef, localDivRef }) {
+export default function Nav({ admin, route, menuDivRef, localDivRef }) {
   const router = useRouter();
-  const admin = useSelector((state) => state.admin.data);
 
   const hanldeScrollTo = (ref) => {
     if (route === "nosotros" || route === "contacto") {
@@ -59,7 +57,7 @@ export default function Nav({ route, menuDivRef, localDivRef }) {
             onClick={handleClickMenu}
           />
         </label>
-        {admin.accessToken ? (
+        {admin ? (
           <ul className={s.links}>
             <Link href="/admin">
               <li className={s.admin_link}>
