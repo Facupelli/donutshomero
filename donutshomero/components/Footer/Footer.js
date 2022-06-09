@@ -20,6 +20,10 @@ export default function Footer({ route, menuDivRef, promosDivRef }) {
     }
   };
 
+  const handleClickInsta = () => {
+    window.open("https://www.instagram.com/donuts_homero/", "_blank");
+  };
+
   return (
     <footer className={s.footer}>
       <div>
@@ -60,13 +64,9 @@ export default function Footer({ route, menuDivRef, promosDivRef }) {
               <p>
                 <FontAwesomeIcon icon={faFacebook} width="25px" />
               </p>
-              <a
-                href="https://www.instagram.com/donuts_homero/"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <p onClick={handleClickInsta}>
                 <FontAwesomeIcon icon={faInstagram} width="25px" />
-              </a>
+              </p>
               <p>
                 <FontAwesomeIcon icon={faTwitter} width="25px" />
               </p>
