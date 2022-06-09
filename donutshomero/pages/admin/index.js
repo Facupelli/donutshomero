@@ -24,6 +24,7 @@ export default function Admin() {
     users: false,
   });
   const [donuts, setDonuts] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -42,8 +43,10 @@ export default function Admin() {
 
   useEffect(() => {
     getSingleDonuts(setDonuts);
+    getOrders(setOrders);
   }, []);
 
+  //escucho cambios en el stock
   useEffect(() => {
     const stockListener = supabase
       .from("Donut")
@@ -58,6 +61,25 @@ export default function Admin() {
     };
   }, []);
 
+  //escucho cambios en las ordenes/pedidos
+  useEffect(() => {
+    const ordersListener = supabase
+      .from("orders")
+      .on("UPDATE", (payload) => {
+        console.log("Order change Received!", payload.new);
+        getOrders(setOrders);
+      })
+      .on("INSERT", (payload) => {
+        console.log("Order insert Received!", payload.new);
+        getOrders(setOrders);
+      })
+      .subscribe();
+
+    return () => {
+      ordersListener.unsubscribe();
+    };
+  }, []);
+
   return (
     <div className={s.container}>
       <Nav route="admin" />
@@ -69,7 +91,7 @@ export default function Admin() {
             <StockByTotal donuts={donuts} />
           </div>
         )}
-        {showPanel.orders && <AdminOrders />}
+        {showPanel.orders && <AdminOrders orders={orders} />}
       </div>
     </div>
   );
