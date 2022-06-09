@@ -85,8 +85,6 @@ export default function Admin({ admin }) {
 export const getServerSideProps = async (ctx) => {
   const cookies = nookies.get(ctx);
 
-  console.log(cookies);
-
   const token = cookies.auth;
   if (token) {
     let tokenVerifyed;

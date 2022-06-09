@@ -32,7 +32,7 @@ export default function Home({ donuts }) {
         dispatch(setAdminUser({ accessToken: token }));
       }
     } catch (e) {
-      console.log(e.message);
+      console.log("unauthorized");
     }
   }, []);
 
