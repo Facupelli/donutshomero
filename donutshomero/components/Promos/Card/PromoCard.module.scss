@@ -45,7 +45,8 @@
   padding-right: 1rem;
 
   @media (max-width: 480px) {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    padding: 2rem .5rem 2rem 0rem;
   }
 }
 
@@ -53,10 +54,14 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  text-align: left;
 }
 
 .image_container_pc {
   margin-left: auto;
+  min-width: 100px;
+  width: 100px;
+  height: 100px;
   background-color: $second_pink;
   border-radius: 100%;
   position: relative;
@@ -75,8 +80,6 @@
     background-color: white;
     border-radius: 0.7rem;
     padding: 0.3rem;
-
-   
   }
 }
 
@@ -86,6 +89,9 @@
   @media (max-width: 600px) {
     display: block;
     margin-left: auto;
+    min-width: 75px;
+    width: 75px;
+    height: 75px;
     background-color: $second_pink;
     border-radius: 100%;
     position: relative;
@@ -105,7 +111,7 @@
 }
 
 .cart_icon_container {
-  margin-left: auto;
+  // margin-left: auto;
 
   .cart_icon {
     color: $second_blue;
@@ -123,6 +129,6 @@
   display: none;
 }
 
-.no_stock{
+.no_stock {
   @include noStock;
 }

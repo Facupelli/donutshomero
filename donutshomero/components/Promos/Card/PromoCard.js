@@ -65,8 +65,8 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
         <div className={s.image_container_pc}>
           <Image
             src={media_docena}
-            width="120px"
-            height="120px"
+            width="100px"
+            height="100px"
             objectFit="contain"
             alt="media_docena"
           />
@@ -75,8 +75,8 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
         <div className={s.image_container_mobile}>
           <Image
             src={media_docena}
-            width="80px"
-            height="80px"
+            width="75px"
+            height="75px"
             objectFit="contain"
             alt="media_docena"
           />
