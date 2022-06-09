@@ -27,21 +27,6 @@ export default function Admin() {
   const [donuts, setDonuts] = useState([]);
   const [orders, setOrders] = useState([]);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("accessToken");
-  //   try {
-  //     const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
-  //     if (tokenVerifyed) {
-  //       dispatch(setAdminUser({ accessToken: token }));
-  //     } else {
-  //       router.push("/login");
-  //     }
-  //   } catch (e) {
-  //     console.log(e.message);
-  //     router.push("/login");
-  //   }
-  // }, []);
-
   useEffect(() => {
     getSingleDonuts(setDonuts);
     getOrders(setOrders);
@@ -100,7 +85,6 @@ export default function Admin() {
 
 export const getServerSideProps = async (ctx) => {
   const cookies = nookies.get(ctx);
-  console.log("cookies", cookies);
 
   const token = cookies.auth;
   if (token) {
