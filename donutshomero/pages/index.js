@@ -1,11 +1,13 @@
 import prisma from "../lib/prisma";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
+import { verify } from "jsonwebtoken";
 import Head from "next/head";
 import {
   setSingleDonuts,
   setPromos,
 } from "../redux/features/donuts/donutsSlice";
+import { setAdminUser } from "../redux/features/adminUser/adminUserSlice";
 
 //COMPONENTS
 import Portrait from "../components/Portrait/Portrait";
@@ -15,11 +17,9 @@ import Promos from "../components/Promos/Promos";
 import Local from "../components/Local/Local";
 import Footer from "../components/Footer/Footer";
 import WsButton from "../components/WsButton/WsButton";
+import OrderModal from "../components/OrderModal/OrderModal";
 
 import s from "../styles/index.module.scss";
-import { setAdminUser } from "../redux/features/adminUser/adminUserSlice";
-import { verify } from "jsonwebtoken";
-import OrderModal from "../components/OrderModal/OrderModal";
 
 export default function Home({ donuts, modal }) {
   const dispatch = useDispatch();
@@ -93,11 +93,11 @@ export default function Home({ donuts, modal }) {
 export const getServerSideProps = async ({ query }) => {
   const modal = query.ordersuccess;
 
-  const single = await prisma.donut.findMany({
-    orderBy: {
-      price: "asc",
-    },
-  });
+  // const single = await prisma.donut.findMany({
+  //   orderBy: {
+  //     price: "asc",
+  //   },
+  // });
 
   const promos = await prisma.promo.findMany({
     include: {
@@ -112,7 +112,7 @@ export const getServerSideProps = async ({ query }) => {
   return {
     props: {
       donuts: {
-        single,
+        single: [],
         promos: JSON.stringify(promos),
       },
       modal: modal ? modal : null,
