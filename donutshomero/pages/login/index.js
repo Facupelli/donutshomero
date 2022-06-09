@@ -40,7 +40,7 @@ export default function Login() {
         }
       );
       const accessToken = response?.data?.token;
-      dispatch(setAdminUser({ email: data.email, accessToken }));
+      dispatch(setAdminUser({ accessToken }));
       localStorage.setItem("accessToken", accessToken);
       setLoginErr("");
       router.push("/admin");

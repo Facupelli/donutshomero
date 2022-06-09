@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import prisma from "../../../lib/prisma";
+import nookies from "nookies";
 
 export default async function login(req, res) {
   if (req.method === "POST") {
@@ -28,9 +29,13 @@ export default async function login(req, res) {
       expiresIn: "1d",
     });
 
+    nookies.set({ res }, "auth", token, {
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    });
+
     res.json({
-      role: user.role,
-      email: user.email,
+      message: "Logged in successfully",
       token,
     });
   } else {

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getSingleDonuts, getOrders } from "../../utils/admin";
 import { setAdminUser } from "../../redux/features/adminUser/adminUserSlice";
+import nookies from 'nookies'
 
 //COMPONENTS
 import AdminNav from "../../components/Admin/AdminNav/AdminNav";
@@ -97,16 +98,9 @@ export default function Admin() {
   );
 }
 
-// export const getStaticProps = async () => {
-//   const donuts = await prisma.donut.findMany({
-//     orderBy: {
-//       name: "asc",
-//     },
-//   });
+export const getServerSideProps = async (ctx) => {
+  const cookies = nookies.get(ctx)
+  console.log("aca toy", cookies);
 
-//   return {
-//     props: {
-//       donuts,
-//     },
-//   };
-// };
+  return { props: {} };
+};
