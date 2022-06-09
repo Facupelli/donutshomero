@@ -12,6 +12,7 @@ import Nav from "../../components/Nav/Nav";
 import AdminOrders from "../../components/Admin/AdminOrders/AdminOrders";
 
 import s from "./admin.module.scss";
+import Head from "next/head";
 
 export default function Admin({ admin }) {
   const [showPanel, setShowPanel] = useState({
@@ -65,6 +66,10 @@ export default function Admin({ admin }) {
 
   return (
     <div className={s.container}>
+      <Head>
+        <title>Homero Admin</title>
+        <meta name="description" content="Donuts Homero admin panel" />
+      </Head>
       <Nav admin={admin} route="admin" />
       <div className={s.main}>
         <AdminNav showPanel={showPanel} setShowPanel={setShowPanel} />
