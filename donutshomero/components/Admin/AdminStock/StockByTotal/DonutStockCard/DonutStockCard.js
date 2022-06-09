@@ -8,7 +8,10 @@ export default function DonutStockCard({ donut, watch, register, loading }) {
     <div className={s.donut_stock_card}>
       <p className={s.donut_name}>{donut.name.toUpperCase()}</p>
       <p className={s.stock}>
-        STOCK: <span>{donut.stock}</span>
+        STOCK:{" "}
+        <span className={donut.stock < 10 ? s.color_red : null}>
+          {donut.stock}
+        </span>
       </p>
       <div className={s.form}>
         <label htmlFor="new-stock">
