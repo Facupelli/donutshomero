@@ -103,9 +103,22 @@ export const getServerSideProps = async (ctx) => {
   console.log("cookies", cookies);
 
   const token = cookies.auth;
-  const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
-  if (tokenVerifyed) {
-    return { props: {} };
+  if (token) {
+    let tokenVerifyed;
+    try {
+      tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
+    } catch (e) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+    if (tokenVerifyed) {
+      return { props: {} };
+    }
   }
   return {
     redirect: {
