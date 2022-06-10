@@ -8,7 +8,6 @@
   @media (min-width: 480px) {
     min-height: 570px;
     max-height: 700px;
-
   }
 
   @media (max-width: 480px) {
@@ -35,6 +34,40 @@
       width: 100%;
       position: absolute;
       bottom: -4px;
+    }
+  }
+
+  .delivery_btn_container {
+    position: absolute;
+    top: 70%;
+    right: 25%;
+    transform: translate(50%, -50%);
+
+    @media (max-width: 600px) {
+      top: 10%;
+      right: 30%;
+    }
+
+    button {
+      background-color: $main_pink;
+      padding: 1.2rem;
+      border-radius: 2rem;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: rgba(0, 0, 0, 0.418) 0px 0px 15px 2px;
+
+      @media (max-width: 600px) {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: none;
+        background-color: $second_pink;
+      }
     }
   }
 }
