@@ -39,35 +39,36 @@ export default function ChooseDonut({ single_donuts, cartItem }) {
   };
 
   const handleAddChosen = (donut) => {
-    if (
-      cartItem.donutsPromo.filter((el) => el.donutId === donut.id).length > 0
-    ) {
-      //id donas rellenas
-      const rellenas = [
-        "cl40ncyij0039isuwsg8es48m",
-        "cl40ncyik0041isuw2zpgilga",
-        "cl40ncyik0051isuwl707iv9s",
-      ];
-      //suma de las rellenas
-      const rellenasTotal = cartItem.donutsPromo
-        .filter((el) => rellenas.includes(el.donutId))
-        .reduce((prev, acc) => {
-          return prev + acc.donutQuantity;
-        }, 0);
-      if (rellenasTotal < 4 * cartItem.quantity) {
+    const rellenas = [
+      "cl40ncyij0039isuwsg8es48m",
+      "cl40ncyik0041isuw2zpgilga",
+      "cl40ncyik0051isuwl707iv9s",
+    ];
+    //suma de las rellenas
+    const rellenasTotal = cartItem.donutsPromo
+      .filter((el) => rellenas.includes(el.donutId))
+      .reduce((prev, acc) => {
+        console.log(prev, acc);
+        return prev + acc.donutQuantity;
+      }, 0);
+    if (rellenasTotal < 4 * cartItem.quantity) {
+      if (
+        cartItem.donutsPromo.filter((el) => el.donutId === donut.id).length > 0
+      ) {
         dispatch(
           incrementPromoChosenQuantity({
             promoId: cartItem.id,
             donutId: donut.id,
           })
         );
+        return;
       }
-      return;
+      //si no esta la promo la agrego
+      dispatch(
+        addPromoChosenDonuts({ promoId: cartItem.id, chosenDonut: donut })
+      );
     }
-    //si no esta la promo la agrego
-    dispatch(
-      addPromoChosenDonuts({ promoId: cartItem.id, chosenDonut: donut })
-    );
+    return;
   };
 
   return (
