@@ -153,7 +153,6 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-left: auto;
       position: relative;
 
       @media (max-width: 600px) {
@@ -181,7 +180,8 @@
 
         @media (max-width: 600px) {
           width: 15px;
-          height: 15px;
+          height: 15px; 
+          margin-left: auto;
         }
 
         &:hover {
