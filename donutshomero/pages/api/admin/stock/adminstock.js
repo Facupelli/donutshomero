@@ -7,13 +7,15 @@ export default async function adminstock(req, res) {
 
       const donutsWithNewStock = donuts.filter((donut) => donut.data.newStock);
 
+      console.log(typeof donutsWithNewStock[0].data.available)
+
       await prisma.$transaction(
         donutsWithNewStock.map((donut) =>
           prisma.donut.update({
             where: { id: donut.id },
             data: {
               stock: Number(donut.data.newStock),
-              available: donut.data.available === "true" ? true : false,
+              available: donut.data.available,
             },
           })
         )
