@@ -38,7 +38,7 @@ export default function Portrait() {
         className={s.delivery_btn_container}
         onClick={handleClick}
       >
-        <button>PEDÍ ACÁ TUS DONAS!</button>
+        <button>¡PEDÍ ACÁ TUS DONAS!</button>
       </div>
     </div>
   );
