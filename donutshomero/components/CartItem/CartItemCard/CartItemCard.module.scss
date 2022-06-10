@@ -29,7 +29,7 @@
         display: block;
       }
 
-      .name{
+      .name {
         font-weight: 500;
       }
     }
@@ -39,8 +39,22 @@
       align-items: center;
       flex-grow: 10;
 
-      .single_price {
+      .stock_container {
         margin-left: auto;
+        margin-right: 1rem;
+
+        @media (max-width: 600px) {
+          text-align: center;
+          flex-grow: 2;
+        }
+
+        span {
+          padding-right: 0.5rem;
+          font-weight: 600;
+        }
+      }
+
+      .single_price {
         margin-right: 1rem;
 
         @media (max-width: 600px) {
@@ -86,6 +100,7 @@
 
         @media (max-width: 600px) {
           padding: 0.4rem;
+          margin-left: auto;
           // margin-left: auto;
         }
 
@@ -115,6 +130,18 @@
           width: 15px;
           height: 15px;
         }
+      }
+
+      .choose_donuts_btn {
+        margin-left: 0;
+        font-size: 0.7rem;
+        font-weight: 600;
+
+        // span {
+        //   @media (max-width: 600px) {
+        //     display: none;
+        //   }
+        // }
       }
 
       .promo_price {
@@ -160,19 +187,6 @@
         margin-top: 0.5rem;
       }
 
-      .stock_container {
-        width: 75px;
-        @media (max-width: 600px) {
-          text-align: center;
-          flex-grow: 2;
-        }
-
-        span {
-          padding-right: 0.5rem;
-          font-weight: 600;
-        }
-      }
-
       .trash_icon {
         color: $second_blue;
         width: 20px;
@@ -180,7 +194,7 @@
 
         @media (max-width: 600px) {
           width: 15px;
-          height: 15px; 
+          height: 15px;
           margin-left: auto;
         }
 
@@ -192,3 +206,5 @@
     }
   }
 }
+
+

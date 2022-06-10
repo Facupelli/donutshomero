@@ -4,23 +4,28 @@ import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../../redux/features/cart/cartSlice";
+import {
+  addPromoChosenDonuts,
+  decrementPromoChosenQuantity,
+  incrementPromoChosenQuantity,
+  removeFromCart,
+  removePromoChosenDonuts,
+} from "../../../redux/features/cart/cartSlice";
 import { incrementStock } from "../../../redux/features/donuts/donutsSlice";
 import Quantity from "../Quantity/Quantity";
 import TotalPrice from "../TotalPrice/TotalPrice";
 
 import s from "./CartItemCard.module.scss";
+import ChooseDonut from "./ChooseDonut/ChooseDonut";
 
 export default function CartItemCard({ cartItem }) {
   const dispatch = useDispatch();
   const [showDonuts, setShowDonuts] = useState(false);
-  
+  const [chooseDonuts, setChooseDonuts] = useState(false);
 
   const single_donuts = useSelector((state) => state.donuts.single_donuts);
-
-  const donut = single_donuts.filter((donut) => donut.id === cartItem.id)[0];
 
   const handleRemoveFromCart = () => {
     if (cartItem.donutsQuantity) {
@@ -39,6 +44,8 @@ export default function CartItemCard({ cartItem }) {
     }
     dispatch(removeFromCart(cartItem.id));
   };
+
+
 
   return (
     <div className={s.container}>
@@ -62,6 +69,14 @@ export default function CartItemCard({ cartItem }) {
                   className={s.arrow_icon}
                 />
               </button>
+              {cartItem.id === "cl41rwcbi0205gcuwzxa71511" && (
+                <button
+                  className={s.choose_donuts_btn}
+                  onClick={() => setChooseDonuts(!chooseDonuts)}
+                >
+                  ELEGIR <span>DONAS</span>
+                </button>
+              )}
               <p className={s.promo_price}>${cartItem.price}</p>
               <p className={s.promo_total_price}>
                 ${cartItem.price * cartItem.quantity}
@@ -70,6 +85,18 @@ export default function CartItemCard({ cartItem }) {
           ) : (
             <div key={cartItem.id} className={s.cart_item_single}>
               <p className={s.name}>{cartItem.name}</p>
+              {!cartItem.donutsQuantity && (
+                <div className={s.stock_container}>
+                  <p>
+                    <span>stock:</span>
+                    {
+                      single_donuts.filter(
+                        (donut) => donut.id === cartItem.id
+                      )[0].stock
+                    }
+                  </p>
+                </div>
+              )}
               <p className={s.single_price}>${cartItem.price}</p>
               <p className={s.single_total_price}>
                 ${cartItem.price * cartItem.quantity}
@@ -82,17 +109,6 @@ export default function CartItemCard({ cartItem }) {
               id={cartItem.id}
               promo={cartItem.donutsQuantity}
             />
-            {!cartItem.donutsQuantity && (
-              <div className={s.stock_container}>
-                <p>
-                  <span>stock:</span>
-                  {
-                    single_donuts.filter((donut) => donut.id === cartItem.id)[0]
-                      .stock
-                  }
-                </p>
-              </div>
-            )}
             <FontAwesomeIcon
               icon={faTrashCan}
               className={s.trash_icon}
@@ -103,12 +119,26 @@ export default function CartItemCard({ cartItem }) {
 
         {showDonuts && (
           <div className={s.donuts_list}>
-            {cartItem.donutsPromo.map((promoDonut, i) => (
-              <p key={i}>
-                {promoDonut.donutQuantity} {promoDonut.donut.name}
-              </p>
-            ))}
+            {cartItem.id === "cl41rwcbi0205gcuwzxa71511" ? (
+              <>
+                <p>4 azucarada</p>
+                <p>4 oreo</p>
+                <p>4 rellenas a elección</p>
+              </>
+            ) : (
+              cartItem.donutsPromo.map((promoDonut, i) => {
+                return (
+                  <p key={i}>
+                    {promoDonut.donutQuantity} {promoDonut.donut.name}
+                  </p>
+                );
+              })
+            )}
           </div>
+        )}
+
+        {chooseDonuts && (
+          <ChooseDonut single_donuts={single_donuts} cartItem={cartItem} />
         )}
       </div>
       <TotalPrice price={cartItem.price} quantity={cartItem.quantity} />

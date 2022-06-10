@@ -61,6 +61,9 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
                 {promo.donutQuantity} {promo.donut.name}
               </p>
             ))}
+           {promo.id === "cl41rwcbi0205gcuwzxa71511" && (
+              <p>4 rellenas a elección</p>
+            )}
         </div>
         <div className={s.image_container_pc}>
           <Image

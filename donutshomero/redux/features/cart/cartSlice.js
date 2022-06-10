@@ -47,6 +47,73 @@ export const cartSlice = createSlice({
     cleanCart: (state) => {
       state.items = [];
     },
+    addPromoChosenDonuts: (state, action) => {
+      const { promoId, chosenDonut } = action.payload;
+      const newCart = state.items.map((cartItem) => {
+        if (cartItem.id === promoId) {
+          return {
+            ...cartItem,
+            donutsPromo: [
+              ...cartItem.donutsPromo,
+              { donutId: chosenDonut.id, donutQuantity: chosenDonut.quantity },
+            ],
+          };
+        }
+        return cartItem;
+      });
+      state.items = newCart;
+    },
+    removePromoChosenDonuts: (state, action) => {
+      const { promoId, chosenDonut } = action.payload;
+      const newCart = state.items.map((cartItem) => {
+        if (cartItem.id === promoId) {
+          return {
+            ...cartItem,
+            donutsPromo: cartItem.donutsPromo.filter(
+              (donut) => donut.donutId !== chosenDonut.id
+            ),
+          };
+        }
+        return cartItem;
+      });
+      state.items = newCart;
+    },
+    incrementPromoChosenQuantity: (state, action) => {
+      const { promoId, donutId } = action.payload;
+      const newCart = state.items.map((cartItem) => {
+        if (cartItem.id === promoId) {
+          return {
+            ...cartItem,
+            donutsPromo: cartItem.donutsPromo.map((donut) => {
+              if (donut.donutId === donutId) {
+                return { ...donut, donutQuantity: donut.donutQuantity + 1 };
+              }
+              return donut;
+            }),
+          };
+        }
+        return cartItem;
+      });
+      state.items = newCart;
+    },
+    decrementPromoChosenQuantity: (state, action) => {
+      const { promoId, donutId } = action.payload;
+      const newCart = state.items.map((cartItem) => {
+        if (cartItem.id === promoId) {
+          return {
+            ...cartItem,
+            donutsPromo: cartItem.donutsPromo.map((donut) => {
+              if (donut.donutId === donutId) {
+                return { ...donut, donutQuantity: donut.donutQuantity - 1 };
+              }
+              return donut;
+            }),
+          };
+        }
+        return cartItem;
+      });
+      state.items = newCart;
+    },
   },
 });
 
@@ -56,6 +123,10 @@ export const {
   incrementQuantity,
   decrementQuantity,
   cleanCart,
+  addPromoChosenDonuts,
+  removePromoChosenDonuts,
+  incrementPromoChosenQuantity,
+  decrementPromoChosenQuantity,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
