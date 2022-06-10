@@ -62,7 +62,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       );
     } catch (err) {
       console.log("unable to update stock:", err);
-      return
+      return;
     }
 
     //generar order y boton de pago

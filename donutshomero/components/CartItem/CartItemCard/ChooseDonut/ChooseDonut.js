@@ -48,7 +48,6 @@ export default function ChooseDonut({ single_donuts, cartItem }) {
     const rellenasTotal = cartItem.donutsPromo
       .filter((el) => rellenas.includes(el.donutId))
       .reduce((prev, acc) => {
-        console.log(prev, acc);
         return prev + acc.donutQuantity;
       }, 0);
     if (rellenasTotal < 4 * cartItem.quantity) {
