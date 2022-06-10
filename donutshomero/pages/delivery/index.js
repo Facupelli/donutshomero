@@ -110,7 +110,7 @@ export default function Delivery({ donuts = [] }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const single = await prisma.donut.findMany({
     orderBy: {
       price: "asc",
