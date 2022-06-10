@@ -6,8 +6,6 @@ export default async function stock(req, res) {
     try {
       const { cart } = req.body;
 
-      console.log(cart)
-
       await prisma.$transaction(
         cart.map((item) =>
           prisma.donut.update({

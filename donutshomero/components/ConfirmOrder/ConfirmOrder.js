@@ -50,6 +50,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   const handleClickPedir = async () => {
     setLoading(true);
 
+    //update stock
     try {
       const data = updateDbStock(cart);
 
@@ -61,8 +62,10 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       );
     } catch (err) {
       console.log("unable to update stock:", err);
+      return
     }
 
+    //generar order y boton de pago
     try {
       const data = {
         customerData,
