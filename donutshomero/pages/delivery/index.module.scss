@@ -6,7 +6,7 @@
   .main {
     @include app_width;
     padding: 2rem 0;
-    
+
     .instructions {
       padding-top: 70px;
       display: flex;
@@ -43,7 +43,7 @@
       justify-items: center;
       margin-bottom: 4rem;
 
-      @media (max-width: 700px) {
+      @media (max-width: 890px) {
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -52,14 +52,14 @@
       }
 
       .promos_title_pc {
-        @media (max-width: 600px) {
+        @media (max-width: 890px) {
           display: none;
         }
       }
 
       .promos_title_mobile {
         display: none;
-        @media (max-width: 600px) {
+        @media (max-width: 890px) {
           display: block;
         }
       }
@@ -71,6 +71,7 @@
 
       .single_donuts {
         display: flex;
+        align-items: center;
         flex-direction: column;
         gap: 1rem;
 
@@ -80,7 +81,7 @@
           text-align: center;
 
           @media (max-width: 480px) {
-            margin: .5rem 0;
+            margin: 0.5rem 0;
           }
         }
       }
