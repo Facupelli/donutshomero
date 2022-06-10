@@ -35,3 +35,31 @@ $second_blue: #0081b7;
   font-size: .8rem;
   font-weight: 700;
 }
+
+@mixin modalArrowDown($width, $top, $left) {
+  width: $width;
+  position: absolute;
+  z-index: 2;
+  left: 40px;
+  bottom: 45px;
+  background-color: white;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  // @media (max-width: 600px) {
+  //   left: 20px;
+  //   bottom: 35px;
+  // }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: $left;
+    top:$top;
+    border-top: 15px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+}

@@ -1,0 +1,59 @@
+@import "../../../../../styles/app.scss";
+
+.counter_container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  .qty_arrow_icon_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $second_blue;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $main_blue;
+    }
+  }
+
+  .qty_total {
+    margin-left: 1rem;
+    font-weight: 600;
+  }
+}
+
+.modal_available {
+  position: relative;
+}
+
+.stock_modal_single {
+  @include modalArrowDown(160px, 30px, 20px);
+  bottom: 35px;
+  left: 15px;
+  @media (max-width: 600px) {
+    @include modalArrowDown(150px, 30px, 110px);
+    bottom: 30px;
+    left: -80px;
+  }
+}
+
+.stock_modal_chosen {
+  @include modalArrowDown(380px, 30px, 20px);
+  bottom: 35px;
+  left: 15px;
+
+  @media (max-width: 600px) {
+    @include modalArrowDown(200px, 45px, 155px);
+    bottom: 45px;
+    left: -120px;
+  }
+}
+
+.no_stock {
+  @include noStock;
+}

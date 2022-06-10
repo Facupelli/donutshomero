@@ -9,35 +9,12 @@
     grid-template-columns: 25% 75%;
     row-gap: 0.2rem;
 
-    > p {
-      margin-right: 1rem;
+    @media (max-width:600px) {
+      grid-template-columns: 65% 35%;
     }
 
-    > div {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-
-      .qty_arrow_icon_container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: $second_blue;
-        width: 25px;
-        height: 25px;
-        border-radius: 100%;
-        color: white;
-
-        &:hover {
-          cursor: pointer;
-          background-color: $main_blue;
-        }
-      }
-
-      .qty_total {
-        margin-left: 1rem;
-        font-weight: 600;
-      }
+    > p {
+      margin-right: 1rem;
     }
   }
 }

@@ -53,43 +53,17 @@
   }
 }
 
-@mixin modalArrowDown($width, $top) {
-  width: $width;
-  position: absolute;
-  z-index: 2;
-  left: 40px;
-  bottom: 45px;
-  background-color: white;
-  padding: 0.6rem;
-  border-radius: 0.5rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-  @media (max-width: 480px) {
-    left: 20px;
-    bottom: 35px;
-  }
-
-  &::before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 20px;
-    top:$top;
-    border-top: 15px solid white;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-  }
-}
 
 .modal_available {
   position: relative;
 
   .stock_modal_single {
-    @include modalArrowDown(160px, 30px);
+    @include modalArrowDown(160px, 30px, 20px);
   }
 
   .stock_modal_promo {
-    @include modalArrowDown(260px, 45px);
+    @include modalArrowDown(260px, 30px, 20px);
   }
 
   .no_stock {

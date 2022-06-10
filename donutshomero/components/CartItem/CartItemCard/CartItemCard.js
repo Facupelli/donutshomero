@@ -1,24 +1,20 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
   faAngleUp,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addPromoChosenDonuts,
-  decrementPromoChosenQuantity,
-  incrementPromoChosenQuantity,
-  removeFromCart,
-  removePromoChosenDonuts,
-} from "../../../redux/features/cart/cartSlice";
+import { removeFromCart } from "../../../redux/features/cart/cartSlice";
 import { incrementStock } from "../../../redux/features/donuts/donutsSlice";
+
+//COMPONENTS
 import Quantity from "../Quantity/Quantity";
 import TotalPrice from "../TotalPrice/TotalPrice";
+import ChooseDonut from "./ChooseDonut/ChooseDonut";
 
 import s from "./CartItemCard.module.scss";
-import ChooseDonut from "./ChooseDonut/ChooseDonut";
 
 export default function CartItemCard({ cartItem }) {
   const dispatch = useDispatch();
@@ -44,8 +40,6 @@ export default function CartItemCard({ cartItem }) {
     }
     dispatch(removeFromCart(cartItem.id));
   };
-
-
 
   return (
     <div className={s.container}>
