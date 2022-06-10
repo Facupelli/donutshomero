@@ -1,5 +1,23 @@
 @import "../../../styles/app.scss";
 
+.take_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin: 2rem 0;
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  select {
+    @include select;
+    width: auto;
+    background-color: transparent;
+    font-weight: 600;
+  }
+}
+
 .table_titles_container {
   display: grid;
   grid-template-columns: 4% 96%;
@@ -9,7 +27,7 @@
   font-weight: 600;
   padding: 0rem 0.5rem;
 
-  @media (max-width:600px) {
+  @media (max-width: 600px) {
     display: none;
   }
 
@@ -19,4 +37,37 @@
   }
 }
 
+.pagination_container {
+  padding: 2rem 0 4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  button {
+    padding: 0.5rem 2rem;
+    background-color: $second_blue;
+    border: none;
+    color: white;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $main_blue;
+      box-shadow: none;
+    }
+  }
+
+  .next_btn {
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.322) 2px 2px 4px;
+    border-left:1px solid #006b99;
+  }
+
+  .prev_btn {
+    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.322) -2px 2px 4px;
+    border-right:1px solid #006b99;
+  }
+}

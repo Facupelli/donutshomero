@@ -22,12 +22,30 @@ export default function Admin({ admin }) {
   });
   const [donuts, setDonuts] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [skip, setSkip] = useState(0);
+  const [take, setTake] = useState(15);
 
-  console.log(orders);
+  const handleChangeTake = (e) => {
+    setTake(e.target.value);
+  };
+
+  const handleClickNext = () => {
+    if (skip >= take) return;
+    setSkip((prev) => prev + 15);
+  };
+
+  const handleClickPrev = () => {
+    if (skip === 0) return;
+    setSkip((prev) => prev - 15);
+  };
+
+  useEffect(() => {
+    getOrders(setOrders, skip, take);
+  }, [skip, take]);
 
   useEffect(() => {
     getSingleDonuts(setDonuts);
-    getOrders(setOrders);
+    getOrders(setOrders, skip, take);
   }, []);
 
   //escucho cambios en el stock
@@ -51,11 +69,11 @@ export default function Admin({ admin }) {
       .from("orders")
       .on("UPDATE", (payload) => {
         console.log("Order change Received!", payload.new);
-        getOrders(setOrders);
+        getOrders(setOrders, skip, take);
       })
       .on("INSERT", (payload) => {
         console.log("Order insert Received!", payload.new);
-        getOrders(setOrders);
+        getOrders(setOrders, skip, take);
       })
       .subscribe();
 
@@ -79,7 +97,14 @@ export default function Admin({ admin }) {
             <StockByTotal donuts={donuts} />
           </div>
         )}
-        {showPanel.orders && <AdminOrders orders={orders} />}
+        {showPanel.orders && (
+          <AdminOrders
+            orders={orders.orders}
+            handleClickNext={handleClickNext}
+            handleClickPrev={handleClickPrev}
+            handleChangeTake={handleChangeTake}
+          />
+        )}
       </div>
     </div>
   );

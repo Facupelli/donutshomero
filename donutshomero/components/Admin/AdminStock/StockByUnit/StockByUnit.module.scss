@@ -2,19 +2,7 @@
 
 .stock_by_unit {
   select {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid white;
-    border-radius: 0.2rem;
-    font-weight: 500;
-    font-size: 1rem;
-    background-color: white;
-
-    &:active,
-    &:focus {
-      outline: none;
-      border: 1px solid $main_pink;
-    }
+    @include select;
   }
 
   .loading_btn_container {

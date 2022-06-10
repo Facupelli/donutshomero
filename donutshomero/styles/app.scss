@@ -32,7 +32,7 @@ $second_blue: #0081b7;
 
 @mixin noStock {
   color: rgb(255, 103, 43);
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
@@ -57,9 +57,25 @@ $second_blue: #0081b7;
     display: block;
     position: absolute;
     left: $left;
-    top:$top;
+    top: $top;
     border-top: 15px solid white;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
+  }
+}
+
+@mixin select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: white;
+
+  &:active,
+  &:focus {
+    outline: none;
+    border: 1px solid $main_pink;
   }
 }
