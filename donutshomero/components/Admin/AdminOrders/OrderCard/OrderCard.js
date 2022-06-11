@@ -172,20 +172,20 @@ export default function OrderCard({ order }) {
                 <p className={s.qty}>x{item.quantity}</p>
               </div>
             ))}
-            {choosePromo ? (
+            {choosePromo && (
               <div className={s.choosed_donuts}>
                 <p>ELEGIDAS:</p>
                 <div>
                   {choosePromo.donutsPromo
                     .filter((donut) => !donut.promoId)
                     .map((dona) => (
-                      <p>
+                      <p key={dona.id}>
                         {dona.donutName} <span>x{dona.donutQuantity}</span>
                       </p>
                     ))}
                 </div>
               </div>
-            ) : null}
+            )}
           </div>
           <div className={s.order_date}>
             <p>FECHA:</p>
