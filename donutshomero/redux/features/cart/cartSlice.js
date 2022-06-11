@@ -55,7 +55,7 @@ export const cartSlice = createSlice({
             ...cartItem,
             donutsPromo: [
               ...cartItem.donutsPromo,
-              { donutId: chosenDonut.id, donutQuantity: chosenDonut.quantity },
+              { donutId: chosenDonut.id, donutQuantity: chosenDonut.quantity, donutName: chosenDonut.name },
             ],
           };
         }

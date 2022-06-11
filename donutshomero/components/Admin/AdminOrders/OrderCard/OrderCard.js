@@ -53,6 +53,12 @@ export default function OrderCard({ order }) {
     }
   };
 
+  const choosePromo = order.items.filter(
+    (item) => item.id === "cl41rwcbi0205gcuwzxa71511"
+  )[0];
+
+  console.log(choosePromo);
+
   return (
     <div className={s.container}>
       <div className={s.orders_card_container}>
@@ -166,6 +172,20 @@ export default function OrderCard({ order }) {
                 <p className={s.qty}>x{item.quantity}</p>
               </div>
             ))}
+            {choosePromo ? (
+              <div className={s.choosed_donuts}>
+                <p>ELEGIDAS:</p>
+                <div>
+                  {choosePromo.donutsPromo
+                    .filter((donut) => !donut.promoId)
+                    .map((dona) => (
+                      <p>
+                        {dona.donutName} <span>x{dona.donutQuantity}</span>
+                      </p>
+                    ))}
+                </div>
+              </div>
+            ) : null}
           </div>
           <div className={s.order_date}>
             <p>FECHA:</p>

@@ -20,6 +20,30 @@
       flex-grow: 3;
     }
 
+    .choosed_donuts {
+      padding-top: .5rem;
+      padding-left: 1rem;
+      font-size: 0.8rem;
+
+      > p {
+        font-weight: 600;
+      }
+
+      > div {
+        font-size: 0.9rem;
+        margin-top: 0.2rem;
+        padding-left: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
+        span{
+          margin-left: .5rem;
+          font-weight: 600;
+        }
+      }
+    }
+
     .order_date {
       align-self: flex-end;
       display: flex;
