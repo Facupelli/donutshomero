@@ -40,17 +40,23 @@ export default function Nav({ admin, route, menuDivRef, localDivRef }) {
             </p>
           </Link>
         </div>
-        <div className={s.ws}>
-          <a href="https://wa.me/542644415016" target="_blank" rel="noreferrer">
-            <div>
-              <FontAwesomeIcon icon={faWhatsapp} width="20px" height="20px" />
-            </div>
-            <div>
-              <p>pedi aquí </p>
-              <p>Whatsapp</p>
-            </div>
-          </a>
-        </div>
+        {!adminData.accessToken && (
+          <div className={s.ws}>
+            <a
+              href="https://wa.me/542644415016"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <FontAwesomeIcon icon={faWhatsapp} width="20px" height="20px" />
+              </div>
+              <div>
+                <p>pedi aquí </p>
+                <p>Whatsapp</p>
+              </div>
+            </a>
+          </div>
+        )}
         <input type="checkbox" name="click" className={s.click} id="click" />
         <label htmlFor="click" className={s.icon_container}>
           <FontAwesomeIcon
