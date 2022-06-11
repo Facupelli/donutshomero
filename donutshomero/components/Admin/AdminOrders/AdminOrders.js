@@ -1,4 +1,5 @@
 import OrderCard from "./OrderCard/OrderCard";
+import { RaceBy } from "@uiball/loaders";
 
 import s from "./AdminOrders.module.scss";
 
@@ -9,8 +10,17 @@ export default function AdminOrders({
   handleClickPrev,
   handleChangeTake,
   skip,
-  take
+  take,
+  loadingPage,
 }) {
+  if (loadingPage) {
+    return (
+      <div className={s.loader_container}>
+        <RaceBy size={1200} lineWeight={1} speed={3} color="#0081bc" className={s.loader} />
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className={s.take_container}>
@@ -38,7 +48,11 @@ export default function AdminOrders({
         orders.map((order) => <OrderCard key={order.id} order={order} />)}
       {orders.length > 0 && (
         <div className={s.pagination_container}>
-          <button disabled={skip === 0 ? true : false} className={s.prev_btn} onClick={handleClickPrev}>
+          <button
+            disabled={skip === 0 ? true : false}
+            className={s.prev_btn}
+            onClick={handleClickPrev}
+          >
             ANTERIOR
           </button>
           <button

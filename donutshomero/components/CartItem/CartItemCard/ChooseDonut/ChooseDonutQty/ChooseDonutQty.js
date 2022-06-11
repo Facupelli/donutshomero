@@ -22,13 +22,14 @@ export default function ChooseDonutQty({ item, cartItem, single_donuts }) {
 
   const handleRemoveChosen = (donut) => {
     if (
-      cartItem.donutsPromo.filter((el) => el.donutId === donut.id).length === 0
+      cartItem.donutsPromo.filter((item) => item.donutId === donut.id).length === 0
     ) {
+      //si no esta en el carrito no hago nada
       return;
     }
 
     if (
-      cartItem.donutsPromo.filter((el) => el.donutId === donut.id)[0]
+      cartItem.donutsPromo.filter((item) => item.donutId === donut.id)[0]
         .donutQuantity === 1
     ) {
       //si queda una la elimino
@@ -38,6 +39,7 @@ export default function ChooseDonutQty({ item, cartItem, single_donuts }) {
       dispatch(incrementStock({ id: donut.id, qty: 1 }));
       return;
     }
+    //sino resto cantidad
     dispatch(
       decrementPromoChosenQuantity({
         promoId: cartItem.id,
@@ -71,6 +73,7 @@ export default function ChooseDonutQty({ item, cartItem, single_donuts }) {
       if (
         cartItem.donutsPromo.filter((el) => el.donutId === donut.id).length > 0
       ) {
+        //si esta en el carrito aumento cantidad
         dispatch(
           incrementPromoChosenQuantity({
             promoId: cartItem.id,

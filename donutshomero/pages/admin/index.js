@@ -24,6 +24,7 @@ export default function Admin({ admin }) {
   const [orders, setOrders] = useState([]);
   const [skip, setSkip] = useState(0);
   const [take, setTake] = useState(15);
+  const [loadingPage, setLoadingPage] = useState(false);
 
   const handleChangeTake = (e) => {
     setTake(e.target.value);
@@ -31,12 +32,14 @@ export default function Admin({ admin }) {
 
   const handleClickNext = () => {
     if (skip + take >= orders.totalOrders) return;
-    setSkip((prev) => prev + 15);
+    setLoadingPage(true);
+    setSkip((prev) => prev + take);
   };
 
   const handleClickPrev = () => {
     if (skip === 0) return;
-    setSkip((prev) => prev - 15);
+    setLoadingPage(true);
+    setSkip((prev) => prev - take);
   };
 
   useEffect(() => {
@@ -44,7 +47,7 @@ export default function Admin({ admin }) {
   }, [skip]);
 
   useEffect(() => {
-    getOrders(setOrders, skip, take);
+    getOrders(setOrders, skip, take, setLoadingPage);
   }, [skip, take]);
 
   useEffect(() => {
@@ -107,6 +110,7 @@ export default function Admin({ admin }) {
             handleChangeTake={handleChangeTake}
             skip={skip}
             take={take}
+            loadingPage={loadingPage}
           />
         )}
       </div>

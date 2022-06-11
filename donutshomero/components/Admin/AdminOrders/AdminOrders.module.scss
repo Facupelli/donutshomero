@@ -1,5 +1,14 @@
 @import "../../../styles/app.scss";
 
+.loader_container {
+  display: flex;
+  justify-content: center;
+
+  .loader {
+    width: 500px;
+  }
+}
+
 .take_container {
   display: flex;
   align-items: center;
@@ -58,7 +67,7 @@
   }
 
   button:disabled,
-  button[disabled]{
+  button[disabled] {
     background-color: gray;
     box-shadow: none;
   }
@@ -67,13 +76,13 @@
     border-bottom-right-radius: 2rem;
     border-top-right-radius: 2rem;
     box-shadow: rgba(0, 0, 0, 0.322) 2px 2px 4px;
-    border-left:1px solid #006b99;
+    border-left: 1px solid #006b99;
   }
 
   .prev_btn {
     border-bottom-left-radius: 2rem;
     border-top-left-radius: 2rem;
     box-shadow: rgba(0, 0, 0, 0.322) -2px 2px 4px;
-    border-right:1px solid #006b99;
+    border-right: 1px solid #006b99;
   }
 }
