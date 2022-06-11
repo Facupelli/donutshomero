@@ -2,6 +2,7 @@ import { supabase } from "../../lib/supabase";
 import { verify } from "jsonwebtoken";
 import { useEffect, useState } from "react";
 import { getSingleDonuts, getOrders } from "../../utils/admin";
+import Head from "next/head";
 import nookies from "nookies";
 
 //COMPONENTS
@@ -12,7 +13,6 @@ import Nav from "../../components/Nav/Nav";
 import AdminOrders from "../../components/Admin/AdminOrders/AdminOrders";
 
 import s from "./admin.module.scss";
-import Head from "next/head";
 
 export default function Admin({ admin }) {
   const [showPanel, setShowPanel] = useState({

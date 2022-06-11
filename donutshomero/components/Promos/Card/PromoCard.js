@@ -14,10 +14,10 @@ import {
   decrementStock,
   incrementStock,
 } from "../../../redux/features/donuts/donutsSlice";
-
-import s from "./PromoCard.module.scss";
 import { handlePromoStock } from "../../../utils/handlePromoStock";
 import { useState } from "react";
+
+import s from "./PromoCard.module.scss";
 
 export default function PromoCard({ promo, delivery, cart, single_donuts }) {
   const dispatch = useDispatch();
@@ -61,9 +61,9 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
                 {promo.donutQuantity} {promo.donut.name}
               </p>
             ))}
-           {promo.id === "cl41rwcbi0205gcuwzxa71511" && (
-              <p>4 rellenas a elección</p>
-            )}
+          {promo.id === "cl41rwcbi0205gcuwzxa71511" && (
+            <p>4 rellenas a elección</p>
+          )}
         </div>
         <div className={s.image_container_pc}>
           <Image

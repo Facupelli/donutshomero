@@ -2,16 +2,18 @@ import prisma from "../../lib/prisma";
 
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "../../components/Footer/Footer";
-import SingleDonutCard from "../../components/Menu/SingleDonutCard/SingleDonutCard";
-import Nav from "../../components/Nav/Nav";
-import PromoCard from "../../components/Promos/Card/PromoCard";
 import { useRouter } from "next/router";
 import {
   setPromos,
   setSingleDonuts,
 } from "../../redux/features/donuts/donutsSlice";
 import { useEffect } from "react";
+
+//COMPONENTS
+import Footer from "../../components/Footer/Footer";
+import SingleDonutCard from "../../components/Menu/SingleDonutCard/SingleDonutCard";
+import Nav from "../../components/Nav/Nav";
+import PromoCard from "../../components/Promos/Card/PromoCard";
 
 import s from "./index.module.scss";
 

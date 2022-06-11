@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+
+//COMPONENTS
 import LoadingButton from "../../../LoadingButton/LoadingButton";
 import StockCounter from "./StockCounter/StockCounter";
+
 import s from "./StockByUnit.module.scss";
 
 export default function StockByUnit({ donuts }) {

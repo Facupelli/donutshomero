@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+
+//COMPONENTS
 import LoadingButton from "../../../LoadingButton/LoadingButton";
 import DonutStockCard from "./DonutStockCard/DonutStockCard";
+
 import s from "./StockByTotal.module.scss";
 
 export default function StockByTotal({ donuts }) {

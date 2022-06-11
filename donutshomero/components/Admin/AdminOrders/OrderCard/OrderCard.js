@@ -1,10 +1,10 @@
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import SwitchButton from "../../../SwitchButton/SwitchButton";
 
 import s from "./OrderCard.module.scss";
-import axios from "axios";
 
 export default function OrderCard({ order }) {
   const [showItems, setShowItems] = useState(true);

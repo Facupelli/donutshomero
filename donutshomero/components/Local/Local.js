@@ -1,10 +1,12 @@
-import Section from "../Section/Section";
 import dynamic from "next/dynamic";
 import local from "../../public/images/local.jpg";
 import Image from "next/image";
 
-import s from "./Local.module.scss";
+//COMPONENTS
+import Section from "../Section/Section";
 import InfoCard from "./InfoCard/InfoCard";
+
+import s from "./Local.module.scss";
 
 export default function Local({ localDivRef }) {
   const Map = dynamic(() => import("./Map/Map"), {

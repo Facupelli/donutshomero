@@ -1,10 +1,11 @@
 import Head from "next/head";
-import Footer from "../../components/Footer/Footer";
-import Nav from "../../components/Nav/Nav";
-
+import { faWhatsapp, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp, faInstagram } from "@fortawesome/free-brands-svg-icons";
+
+//COMPONENTS
+import Footer from "../../components/Footer/Footer";
+import Nav from "../../components/Nav/Nav";
 
 import s from "./index.module.scss";
 

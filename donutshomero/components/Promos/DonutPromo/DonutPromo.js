@@ -1,4 +1,5 @@
 import PromoCard from "../Card/PromoCard";
+
 import s from "./DonutPromo.module.scss";
 
 export default function DonutPromo({ promo_type, donuts }) {

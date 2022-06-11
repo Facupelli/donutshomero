@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { updateDbStock } from "../../utils/updateDbStock";
 import { cleanCart } from "../../redux/features/cart/cartSlice";
+
+//COMPONENTS
 import GoBackButton from "../GoBackButton/GoBackButton";
 import LoadingButton from "../LoadingButton/LoadingButton";
 import OrderModal from "../OrderModal/OrderModal";

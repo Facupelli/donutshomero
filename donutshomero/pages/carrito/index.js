@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
+import { useState } from "react";
+
+//COMPONENTS
 import Footer from "../../components/Footer/Footer";
 import Nav from "../../components/Nav/Nav";
 import CartItemCard from "../../components/CartItem/CartItemCard/CartItemCard";
-import { useState } from "react";
+import ConfirmOrder from "../../components/ConfirmOrder/ConfirmOrder";
+import PurchaseForm from "../../components/PurchaseForm/PurchaseForm";
 
 import s from "./index.module.scss";
-import PurchaseForm from "../../components/PurchaseForm/PurchaseForm";
-import ConfirmOrder from "../../components/ConfirmOrder/ConfirmOrder";
 
 export default function Carrito() {
   const [showCustomerForm, setShowCustomerForm] = useState(false);

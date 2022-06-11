@@ -1,6 +1,5 @@
-import { supabase } from "../../../lib/supabase";
 import OrderCard from "./OrderCard/OrderCard";
-import { useEffect } from "react";
+
 import s from "./AdminOrders.module.scss";
 
 export default function AdminOrders({

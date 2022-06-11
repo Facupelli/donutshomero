@@ -1,4 +1,5 @@
 import SwitchButton from "../../../../SwitchButton/SwitchButton";
+
 import s from "./DonutStockCard.module.scss";
 
 export default function DonutStockCard({ donut, watch, register, loading }) {
