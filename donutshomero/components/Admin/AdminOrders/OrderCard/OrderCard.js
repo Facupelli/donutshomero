@@ -57,8 +57,6 @@ export default function OrderCard({ order }) {
     (item) => item.id === "cl41rwcbi0205gcuwzxa71511"
   )[0];
 
-  console.log(choosePromo);
-
   return (
     <div className={s.container}>
       <div className={s.orders_card_container}>
