@@ -8,7 +8,7 @@
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 5px 0px;
 
   .show_donuts_container {
-    padding: 1rem 0rem;
+    padding: 1rem 0rem 0rem 0rem;
     margin-left: 4%;
     display: flex;
 
@@ -20,12 +20,13 @@
       flex-grow: 3;
     }
 
-    .order_phone {
+    .order_date {
       align-self: flex-end;
-      margin-bottom: 0.5rem;
-      margin-right: 1rem;
-      font-size: 0.8rem;
-      font-weight: 600;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      margin-right: 0.8rem;
+      font-size: 0.85rem;
 
       @media (max-width: 600px) {
         align-self: center;
@@ -33,16 +34,26 @@
         margin-right: 0rem;
       }
 
-      > span {
-        font-size: 1rem;
-        font-weight: 400;
-        margin-left: 0.5rem;
+      > p {
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .date {
+        display: flex;
+        gap: 0.5rem;
+
+        @media (max-width: 600px) {
+          // font-weight: 600;
+          font-size: 0.9rem;
+          color: $second_blue;
+        }
       }
     }
 
     .show_donuts {
       display: grid;
-      grid-template-columns: 18% 20%;
+      grid-template-columns: 35% 50%;
       align-items: center;
       margin-bottom: 0.2rem;
 
@@ -67,6 +78,8 @@
 .orders_card_container {
   display: grid;
   grid-template-columns: 4% 96%;
+  padding-bottom: 0.5rem;
+  border-bottom: rgb(223, 223, 223) 1px solid;
 
   @media (max-width: 600px) {
     display: flex;
@@ -94,17 +107,6 @@
       flex-direction: column;
       gap: 0.5rem;
       width: 100%;
-    }
-
-    .date {
-      display: flex;
-      gap: 0.5rem;
-
-      @media (max-width: 600px) {
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: $second_blue;
-      }
     }
 
     .angle_icon {

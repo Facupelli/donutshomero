@@ -106,22 +106,9 @@ export default function OrderCard({ order }) {
                 handleToggle={handleDelivered}
               />
             </p>
-            <p className={s.title_mobile}>FECHA:</p>
-            <div className={s.date}>
-              <p>
-                {new Date(order.createdAt)
-                  .toDateString()
-                  .split(" ")
-                  .slice(1, 3)
-                  .join(" ")}
-              </p>
-              <p>
-                {new Date(order.createdAt)
-                  .toLocaleTimeString()
-                  .split(":")
-                  .slice(0, 2)
-                  .join(":")}
-              </p>
+            <p className={s.title_mobile}>CELULAR:</p>
+            <div className={s.phone}>
+              <p>{order.customer.phone}</p>
             </div>
           </div>
           {/* ------------------ PC --------------------------- */}
@@ -155,21 +142,8 @@ export default function OrderCard({ order }) {
                 handleToggle={handleDelivered}
               />
             </p>
-            <div className={s.date}>
-              <p>
-                {new Date(order.createdAt)
-                  .toDateString()
-                  .split(" ")
-                  .slice(1, 3)
-                  .join(" ")}
-              </p>
-              <p>
-                {new Date(order.createdAt)
-                  .toLocaleTimeString()
-                  .split(":")
-                  .slice(0, 2)
-                  .join(":")}
-              </p>
+            <div className={s.phone}>
+              <p>{order.customer.phone}</p>
             </div>
           </div>
           <FontAwesomeIcon
@@ -193,9 +167,25 @@ export default function OrderCard({ order }) {
               </div>
             ))}
           </div>
-          <p className={s.order_phone}>
-            CELULAR: <span>{order.customer.phone}</span>
-          </p>
+          <div className={s.order_date}>
+            <p>FECHA:</p>
+            <div className={s.date}>
+              <p>
+                {new Date(order.createdAt)
+                  .toDateString()
+                  .split(" ")
+                  .slice(1, 3)
+                  .join(" ")}
+              </p>
+              <p>
+                {new Date(order.createdAt)
+                  .toLocaleTimeString()
+                  .split(":")
+                  .slice(0, 2)
+                  .join(":")}
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </div>

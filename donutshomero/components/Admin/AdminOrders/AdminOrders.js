@@ -41,7 +41,7 @@ export default function AdminOrders({
           <p>PAGO</p>
           <p>ESTADO DEL PAGO</p>
           <p>ESTADO DE ENTREGA</p>
-          <p>FECHA</p>
+          <p>CELULAR</p>
         </div>
       </div>
       {orders.length > 0 &&
