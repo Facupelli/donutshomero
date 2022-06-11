@@ -30,7 +30,7 @@ export default function Admin({ admin }) {
   };
 
   const handleClickNext = () => {
-    if (skip >= take) return;
+    if (skip + 15 >= orders.totalOrders) return;
     setSkip((prev) => prev + 15);
   };
 
@@ -97,9 +97,11 @@ export default function Admin({ admin }) {
         {showPanel.orders && (
           <AdminOrders
             orders={orders.orders}
+            totalOrders={orders.totalOrders}
             handleClickNext={handleClickNext}
             handleClickPrev={handleClickPrev}
             handleChangeTake={handleChangeTake}
+            skip={skip}
           />
         )}
       </div>

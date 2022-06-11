@@ -57,6 +57,12 @@
     }
   }
 
+  button:disabled,
+  button[disabled]{
+    background-color: gray;
+    box-shadow: none;
+  }
+
   .next_btn {
     border-bottom-right-radius: 2rem;
     border-top-right-radius: 2rem;

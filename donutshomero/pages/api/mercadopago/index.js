@@ -23,6 +23,8 @@ export default async function mercadopagoController(req, res) {
           }
         );
 
+        console.log(payment);
+
         const orderId = payment.data.external_reference;
 
         const order = await prisma.order.findUnique({ where: { id: orderId } });

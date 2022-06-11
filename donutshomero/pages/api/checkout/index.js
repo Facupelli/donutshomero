@@ -94,10 +94,6 @@ export default async function checkout(req, res) {
               area_code: "264",
               number: Number(user.phone),
             },
-            identification: {
-              type: "DNI",
-              number: "",
-            },
             address: {
               street_name: user.address,
               street_number: Number(user.addressNumber),
@@ -107,7 +103,7 @@ export default async function checkout(req, res) {
           back_urls: {
             success:
               process.env.NODE_ENV === "production"
-                ? "https://donutshomero.vercel.app"
+                ? "https://donutshomero.vercel.app/?ordersuccess=true"
                 : "http://localhost:3000/?ordersuccess=true",
             // failure: "http://www.failure.com",
             // pending: "http://www.pending.com",

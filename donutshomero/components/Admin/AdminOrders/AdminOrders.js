@@ -4,9 +4,11 @@ import s from "./AdminOrders.module.scss";
 
 export default function AdminOrders({
   orders = [],
+  totalOrders,
   handleClickNext,
   handleClickPrev,
-  handleChangeTake
+  handleChangeTake,
+  skip,
 }) {
   return (
     <div>
@@ -35,8 +37,16 @@ export default function AdminOrders({
         orders.map((order) => <OrderCard key={order.id} order={order} />)}
       {orders.length > 0 && (
         <div className={s.pagination_container}>
-          <button className={s.prev_btn} onClick={handleClickPrev}>ANTERIOR</button>
-          <button className={s.next_btn} onClick={handleClickNext}>SIGUIENTE</button>
+          <button disabled={skip === 0 ? true : false} className={s.prev_btn} onClick={handleClickPrev}>
+            ANTERIOR
+          </button>
+          <button
+            disabled={skip + 15 >= totalOrders ? true : false}
+            className={s.next_btn}
+            onClick={handleClickNext}
+          >
+            SIGUIENTE
+          </button>
         </div>
       )}
     </div>
