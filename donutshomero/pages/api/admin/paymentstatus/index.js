@@ -1,17 +1,17 @@
 import prisma from "../../../../lib/prisma";
 
-export default async function deliverStatus(req, res) {
+export default async function paymentStatus(req, res) {
   if (req.method === "PUT") {
     try {
-      const { id, deilverStatus } = req.body;
+      const { id, paymentStatus } = req.body;
 
       
-      let status = deilverStatus === true ? "DELIVERED" : "PENDING";
+      let status = paymentStatus === true ? "APPROVED" : "PENDING";
 
       await prisma.order.update({
         where: { id },
         data: {
-          deliverStatus: status,
+          paymentStatus: status,
         },
       });
 

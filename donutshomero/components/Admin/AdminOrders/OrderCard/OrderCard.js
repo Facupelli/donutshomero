@@ -11,7 +11,11 @@ export default function OrderCard({ order }) {
   const [delivered, setDelivered] = useState(
     order.deliverStatus === "PENDING" ? false : true
   );
+  const [paid, setPaid] = useState(
+    order.paymentStatus === "PENDING" ? false : true
+  );
   const [loading, setLoading] = useState(false);
+  const [payBtnLoading, setPayBtnLoading] = useState(false);
 
   const handleDelivered = async () => {
     setDelivered(!delivered);
@@ -28,6 +32,24 @@ export default function OrderCard({ order }) {
     } catch (err) {
       console.log(err);
       setLoading(false);
+    }
+  };
+
+  const handlePaid = async () => {
+    setPaid(!paid);
+    try {
+      setPayBtnLoading(true);
+      const data = { id: order.id, paymentStatus: !paid };
+      const res = await axios.put(
+        process.env.NODE_ENV === "production"
+          ? "https://donutshomero.vercel.app/api/admin/paymentstatus"
+          : "http://localhost:3000/api/admin/paymentstatus",
+        data
+      );
+      setPayBtnLoading(false);
+    } catch (err) {
+      console.log(err);
+      setPayBtnLoading(false);
     }
   };
 
@@ -60,6 +82,15 @@ export default function OrderCard({ order }) {
               }
             >
               {order.paymentStatus}
+              {order.paymentMethod === "efectivo" ? (
+                <SwitchButton
+                  id={order.id}
+                  loading={payBtnLoading}
+                  isOn={paid}
+                  handleToggle={handlePaid}
+                  payment
+                />
+              ) : null}
             </p>
             <p className={s.title_mobile}>ESTADO ENTREGA:</p>
             <p
@@ -101,6 +132,15 @@ export default function OrderCard({ order }) {
               }
             >
               {order.paymentStatus}
+              {order.paymentMethod === "efectivo" ? (
+                <SwitchButton
+                  id={order.id}
+                  loading={payBtnLoading}
+                  isOn={paid}
+                  handleToggle={handlePaid}
+                  payment
+                />
+              ) : null}
             </p>
             <p
               className={

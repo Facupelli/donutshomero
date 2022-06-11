@@ -53,7 +53,6 @@ export default function Admin({ admin }) {
     const stockListener = supabase
       .from("Donut")
       .on("UPDATE", (payload) => {
-        console.log("Change Received!", payload.new);
         getSingleDonuts(setDonuts);
       })
       .subscribe();
@@ -68,11 +67,9 @@ export default function Admin({ admin }) {
     const ordersListener = supabase
       .from("orders")
       .on("UPDATE", (payload) => {
-        console.log("Order change Received!", payload.new);
         getOrders(setOrders, skip, take);
       })
       .on("INSERT", (payload) => {
-        console.log("Order insert Received!", payload.new);
         getOrders(setOrders, skip, take);
       })
       .subscribe();

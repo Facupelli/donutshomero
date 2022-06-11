@@ -2,6 +2,7 @@ import s from "./SwitchButton.module.scss";
 
 export default function SwitchButton({
   reactHookForm,
+  payment,
   id,
   loading,
   isOn,
@@ -24,7 +25,7 @@ export default function SwitchButton({
           checked={isOn}
           onChange={handleToggle}
           className={s.react_switch_checkbox}
-          id={id}
+          id={payment ? `${id}-payment` : id}
           type="checkbox"
           disabled={loading ? true : false}
         />
@@ -33,7 +34,7 @@ export default function SwitchButton({
       <label
         style={{ background: isOn && "#06D6A0" }}
         className={s.react_switch_label}
-        htmlFor={id}
+        htmlFor={payment ? `${id}-payment` : id}
       >
         <span className={s.react_switch_button} />
       </label>
