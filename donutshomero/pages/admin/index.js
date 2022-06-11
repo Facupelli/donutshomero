@@ -30,7 +30,7 @@ export default function Admin({ admin }) {
   };
 
   const handleClickNext = () => {
-    if (skip + 15 >= orders.totalOrders) return;
+    if (skip + take >= orders.totalOrders) return;
     setSkip((prev) => prev + 15);
   };
 
@@ -38,6 +38,10 @@ export default function Admin({ admin }) {
     if (skip === 0) return;
     setSkip((prev) => prev - 15);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [skip]);
 
   useEffect(() => {
     getOrders(setOrders, skip, take);
@@ -102,6 +106,7 @@ export default function Admin({ admin }) {
             handleClickPrev={handleClickPrev}
             handleChangeTake={handleChangeTake}
             skip={skip}
+            take={take}
           />
         )}
       </div>

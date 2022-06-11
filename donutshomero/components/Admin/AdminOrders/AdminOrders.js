@@ -9,6 +9,7 @@ export default function AdminOrders({
   handleClickPrev,
   handleChangeTake,
   skip,
+  take
 }) {
   return (
     <div>
@@ -41,7 +42,7 @@ export default function AdminOrders({
             ANTERIOR
           </button>
           <button
-            disabled={skip + 15 >= totalOrders ? true : false}
+            disabled={skip + take >= totalOrders ? true : false}
             className={s.next_btn}
             onClick={handleClickNext}
           >
