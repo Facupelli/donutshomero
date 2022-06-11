@@ -22,6 +22,7 @@ export default function Admin({ admin }) {
   });
   const [donuts, setDonuts] = useState([]);
   const [orders, setOrders] = useState([]);
+  //pagination
   const [skip, setSkip] = useState(0);
   const [take, setTake] = useState(15);
   const [loadingPage, setLoadingPage] = useState(false);

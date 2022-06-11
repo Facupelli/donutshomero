@@ -22,7 +22,8 @@ export default function ChooseDonutQty({ item, cartItem, single_donuts }) {
 
   const handleRemoveChosen = (donut) => {
     if (
-      cartItem.donutsPromo.filter((item) => item.donutId === donut.id).length === 0
+      cartItem.donutsPromo.filter((item) => item.donutId === donut.id)
+        .length === 0
     ) {
       //si no esta en el carrito no hago nada
       return;
@@ -64,11 +65,17 @@ export default function ChooseDonutQty({ item, cartItem, single_donuts }) {
       return;
     }
     //suma de las rellenas
-    const rellenasTotal = cartItem.donutsPromo
-      .filter((el) => rellenas.includes(el.donutId))
-      .reduce((prev, acc) => {
-        return prev + acc.donutQuantity;
-      }, 0);
+    const sumRellenasToal = (cartItem) => {
+      const sum = cartItem.donutsPromo
+        .filter((el) => rellenas.includes(el.donutId))
+        .reduce((prev, acc) => {
+          return prev + acc.donutQuantity;
+        }, 0);
+      return sum;
+    };
+
+    const rellenasTotal = sumRellenasToal(cartItem);
+
     if (rellenasTotal < 4 * cartItem.quantity) {
       if (
         cartItem.donutsPromo.filter((el) => el.donutId === donut.id).length > 0

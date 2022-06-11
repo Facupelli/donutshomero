@@ -13,6 +13,9 @@ import s from "./index.module.scss";
 export default function Carrito() {
   const [showCustomerForm, setShowCustomerForm] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
+  const [chooseMessage, setChooseMessage] = useState("");
+
+  console.log(chooseMessage);
 
   const cart = useSelector((state) => state.cart.items);
   const orderedCart = [...cart].sort((a, b) => a.price - b.price);
@@ -22,7 +25,34 @@ export default function Carrito() {
   }, 0);
 
   const handleClickPagar = () => {
-    if (cart.length > 0) setShowCustomerForm(true);
+    const rellenas = [
+      "cl40ncyij0039isuwsg8es48m",
+      "cl40ncyik0041isuw2zpgilga",
+      "cl40ncyik0051isuwl707iv9s",
+    ];
+
+    const promoChoose = cart.filter(
+      (item) => item.id === "cl41rwcbi0205gcuwzxa71511"
+    )[0];
+    if (promoChoose) {
+      const sumRellenasToal = (cartItem) => {
+        const sum = cartItem.donutsPromo
+          .filter((el) => rellenas.includes(el.donutId))
+          .reduce((prev, acc) => {
+            return prev + acc.donutQuantity;
+          }, 0);
+        return sum;
+      };
+
+      const rellenasTotal = sumRellenasToal(promoChoose);
+      if (rellenasTotal < 4 * promoChoose.quantity) {
+        setChooseMessage("TE FALTA ELEGIR TUS DONAS!");
+        return;
+      }
+    }
+    if (cart.length > 0) {
+      setShowCustomerForm(true);
+    }
   };
 
   // console.log("cart", orderedCart);
@@ -55,11 +85,11 @@ export default function Carrito() {
               }).format(totalPrice)}
             </p>
             <div className={s.pagar_btn_container_pc}>
-              <button onClick={handleClickPagar}>PAGAR</button>
+              <button onClick={handleClickPagar}>SIGUIENTE</button>
             </div>
           </div>
           <div className={s.pagar_btn_container_mobile}>
-            <button onClick={handleClickPagar}>PAGAR</button>
+            <button onClick={handleClickPagar}>SIGUIENTE</button>
           </div>
         </div>
       )}

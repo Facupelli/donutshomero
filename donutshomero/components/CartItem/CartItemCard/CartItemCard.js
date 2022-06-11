@@ -68,7 +68,7 @@ export default function CartItemCard({ cartItem }) {
                   className={s.choose_donuts_btn}
                   onClick={() => setChooseDonuts(!chooseDonuts)}
                 >
-                  ELEGIR <span>DONAS</span>
+                  ELEGIR DONAS
                 </button>
               )}
               <p className={s.promo_price}>${cartItem.price}</p>
