@@ -21,12 +21,17 @@
     }
 
     .choosed_donuts {
-      padding-top: .2rem;
+      padding-top: 0.2rem;
       padding-left: 1rem;
       font-size: 0.8rem;
 
       > p {
         font-weight: 600;
+
+        @media (max-width: 600px) {
+          text-align: center;
+          padding-top: 0.5rem;
+        }
       }
 
       > div {
@@ -37,8 +42,13 @@
         flex-direction: column;
         gap: 0.2rem;
 
-        span{
-          margin-left: .5rem;
+        @media (max-width: 600px) {
+          justify-content: center;
+          align-items: center;
+        }
+
+        span {
+          margin-left: 0.5rem;
           font-weight: 600;
         }
       }
@@ -47,6 +57,7 @@
     .order_date {
       align-self: flex-end;
       display: flex;
+      align-items: center;
       gap: 0.5rem;
       justify-content: flex-end;
       margin-right: 0.8rem;
@@ -107,14 +118,21 @@
 
   @media (max-width: 600px) {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
+    // gap: 1rem;
     padding-bottom: 1rem;
+    // background-color: blue;
   }
 
   .id {
     font-weight: 800;
     align-self: center;
+
+    @media (max-width: 600px) {
+      margin-left: auto;
+    }
   }
 
   .child_padding {
@@ -127,10 +145,10 @@
     align-items: center;
 
     @media (max-width: 600px) {
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      width: 100%;
     }
 
     .angle_icon {
@@ -150,8 +168,6 @@
   @media (max-width: 600px) {
     font-size: 1.1rem;
     border-bottom: 2px solid $second_pink;
-    // background-color: $second_pink;
-    // padding: .2rem;
   }
 }
 
@@ -176,6 +192,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;
+    justify-items: center;
     row-gap: 0.5rem;
     width: 100%;
   }
