@@ -28,6 +28,7 @@
 
   @media (max-width: 920px) {
     padding: 1rem 0;
+    height: 65px;
 
     .click:checked ~ ul {
       left: -100px;
@@ -187,10 +188,10 @@
   // color: blue;
 }
 
-.icon_container{
-  transition: all .3s ease;
+.icon_container {
+  transition: all 0.3s ease;
 
-  .bars_icon{
+  .bars_icon {
     width: 25px;
     height: 25px;
   }
