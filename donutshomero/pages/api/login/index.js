@@ -32,7 +32,7 @@ export default async function login(req, res) {
     const authCookie = cookie.serialize("auth", token, {
       secure: process.env.NODE_ENV === "production",
       path: "/",
-      // httpOnly: true,
+      httpOnly: true,
     });
 
     res.setHeader("Set-Cookie", authCookie);
