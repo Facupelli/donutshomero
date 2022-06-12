@@ -79,10 +79,10 @@ export default function Admin({ admin }) {
     const ordersListener = supabase
       .from("orders")
       .on("UPDATE", (payload) => {
-        getOrders(setOrders, skip, take);
+        getOrders(setOrders, skip, take, date);
       })
       .on("INSERT", (payload) => {
-        getOrders(setOrders, skip, take);
+        getOrders(setOrders, skip, take, date);
       })
       .subscribe();
 
