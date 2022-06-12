@@ -1,6 +1,8 @@
 ## DONUTS HOMERO
 
 Donuts Homero es un emprendimiento de producción y venta de donas. La idea es mostrar las promociones, las variedades de donas, información sobre el local y sobre el emprendimiento.
+Se pueden comprar donas en el sitio por mercadopago.
+El administrador del sitio puede ver los pedidos y el estado del pago. También puede ver y setear el stock. Ambos se actualizan en tiempo real, cada vez que se realiza una compra en el sitio.
 
 ### Proximas features:
 
