@@ -53,11 +53,7 @@ export default function Admin({ admin }) {
 
   useEffect(() => {
     getOrders(setOrders, skip, take, date, setLoadingPage);
-  }, [skip, take]);
-
-  useEffect(() => {
-    getOrders(setOrders, skip, take, date, setLoadingPage);
-  }, [date]);
+  }, [skip, take, date]);
 
   useEffect(() => {
     getSingleDonuts(setDonuts);

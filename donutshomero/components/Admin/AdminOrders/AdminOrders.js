@@ -40,7 +40,7 @@ export default function AdminOrders({
         </select>
         <label htmlFor="date">FECHA:</label>
         <select id="date" onChange={(e) => handleChangeDate(e)}>
-          <option value="all">Todas</option>
+          <option value="all">Todos</option>
           <option value={new Date().toISOString().split("T")[0]}>Hoy</option>
         </select>
       </div>
