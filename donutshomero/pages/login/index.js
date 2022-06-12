@@ -38,11 +38,15 @@ export default function Login() {
           withCredentials: true,
         }
       );
-      const accessToken = response?.data?.token;
-      dispatch(setAdminUser({ accessToken }));
-      localStorage.setItem("accessToken", accessToken);
-      setLoginErr("");
-      router.push("/admin");
+      // const accessToken = response?.data?.token;
+      // dispatch(setAdminUser({ accessToken }));
+      // localStorage.setItem("accessToken", accessToken);
+      if (response.data.message === "Logged in successfully") {
+        setLoginErr("");
+        router.push("/admin");
+        return;
+      }
+      setLoginErr("Error");
     } catch (err) {
       setLoginErr(err?.response?.data?.error);
       setLoading(false);

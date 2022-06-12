@@ -3,7 +3,7 @@ import { verify } from "jsonwebtoken";
 import { useEffect, useState } from "react";
 import { getSingleDonuts, getOrders } from "../../utils/admin";
 import Head from "next/head";
-import nookies from "nookies";
+import cookie from "cookie";
 
 //COMPONENTS
 import AdminNav from "../../components/Admin/AdminNav/AdminNav";
@@ -119,10 +119,12 @@ export default function Admin({ admin }) {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
-  const cookies = nookies.get(ctx);
+export const getServerSideProps = async ({ req }) => {
+  // const token = req.headers.cookie.json();
+  const { cookies } = req;
 
   const token = cookies.auth;
+
   if (token) {
     let tokenVerifyed;
     try {

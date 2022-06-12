@@ -1,42 +1,43 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import prisma from "../../../lib/prisma";
-import nookies from "nookies";
+import cookie from "cookie";
 
 export default async function login(req, res) {
   if (req.method === "POST") {
     const { email, password } = req.body;
 
-    const user = await prisma.admin.findUnique({ where: { email } });
+    const admin = await prisma.admin.findUnique({ where: { email } });
 
-    if (!user) {
+    if (!admin) {
       return res.status(401).json({ error: "Invalid email" });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.passwordHash);
+    const isPasswordCorrect = await bcrypt.compare(password, admin.passwordHash);
 
     if (!isPasswordCorrect) {
       return res.status(401).json({ error: "Invalid Password" });
     }
 
     const userForToken = {
-      id: user.id,
-      email: user.email,
-      password,
+      id: admin.id,
+      email: admin.email,
+      // password,
     };
 
     const token = jwt.sign(userForToken, process.env.TOKEN_SECRET_WORD, {
       expiresIn: "60m",
     });
 
-    nookies.set({ res }, "auth", token, {
+    const authCookie = cookie.serialize("auth", token, {
       secure: process.env.NODE_ENV === "production",
       path: "/",
+      // httpOnly: true,
     });
 
+    res.setHeader("Set-Cookie", authCookie);
     res.json({
       message: "Logged in successfully",
-      token,
     });
   } else {
     // Handle any other HTTP method

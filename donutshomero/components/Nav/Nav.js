@@ -14,7 +14,7 @@ import s from "./Nav.module.scss";
 
 export default function Nav({ admin, route, menuDivRef, localDivRef }) {
   const router = useRouter();
-  const adminData = useSelector((state) => state.admin.data);
+  // const adminData = useSelector((state) => state.admin.data);
 
   const hanldeScrollTo = (ref) => {
     if (route === "nosotros" || route === "contacto") {
@@ -40,7 +40,7 @@ export default function Nav({ admin, route, menuDivRef, localDivRef }) {
             </p>
           </Link>
         </div>
-        {!adminData.accessToken && (
+        {!admin && (
           <div className={s.ws}>
             <a
               href="https://wa.me/542644415016"
@@ -65,7 +65,7 @@ export default function Nav({ admin, route, menuDivRef, localDivRef }) {
             onClick={handleClickMenu}
           />
         </label>
-        {adminData.accessToken ? (
+        {admin ? (
           <ul className={s.links}>
             <Link href="/admin">
               <li className={s.admin_link}>

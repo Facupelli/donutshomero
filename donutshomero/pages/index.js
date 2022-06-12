@@ -26,17 +26,17 @@ export default function Home({ donuts, modal }) {
   const donutsState = useSelector((state) => state.donuts);
   const [showModal, setShowModal] = useState(modal === "true" ? true : false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    try {
-      const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
-      if (tokenVerifyed) {
-        dispatch(setAdminUser({ accessToken: token }));
-      }
-    } catch (e) {
-      console.log("unauthorized");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("accessToken");
+  //   try {
+  //     const tokenVerifyed = verify(token, process.env.TOKEN_SECRET_WORD);
+  //     if (tokenVerifyed) {
+  //       dispatch(setAdminUser({ accessToken: token }));
+  //     }
+  //   } catch (e) {
+  //     console.log("unauthorized");
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (
