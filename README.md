@@ -8,9 +8,11 @@ Donuts Homero es un emprendimiento de producción y venta de donas. La idea es m
 -- Cuenta de Admin para manejar las promociones
 
 #### PC
-<img src="./donutshomero/public/images/app_pc.png" alt="app_pc" />
 
+<img src="./donutshomero/public/images/app_pc.png" alt="app_pc" />
 <img src="./donutshomero/public/images/app_home_pc.png" alt="app_pc" />
+<img src="./donutshomero/public/images/orders.png" alt="app_pc" />
+<img src="./donutshomero/public/images/stock.png" alt="app_pc" />
 
 #### MOBILE
 
