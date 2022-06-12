@@ -3,22 +3,26 @@ import prisma from "../../../../lib/prisma";
 export default async function getOrders(req, res) {
   if (req.method === "GET") {
     try {
-      const { skip, take } = req.query;
+      const { skip, take, date } = req.query;
 
       const orders = await prisma.$transaction([
-        prisma.order.count(),
         prisma.order.findMany({
-          // include: { singleDonuts: true, promoDonuts: true },
+          where: {
+            createdAt: {
+              gte: date === "all" ? undefined : `${date}T00:00:00.000Z`,
+            },
+          },
           skip: Number(skip),
           take: Number(take),
           orderBy: { createdAt: "desc" },
           include: { customer: true },
         }),
+        prisma.order.count(),
       ]);
 
       const data = {
-        totalOrders: orders[0],
-        orders: orders[1],
+        totalOrders: orders[1],
+        orders: orders[0],
       };
 
       res.json(data);

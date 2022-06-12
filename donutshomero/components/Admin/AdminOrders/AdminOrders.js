@@ -9,6 +9,7 @@ export default function AdminOrders({
   handleClickNext,
   handleClickPrev,
   handleChangeTake,
+  handleChangeDate,
   skip,
   take,
   loadingPage,
@@ -16,7 +17,13 @@ export default function AdminOrders({
   if (loadingPage) {
     return (
       <div className={s.loader_container}>
-        <RaceBy size={1200} lineWeight={1} speed={3} color="#0081bc" className={s.loader} />
+        <RaceBy
+          size={1200}
+          lineWeight={1}
+          speed={3}
+          color="#0081bc"
+          className={s.loader}
+        />
       </div>
     );
   }
@@ -30,6 +37,11 @@ export default function AdminOrders({
           <option value={20}>20</option>
           <option value={25}>25</option>
           <option value={30}>30</option>
+        </select>
+        <label htmlFor="date">FECHA:</label>
+        <select id="date" onChange={(e) => handleChangeDate(e)}>
+          <option value="all">Todas</option>
+          <option value={new Date().toISOString().split("T")[0]}>Hoy</option>
         </select>
       </div>
       <div className={s.table_titles_container}>

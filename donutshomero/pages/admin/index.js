@@ -3,7 +3,6 @@ import { verify } from "jsonwebtoken";
 import { useEffect, useState } from "react";
 import { getSingleDonuts, getOrders } from "../../utils/admin";
 import Head from "next/head";
-import cookie from "cookie";
 
 //COMPONENTS
 import AdminNav from "../../components/Admin/AdminNav/AdminNav";
@@ -22,13 +21,20 @@ export default function Admin({ admin }) {
   });
   const [donuts, setDonuts] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [date, setDate] = useState("all");
   //pagination
   const [skip, setSkip] = useState(0);
   const [take, setTake] = useState(15);
   const [loadingPage, setLoadingPage] = useState(false);
 
+  console.log('render')
+
   const handleChangeTake = (e) => {
     setTake(e.target.value);
+  };
+
+  const handleChangeDate = (e) => {
+    setDate(e.target.value);
   };
 
   const handleClickNext = () => {
@@ -48,12 +54,16 @@ export default function Admin({ admin }) {
   }, [skip]);
 
   useEffect(() => {
-    getOrders(setOrders, skip, take, setLoadingPage);
+    getOrders(setOrders, skip, take, date, setLoadingPage);
   }, [skip, take]);
 
   useEffect(() => {
+    getOrders(setOrders, skip, take, date, setLoadingPage);
+  }, [date]);
+
+  useEffect(() => {
     getSingleDonuts(setDonuts);
-    getOrders(setOrders, skip, take);
+    getOrders(setOrders, skip, take, date);
   }, []);
 
   //escucho cambios en el stock
@@ -109,6 +119,7 @@ export default function Admin({ admin }) {
             handleClickNext={handleClickNext}
             handleClickPrev={handleClickPrev}
             handleChangeTake={handleChangeTake}
+            handleChangeDate={handleChangeDate}
             skip={skip}
             take={take}
             loadingPage={loadingPage}

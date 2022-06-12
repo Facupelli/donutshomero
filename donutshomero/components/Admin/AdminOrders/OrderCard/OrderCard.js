@@ -176,8 +176,8 @@ export default function OrderCard({ order }) {
                 <div>
                   {choosePromo.donutsPromo
                     .filter((donut) => !donut.promoId)
-                    .map((dona) => (
-                      <p key={dona.id}>
+                    .map((dona, i) => (
+                      <p key={i}>
                         {dona.donutName} <span>x{dona.donutQuantity}</span>
                       </p>
                     ))}
