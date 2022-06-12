@@ -17,7 +17,13 @@ export default async function getOrders(req, res) {
           orderBy: { createdAt: "desc" },
           include: { customer: true },
         }),
-        prisma.order.count(),
+        prisma.order.count({
+          where: {
+            createdAt: {
+              gte: date === "all" ? undefined : `${date}T00:00:00.000Z`,
+            },
+          },
+        }),
       ]);
 
       const data = {

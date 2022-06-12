@@ -27,8 +27,6 @@ export default function Admin({ admin }) {
   const [take, setTake] = useState(15);
   const [loadingPage, setLoadingPage] = useState(false);
 
-  console.log('render')
-
   const handleChangeTake = (e) => {
     setTake(e.target.value);
   };
@@ -44,7 +42,7 @@ export default function Admin({ admin }) {
   };
 
   const handleClickPrev = () => {
-    if (skip === 0) return;
+    if (skip === 0 || skip - take < 0) return;
     setLoadingPage(true);
     setSkip((prev) => prev - take);
   };

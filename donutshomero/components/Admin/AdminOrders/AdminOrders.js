@@ -32,7 +32,7 @@ export default function AdminOrders({
     <div>
       <div className={s.take_container}>
         <label htmlFor="take">MOSTRAR:</label>
-        <select id="take" onChange={(e) => handleChangeTake(e)}>
+        <select id="take" defaultValue={take} onChange={(e) => handleChangeTake(e)}>
           <option value={15}>15</option>
           <option value={20}>20</option>
           <option value={25}>25</option>
