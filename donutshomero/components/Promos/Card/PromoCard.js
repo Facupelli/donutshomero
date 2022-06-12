@@ -78,8 +78,8 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
         <div className={s.image_container_mobile}>
           <Image
             src={media_docena}
-            width="75"
-            height="75"
+            width="65"
+            height="65"
             objectFit="contain"
             alt="media_docena"
           />
