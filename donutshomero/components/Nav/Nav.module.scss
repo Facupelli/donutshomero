@@ -124,24 +124,6 @@
       position: relative;
       z-index: 2;
 
-      .proximamente {
-        position: absolute;
-        z-index: 0;
-        top: 30px;
-        color: white;
-        background-color: $second_pink;
-        padding: 0.5rem;
-        border-radius: 0.2rem;
-        font-size: 0.8rem;
-        display: none;
-      }
-
-      &:first-child {
-        &:hover .proximamente {
-          display: block;
-        }
-      }
-
       &:hover {
         cursor: pointer;
         color: $second_pink;
@@ -195,4 +177,8 @@
     width: 25px;
     height: 25px;
   }
+}
+
+.click:checked ~ .links{
+  box-shadow: rgba(0, 0, 0, 0.322) 10px 0px 2px;
 }

@@ -75,15 +75,21 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
           />
           <p className={s.price}>${price}</p>
         </div>
-        <div className={s.image_container_mobile}>
+        <div
+          className={
+            delivery
+              ? s.image_container_mobile_delivery
+              : s.image_container_mobile
+          }
+        >
           <Image
             src={media_docena}
-            width="65"
-            height="65"
+            width={delivery ? "65" : "75"}
+            height={delivery ? "65" : "75"}
             objectFit="contain"
             alt="media_docena"
           />
-          <p className={s.price}>${price}</p>
+          <p className={delivery ? s.price_deilvery : s.price}>${price}</p>
         </div>
         <div className={delivery ? s.cart_icon_container : s.none}>
           <FontAwesomeIcon
