@@ -100,11 +100,17 @@ export const getServerSideProps = async ({ query }) => {
     orderBy: {
       price: "asc",
     },
+    where: {
+      available: true,
+    },
   });
 
   const promos = await prisma.promo.findMany({
     orderBy: {
       price: "asc",
+    },
+    where: {
+      available: true,
     },
     include: {
       donutsPromo: {
