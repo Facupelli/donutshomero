@@ -1,6 +1,7 @@
 import mercadopago from "mercadopago";
 import prisma from "../../../lib/prisma";
 import axios from "axios";
+import sendWsMessage from "../../../utils/whatsapp";
 
 mercadopago.configure({
   access_token: process.env.TESTMP_ACCESS_TOKEN,
@@ -23,7 +24,7 @@ export default async function mercadopagoController(req, res) {
           }
         );
 
-        console.log(payment);
+        console.log(payment.data);
 
         const orderId = payment.data.external_reference;
 
@@ -39,6 +40,10 @@ export default async function mercadopagoController(req, res) {
               paymentStatus: status, //APPROVED
             },
           });
+        }
+
+        if(payment.data.status.toUpperCase() === "APPROVED"){
+          sendWsMessage('facu','180')
         }
       }
       res.send(200);

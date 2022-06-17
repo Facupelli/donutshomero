@@ -1,5 +1,7 @@
+import axios from "axios";
 import mercadopago from "mercadopago";
 import prisma from "../../../lib/prisma";
+import sendWsMessage from "../../../utils/whatsapp";
 
 mercadopago.configure({
   access_token: process.env.TESTMP_ACCESS_TOKEN,
@@ -66,8 +68,12 @@ export default async function checkout(req, res) {
       });
 
       if (customerData.paymentMethod === "efectivo") {
+        //mando mensaje de ws
+        const wsMessage = await sendWsMessage(customerData.fullName, totalPrice);
+
         res.json({
           message: "order created successfully",
+          whatsapp: wsMessage,
         });
       }
 
