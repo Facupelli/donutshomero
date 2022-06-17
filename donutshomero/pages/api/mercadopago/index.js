@@ -24,11 +24,12 @@ export default async function mercadopagoController(req, res) {
           }
         );
 
-        console.log(payment.data);
-
         const orderId = payment.data.external_reference;
 
-        const order = await prisma.order.findUnique({ where: { id: orderId } });
+        const order = await prisma.order.findUnique({
+          where: { id: orderId },
+          include: { customer: true },
+        });
 
         if (order.totalPrice === payment.data.transaction_amount) {
           const status = payment.data.status.toUpperCase();
@@ -42,8 +43,11 @@ export default async function mercadopagoController(req, res) {
           });
         }
 
-        if(payment.data.status.toUpperCase() === "APPROVED"){
-          sendWsMessage('facu','180')
+        if (payment.data.status.toUpperCase() === "APPROVED") {
+          sendWsMessage(
+            `${order.customer.name} ${order.customer.surname}`,
+            order.totalPrice
+          );
         }
       }
       res.send(200);
