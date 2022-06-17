@@ -5,10 +5,23 @@ export default async function sendWsMessage(fullName, totalPrice, phoneNumber) {
     messaging_product: "whatsapp",
     recipient_type: "individual",
     to: "542647433662",
-    type: "text",
-    text: {
-      preview_url: false,
-      body: `Donuts Homero, hola ${fullName} gracias por tu compra! Estamos preparando el pedido en breve sale el delivery! Cuando llegue el total a pagar es $${totalPrice} + delivery.`,
+    type: "template",
+    template: {
+      name: "pedido_recibido",
+      language: {
+        code: "es_AR",
+      },
+      components: [
+        {
+          type: "body",
+          parameters: [
+            {
+              type: "text",
+              text: `${fullName}`,
+            },
+          ],
+        },
+      ],
     },
   };
 
