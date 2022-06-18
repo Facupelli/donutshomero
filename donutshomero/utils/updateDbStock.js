@@ -61,9 +61,5 @@ export const updateDbStock = (cart) => {
     }, {})
   ).map(([id, quantity]) => ({ id, quantity }));
 
-  const data = {
-    cart: boughtRecap,
-  };
-
-  return data;
+  return boughtRecap;
 };

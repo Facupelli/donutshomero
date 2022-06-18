@@ -16,7 +16,7 @@ export default async function checkout(req, res) {
 
       let user;
 
-      const userExist = await prisma.user.findUnique({
+      const userExist = await prisma.userr.findUnique({
         where: {
           phone: String(customerData.phone),
         },

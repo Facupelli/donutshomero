@@ -4,18 +4,33 @@ export default async function stock(req, res) {
   // Crea un objeto de preferencia
   if (req.method === "PUT") {
     try {
-      const { cart } = req.body;
+      const { cart, action } = req.body;
 
-      await prisma.$transaction(
-        cart.map((item) =>
-          prisma.donut.update({
-            where: { id: item.id },
-            data: {
-              stock: { decrement: item.quantity },
-            },
-          })
-        )
-      );
+      if (action === "decrement") {
+        await prisma.$transaction(
+          cart.map((item) =>
+            prisma.donut.update({
+              where: { id: item.id },
+              data: {
+                stock: { decrement: item.quantity },
+              },
+            })
+          )
+        );
+      }
+
+      if (action === "increment") {
+        await prisma.$transaction(
+          cart.map((item) =>
+            prisma.donut.update({
+              where: { id: item.id },
+              data: {
+                stock: { increment: item.quantity },
+              },
+            })
+          )
+        );
+      }
 
       res.json({ message: "updated successfully" });
     } catch (err) {

@@ -54,10 +54,14 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
 
   const handleClickPedir = async () => {
     setLoading(true);
+    const cartIds = updateDbStock(cart);
 
     //update stock
     try {
-      const data = updateDbStock(cart);
+      const data = {
+        cart: cartIds,
+        action: "decrement",
+      };
 
       await axios.put(
         process.env.NODE_ENV === "production"
@@ -105,6 +109,19 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       setLoading(false);
       setErrorMessage("Hubo un error creando la orden. /checkout.");
       setShowErrorModal(true);
+
+      //restore stock cause order was not completed
+      const data = {
+        cart: cartIds,
+        action: "increment",
+      };
+
+      await axios.put(
+        process.env.NODE_ENV === "production"
+          ? "https://donutshomero.vercel.app/api/stock"
+          : "http://localhost:3000/api/stock",
+        data
+      );
     }
   };
 
