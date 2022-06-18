@@ -93,7 +93,7 @@ export default function Delivery({ donuts = [] }) {
               ))}
           </div>
           <p className={s.promos_title_mobile}>SIMPLES</p>
-          <div className={s.single_donuts}>
+          <div className={`${s.single_donuts} ${s.margin_top}`}>
             {single.length > 0 &&
               single.map((donut) => (
                 <SingleDonutCard

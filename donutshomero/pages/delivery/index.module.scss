@@ -1,7 +1,7 @@
 @import "../../styles/app.scss";
 
 .container {
-  background-color: #f1f1f0;
+  background-color: #f0f0f0;
 
   .main {
     @include app_width;
@@ -74,6 +74,14 @@
         align-items: center;
         flex-direction: column;
         gap: 1rem;
+
+        &.margin_top{
+          margin-top: 4rem;
+
+          @media (max-width: 600px) {
+            margin-top: 1rem;
+          }
+        }
 
         > span {
           font-weight: 600;
