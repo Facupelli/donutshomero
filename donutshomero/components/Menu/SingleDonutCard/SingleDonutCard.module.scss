@@ -91,6 +91,10 @@
       cursor: pointer;
       color: $main_blue;
     }
+
+    &.cart_icon_added {
+      color: $main_pink;
+    }
   }
 }
 
@@ -98,6 +102,6 @@
   display: none;
 }
 
-.no_stock{
+.no_stock {
   @include noStock;
 }

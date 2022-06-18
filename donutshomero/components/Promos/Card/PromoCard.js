@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartPlus,
-  faBasketShopping,
+  faCartFlatbed,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import media_docena from "../../../public/images/media-docena.png";
@@ -95,10 +95,14 @@ export default function PromoCard({ promo, delivery, cart, single_donuts }) {
           <FontAwesomeIcon
             icon={
               cart.filter((cartItem) => cartItem.id === promo.id).length > 0
-                ? faBasketShopping
+                ? faCartFlatbed
                 : faCartPlus
             }
-            className={s.cart_icon}
+            className={
+              cart.filter((cartItem) => cartItem.id === promo.id).length > 0
+                ? `${s.cart_icon} ${s.cart_icon_added}`
+                : s.cart_icon
+            }
             onClick={handleCartClick}
           />
         </div>

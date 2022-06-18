@@ -96,7 +96,8 @@
     border-radius: 100%;
     position: relative;
 
-    .price, .price_deilvery {
+    .price,
+    .price_deilvery {
       text-align: end;
       font-weight: 500;
       font-size: 1.1rem;
@@ -141,6 +142,10 @@
     &:hover {
       cursor: pointer;
       color: $main_blue;
+    }
+
+    &.cart_icon_added {
+      color: $main_pink;
     }
   }
 }

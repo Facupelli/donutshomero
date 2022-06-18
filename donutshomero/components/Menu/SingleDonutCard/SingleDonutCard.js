@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartPlus,
-  faBasketShopping,
+  faCartFlatbed,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import single_donut from "../../../public/images/single_donut.png";
@@ -73,10 +73,14 @@ export default function SingleDonutCard({ donut, delivery, cart }) {
           <FontAwesomeIcon
             icon={
               cart.filter((cartItem) => cartItem.id === donut.id).length > 0
-                ? faBasketShopping
+                ? faCartFlatbed
                 : faCartPlus
             }
-            className={s.cart_icon}
+            className={
+              cart.filter((cartItem) => cartItem.id === donut.id).length > 0
+                ? `${s.cart_icon} ${s.cart_icon_added}`
+                : s.cart_icon
+            }
             onClick={handleCartClick}
           />
         </div>
