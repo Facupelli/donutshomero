@@ -11,6 +11,7 @@ import LoadingButton from "../LoadingButton/LoadingButton";
 import OrderModal from "../OrderModal/OrderModal";
 
 import s from "./ConfirmOrder.module.scss";
+import ErrorModal from "../ErrorModal/ErrorModal";
 
 const FORM_ID = "payment-form";
 
@@ -21,7 +22,9 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
   const customerData = useSelector((state) => state.customerData.data);
 
   const [loading, setLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   //MERCADO PAGO BUTTON GENERATOR
   const [preferenceId, setPreferenceId] = useState();
@@ -64,6 +67,9 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       );
     } catch (err) {
       console.log("unable to update stock:", err);
+      setErrorMessage("Hubo un error con nuestra DB. /dbstock.");
+      setShowErrorModal(true);
+      setLoading(false);
       return;
     }
 
@@ -86,7 +92,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
 
       if (customerData.paymentMethod === "efectivo") {
         console.log(res.data);
-        setShowModal(true);
+        setShowOrderModal(true);
         return;
       }
 
@@ -97,18 +103,26 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
     } catch (err) {
       console.log(err);
       setLoading(false);
+      setErrorMessage("Hubo un error creando la orden. /checkout.");
+      setShowErrorModal(true);
     }
   };
 
   const handleClickModal = () => {
     router.push("/");
-    setShowModal(false);
+    setShowOrderModal(false);
     dispatch(cleanCart());
   };
 
   return (
     <>
-      {showModal && <OrderModal handleClick={handleClickModal} />}
+      {showErrorModal && (
+        <ErrorModal
+          errorMessage={errorMessage}
+          setShowErrorModal={setShowErrorModal}
+        />
+      )}
+      {showOrderModal && <OrderModal handleClick={handleClickModal} />}
       <div className={s.container}>
         <GoBackButton handleOnClick={handleGoBack} />
         <p>CONFRIMACIÓN DE PEDIDO</p>
