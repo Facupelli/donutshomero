@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function sendWsMessage(fullName, totalPrice, phoneNumber) {
+export default async function sendWsMessage(fullName, orderInfo, phoneNumber) {
   const data = {
     messaging_product: "whatsapp",
     recipient_type: "individual",
@@ -9,7 +9,7 @@ export default async function sendWsMessage(fullName, totalPrice, phoneNumber) {
     template: {
       name: "pedido_recibido",
       language: {
-        code: "es_AR",
+        code: "es",
       },
       components: [
         {
@@ -18,6 +18,10 @@ export default async function sendWsMessage(fullName, totalPrice, phoneNumber) {
             {
               type: "text",
               text: `${fullName}`,
+            },
+            {
+              type: "text",
+              text: `${orderInfo}`,
             },
           ],
         },
@@ -28,7 +32,6 @@ export default async function sendWsMessage(fullName, totalPrice, phoneNumber) {
   let wsRes;
 
   try {
-    console.log("llego");
     wsRes = await axios.post(
       `https://graph.facebook.com/v13.0/${process.env.WS_NUMBER_ID}/messages`,
       data,
@@ -42,7 +45,7 @@ export default async function sendWsMessage(fullName, totalPrice, phoneNumber) {
 
     return wsRes.data;
   } catch (err) {
-    console.log("ERROR", err);
+    console.log("ERROR", err.response?.data?.error);
     return { error: "mensaje no enviado" };
   }
 }

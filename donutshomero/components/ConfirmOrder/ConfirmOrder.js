@@ -85,7 +85,7 @@ export default function ConfirmOrder({ setConfirmOrder, setShowCustomerForm }) {
       setLoading(false);
 
       if (customerData.paymentMethod === "efectivo") {
-        console.log(res.data)
+        console.log(res.data);
         setShowModal(true);
         return;
       }

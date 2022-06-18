@@ -69,7 +69,19 @@ export default async function checkout(req, res) {
 
       if (customerData.paymentMethod === "efectivo") {
         //mando mensaje de ws
-        const wsMessage = await sendWsMessage(customerData.fullName, totalPrice);
+        const mappedStr = cart
+          .map((item) => {
+            if (item.donutsQuantity) {
+              return `Promo N° ${item.name} - ${item.donutsQuantity} Donas x${item.quantity}`;
+            } else {
+              return `${item.name} x${item.quantity}`;
+            }
+          })
+          .join(", ");
+
+        console.log(mappedStr);
+
+        const wsMessage = await sendWsMessage(customerData.fullName, mappedStr);
 
         res.json({
           message: "order created successfully",
