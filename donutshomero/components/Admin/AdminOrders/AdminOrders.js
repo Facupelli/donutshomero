@@ -29,7 +29,7 @@ export default function AdminOrders({
   }
 
   return (
-    <div>
+    <section>
       <div className={s.take_container}>
         <label htmlFor="take">MOSTRAR:</label>
         <select id="take" defaultValue={take} onChange={(e) => handleChangeTake(e)}>
@@ -76,6 +76,6 @@ export default function AdminOrders({
           </button>
         </div>
       )}
-    </div>
+    </section>
   );
 }

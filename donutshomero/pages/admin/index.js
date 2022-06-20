@@ -97,14 +97,16 @@ export default function Admin({ admin }) {
         <title>Homero Admin</title>
         <meta name="description" content="Donuts Homero admin panel" />
       </Head>
-      <Nav admin={admin} route="admin" />
-      <div className={s.main}>
+      <header>
+        <Nav admin={admin} route="admin" />
+      </header>
+      <main className={s.main}>
         <AdminNav showPanel={showPanel} setShowPanel={setShowPanel} />
         {showPanel.stock && donuts.length > 0 && (
-          <div className={s.cards_container}>
+          <section className={s.cards_container}>
             <StockByUnit donuts={donuts} />
             <StockByTotal donuts={donuts} />
-          </div>
+          </section>
         )}
         {showPanel.orders && (
           <AdminOrders
@@ -119,7 +121,7 @@ export default function Admin({ admin }) {
             loadingPage={loadingPage}
           />
         )}
-      </div>
+      </main>
     </div>
   );
 }

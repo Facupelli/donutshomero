@@ -29,7 +29,7 @@ export default function Nav({ admin, route, menuDivRef, localDivRef }) {
   };
 
   return (
-    <nav className={route === "admin" ? s.nav_admin : s.nav}>
+    <nav className={route === "admin" ? s.nav_admin : s.nav} aria-label="primary-navigation">
       <div>
         <div className={s.logo}>
           <Link href="/">

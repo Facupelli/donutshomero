@@ -63,32 +63,30 @@ export default function Home({ donuts, modal }) {
   return (
     <div className={s.relative}>
       {showModal && <OrderModal handleClick={() => setShowModal(false)} />}
-      <div>
-        <Head>
-          <title>Donuts Homero</title>
-          <meta
-            name="description"
-            content="Donuts Homero, las mejores donas de San Juan. Compra tus donas y te las llevamos a domicilio. Delivery de donas. Local calle Jujuy entre Laprida y av. Libertador."
-          />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <Head>
+        <title>Donuts Homero</title>
+        <meta
+          name="description"
+          content="Donuts Homero, las mejores donas de San Juan. Compra tus donas y te las llevamos a domicilio. Delivery de donas. Local calle Jujuy entre Laprida y av. Libertador."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <main className={s.main}>
-          <Nav menuDivRef={menuDivRef} localDivRef={localDivRef} />
-          <div className={s.portrait}>
-            <Portrait />
-          </div>
-          <div className={s.promos}>
-            <Promos promosDivRef={promosDivRef} donuts={donuts.promos} />
-            <Menu menuDivRef={menuDivRef} donuts={donuts.single} />
-            <Local localDivRef={localDivRef} />
-          </div>
-          <WsButton scrollY={scrollY} />
-          <Footer menuDivRef={menuDivRef} promosDivRef={promosDivRef} />
-        </main>
-
-        <footer></footer>
-      </div>
+      <header>
+        <Nav menuDivRef={menuDivRef} localDivRef={localDivRef} />
+        <div className={s.portrait}>
+          <Portrait />
+        </div>
+      </header>
+      <main className={s.main}>
+        <div className={s.promos}>
+          <Promos promosDivRef={promosDivRef} donuts={donuts.promos} />
+          <Menu menuDivRef={menuDivRef} donuts={donuts.single} />
+          <Local localDivRef={localDivRef} />
+        </div>
+        <WsButton scrollY={scrollY} />
+      </main>
+      <Footer menuDivRef={menuDivRef} promosDivRef={promosDivRef} />
     </div>
   );
 }
