@@ -59,7 +59,9 @@ export default function Delivery({ donuts = [] }) {
             Agrega los productos que quieras al carrito y luego ajustas las
             cantidades!
           </p>
-          <button onClick={() => router.push("/carrito")}>VER CARRITO</button>
+          <button onClick={() => router.push("/carrito")}>
+            VER CARRITO <span>{cart.length}</span>
+          </button>
         </div>
         <div className={s.products_container}>
           <p>PROMOS</p>

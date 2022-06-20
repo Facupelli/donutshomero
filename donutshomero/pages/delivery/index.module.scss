@@ -21,7 +21,9 @@
 
       button {
         margin-left: auto;
-
+        display: flex;
+        align-items: center;
+        gap: .4rem;
         padding: 0.8rem;
         font-size: 0.7rem;
         border-radius: 1rem;
@@ -33,6 +35,10 @@
         &:hover {
           cursor: pointer;
           background-color: $main_blue;
+        }
+
+        span{
+          font-size: .9rem;
         }
       }
     }
