@@ -18,16 +18,19 @@ export default function AdminStats() {
   const getDonuts = async () => {
     const res = await axios.get(
       process.env.NODE_ENV === "production"
-        ? "https://donutshomero.vercel.app/api/admin/orders/stats"
-        : "http://localhost:3000/api/admin/orders/stats"
+        ? `https://donutshomero.vercel.app/api/admin/orders/stats?date=${date}`
+        : `http://localhost:3000/api/admin/orders/stats?date=${date}`
     );
-    setLoading(false);
     return res.data;
   };
 
   useEffect(() => {
-    getDonuts().then((res) => setDonuts(res));
-  }, []);
+    setLoading(true);
+    getDonuts().then((res) => {
+      setDonuts(res);
+      setLoading(false);
+    });
+  }, [date]);
 
   if (loading) {
     return <p>Cargando...</p>;

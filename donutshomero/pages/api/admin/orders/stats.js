@@ -3,7 +3,14 @@ import prisma from "../../../../lib/prisma";
 export default async function getOrders(req, res) {
   if (req.method === "GET") {
     try {
+      const { date } = req.query;
+
       const data = await prisma.order.findMany({
+        where: {
+          createdAt: {
+            gte: date === "all" ? undefined : `${date}T00:00:00.000Z`,
+          },
+        },
         select: {
           id: true,
           totalPrice: true,
@@ -74,16 +81,28 @@ export default async function getOrders(req, res) {
         select: {
           name: true,
           donutsQuantity: true,
+          orders: {
+            where: {
+              createdAt: {
+                gte: date === "all" ? undefined : `${date}T00:00:00.000Z`,
+              },
+            },
+          },
           _count: { select: { orders: true } },
         },
       });
 
       const promosData = promos.map((promo) => ({
         name: `N°${promo.name} x ${promo.donutsQuantity}`,
-        totalSold: promo._count.orders,
+        totalSold: promo.orders.length,
       }));
 
       const totalEarnings = await prisma.order.aggregate({
+        where: {
+          createdAt: {
+            gte: date === "all" ? undefined : `${date}T00:00:00.000Z`,
+          },
+        },
         _sum: {
           totalPrice: true,
         },
