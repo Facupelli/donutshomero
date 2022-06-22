@@ -9,11 +9,21 @@ export default function AdminStats() {
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState("all");
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
-
   console.log(date);
+
+  const handleDateChange = (e) => {
+    if (e.target.value === "all") {
+      setDate("all");
+    }
+    if (e.target.value === "today") {
+      setDate(new Date().toISOString().split("T")[0]);
+    }
+    if (e.target.value === "last-month") {
+      const newDate = new Date();
+      newDate.setMonth(newDate.getMonth() - 1);
+      setDate(newDate.toISOString().split("T")[0]);
+    }
+  };
 
   const getDonuts = async () => {
     const res = await axios.get(
@@ -32,19 +42,15 @@ export default function AdminStats() {
     });
   }, [date]);
 
-  if (loading) {
-    return <p>Cargando...</p>;
-  }
-
   return (
     <section className={s.container}>
       <article className={s.intro}>
         <div className={s.select_wrapper}>
           <label>mostrar estadistícas de:</label>
-          <select onChange={(e) => handleDateChange(e)}>
+          <select defaultValue={date} onChange={(e) => handleDateChange(e)}>
             <option value="all">TODOS LOS TIEMPOS</option>
-            <option value={new Date().toISOString().split("T")[0]}>HOY</option>
-            <option value="last month">ULTIMO MES</option>
+            <option value="today">HOY</option>
+            <option value="last-month">ULTIMO MES</option>
           </select>
         </div>
         <div className={s.total_earnings}>
@@ -60,21 +66,25 @@ export default function AdminStats() {
         </div>
       </article>
 
-      {donuts && (
-        <article className={s.donuts_article}>
-          <div className={s.chart_container}>
-            <p>Donas singulares en promos más vendidas:</p>
-            <Chart data={donuts.withPromo} />
-          </div>
-          <div className={s.chart_container}>
-            <p>Donas singulares más vendidas:</p>
-            <Chart data={donuts.withOutPromo} />
-          </div>
-          <div className={s.chart_container}>
-            <p>Promos más vendidas</p>
-            <Chart data={donuts.promos} />
-          </div>
-        </article>
+      {loading ? (
+        <p>Cargando...</p>
+      ) : (
+        donuts && (
+          <article className={s.donuts_article}>
+            <div className={s.chart_container}>
+              <p>Donas singulares en promos más vendidas:</p>
+              <Chart data={donuts.withPromo} />
+            </div>
+            <div className={s.chart_container}>
+              <p>Donas singulares más vendidas:</p>
+              <Chart data={donuts.withOutPromo} />
+            </div>
+            <div className={s.chart_container}>
+              <p>Promos más vendidas</p>
+              <Chart data={donuts.promos} />
+            </div>
+          </article>
+        )
       )}
     </section>
   );
