@@ -3,60 +3,72 @@ import prisma from "../../../../lib/prisma";
 export default async function getOrders(req, res) {
   if (req.method === "GET") {
     try {
-      const data = await prisma.donut.findMany({
+      const data = await prisma.order.findMany({
         select: {
           id: true,
-          orders: true,
-          quantity: true,
-          name: true,
-          _count: { select: { orders: true } },
-          donutsPromo: {
-            select: {
-              donutQuantity: true,
-              promo: {
-                select: {
-                  _count: { select: { orders: true } },
-                  name: true,
-                  donutsQuantity: true,
-                },
+          totalPrice: true,
+          items: true,
+          paymentMethod: true,
+          singleDonuts: true,
+          promoDonuts: {
+            include: {
+              donutsPromo: {
+                include: { donut: true },
               },
             },
           },
         },
       });
 
-      // where: {
-      //   createdAt: {
-      //     gte: date === "all" ? undefined : `${date}T00:00:00.000Z`,
-      //   },
-      // },
+      //SINGLE DONUTS
+      const donutsMostSoldRecap = data
+        .map((order) =>
+          order.singleDonuts.map((donut) => {
+            return {
+              name: donut.name,
+              totalSold: order.items.filter(
+                (item) => item.name === donut.name
+              )[0].quantity,
+            };
+          })
+        )
+        .flat();
 
-      const donutsMostSold = data
-      .map((donut) => {
-        console.log()
-        return {
-          name: donut.name,
-          totalSold: donut.orders.reduce((prev, acc) => {
-            return prev + acc.items.filter((item) => item.id === donut.id)[0].quantity;
-          }, 0),
-        };
-      })
-      .sort((a, b) => b.totalSold - a.totalSold);
-
-      const donutsMostSoldPlusPromo = data
-        .map((donut) => {
-          return {
-            name: donut.name,
-            totalSold:
-              donut.donutsPromo.length > 0
-                ? donut.donutsPromo.reduce((prev, acc) => {
-                    return prev + acc.donutQuantity * acc.promo._count.orders;
-                  }, 0) + donutsMostSold.filter(el => el.name === donut.name)[0].totalSold
-                : donutsMostSold.filter(el => el.name === donut.name)[0].totalSold,
-          };
-        })
+      const donutsMostSold = Object.entries(
+        donutsMostSoldRecap.reduce((a, { name, totalSold }) => {
+          a[name] = (a[name] ?? 0) + totalSold;
+          return a;
+        }, {})
+      )
+        .map(([name, totalSold]) => ({ name, totalSold }))
         .sort((a, b) => b.totalSold - a.totalSold);
 
+      // DONUTS IN PROMOS
+      const donutsMostSoldInPromoRecap = data
+        .map((order) =>
+          order.promoDonuts.map((promo) =>
+            promo.donutsPromo.map((donut) => {
+              return {
+                name: donut.donut.name,
+                totalSold:
+                  donut.donutQuantity *
+                  order.items.filter((item) => item.id === donut.promoId)[0]
+                    .quantity,
+              };
+            })
+          )
+        )
+        .flat(2);
+
+      const donutsMostSoldInPromo = Object.entries(
+        donutsMostSoldInPromoRecap.reduce((a, { name, totalSold }) => {
+          a[name] = (a[name] ?? 0) + totalSold;
+          return a;
+        }, {})
+      )
+        .map(([name, totalSold]) => ({ name, totalSold }))
+        .sort((a, b) => b.totalSold - a.totalSold);
+      //PROMOS MOST SOLD
       const promos = await prisma.promo.findMany({
         orderBy: { orders: { _count: "desc" } },
         select: {
@@ -78,9 +90,8 @@ export default async function getOrders(req, res) {
       });
 
       res.json({
-        // data,
         withOutPromo: donutsMostSold,
-        withPromo: donutsMostSoldPlusPromo,
+        withPromo: donutsMostSoldInPromo,
         promos: promosData,
         totalEarnings,
       });

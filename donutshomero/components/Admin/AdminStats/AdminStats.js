@@ -7,6 +7,13 @@ import s from "./AdminStats.module.scss";
 export default function AdminStats() {
   const [donuts, setDonuts] = useState();
   const [loading, setLoading] = useState(true);
+  const [date, setDate] = useState("all");
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
+  console.log(date);
 
   const getDonuts = async () => {
     const res = await axios.get(
@@ -31,11 +38,10 @@ export default function AdminStats() {
       <article className={s.intro}>
         <div className={s.select_wrapper}>
           <label>mostrar estadistícas de:</label>
-          <select>
+          <select onChange={(e) => handleDateChange(e)}>
             <option value="all">TODOS LOS TIEMPOS</option>
             <option value={new Date().toISOString().split("T")[0]}>HOY</option>
-            <option>ULTIMA SEMANA</option>
-            <option>ULTIMO MES</option>
+            <option value="last month">ULTIMO MES</option>
           </select>
         </div>
         <div className={s.total_earnings}>
@@ -54,7 +60,7 @@ export default function AdminStats() {
       {donuts && (
         <article className={s.donuts_article}>
           <div className={s.chart_container}>
-            <p>Donas singulares + en promos más vendidas:</p>
+            <p>Donas singulares en promos más vendidas:</p>
             <Chart data={donuts.withPromo} />
           </div>
           <div className={s.chart_container}>
