@@ -23,7 +23,7 @@ export default function Chart({ data }) {
     .range([0, innerWidth]);
 
   return (
-    <svg width={width} height={height}>
+    <svg width={width} height={height} className={s.svg}>
       <g transform={`translate(${margin.left},${margin.top})`}>
         {/* axis bottom */}
         {xScale.ticks().map((tickValue) => (

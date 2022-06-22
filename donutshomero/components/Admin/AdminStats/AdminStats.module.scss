@@ -8,6 +8,8 @@
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+    row-gap: 1rem;
+    flex-wrap: wrap;
 
     .select_wrapper {
       display: flex;
@@ -50,6 +52,17 @@
         text-align: center;
         font-weight: 600;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .intro {
+    justify-content: center;
+    margin-bottom: 4rem !important;
+
+    .total_earnings {
+      margin-right: auto;
     }
   }
 }

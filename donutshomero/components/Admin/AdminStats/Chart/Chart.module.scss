@@ -1,4 +1,4 @@
-@import '../../../../styles/app.scss';
+@import "../../../../styles/app.scss";
 
 .tick line {
   stroke: $second_pink;
@@ -11,3 +11,22 @@
 .mark {
   fill: $main_blue;
 }
+
+@media (max-width: 600px) {
+  .svg {
+    width: 550px;
+  }
+}
+
+@media (max-width: 480px) {
+  .svg {
+    width: 430px;
+  }
+}
+
+@media (max-width: 400px) {
+  .svg {
+    width: 350px;
+  }
+}
+

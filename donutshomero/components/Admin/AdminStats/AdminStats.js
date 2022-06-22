@@ -9,8 +9,6 @@ export default function AdminStats() {
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState("all");
 
-  console.log(date);
-
   const handleDateChange = (e) => {
     if (e.target.value === "all") {
       setDate("all");
@@ -46,7 +44,7 @@ export default function AdminStats() {
     <section className={s.container}>
       <article className={s.intro}>
         <div className={s.select_wrapper}>
-          <label>mostrar estadistícas de:</label>
+          <label>mostrar:</label>
           <select defaultValue={date} onChange={(e) => handleDateChange(e)}>
             <option value="all">TODOS LOS TIEMPOS</option>
             <option value="today">HOY</option>
