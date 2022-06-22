@@ -29,10 +29,10 @@ export default function Chart({ data }) {
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
         {/* axis bottom */}
-        {xScale.ticks().map((tickValue) => (
+        {xScale.ticks().map((tickValue, i) => (
           <g
             className={s.tick}
-            key={tickValue}
+            key={i}
             transform={`translate(${xScale(tickValue)},0)`}
           >
             <line y2={innerHeight} stroke="black" />
@@ -46,10 +46,10 @@ export default function Chart({ data }) {
           </g>
         ))}
         {/* axis left */}
-        {yScale.domain().map((tickValue) => (
+        {yScale.domain().map((tickValue, i) => (
           <g className={s.tick}>
             <text
-              key={tickValue}
+              key={i}
               style={{ textAnchor: "end" }}
               x={-3}
               dy=".32em"
