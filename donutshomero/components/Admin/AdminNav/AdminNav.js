@@ -10,7 +10,7 @@ export default function AdminNav({ showPanel, setShowPanel }) {
             setShowPanel({
               orders: true,
               stock: false,
-              users: false,
+              stats: false,
             })
           }
         >
@@ -22,23 +22,23 @@ export default function AdminNav({ showPanel, setShowPanel }) {
             setShowPanel({
               orders: false,
               stock: true,
-              users: false,
+              stats: false,
             })
           }
         >
           STOCK
         </li>
         <li
-          className={showPanel.users ? s.active : null}
+          className={showPanel.stats ? s.active : null}
           onClick={() =>
             setShowPanel({
               orders: false,
               stock: false,
-              users: true,
+              stats: true,
             })
           }
         >
-          USERS
+          STATS
         </li>
       </ul>
     </nav>

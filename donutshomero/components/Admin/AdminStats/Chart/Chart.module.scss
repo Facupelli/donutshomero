@@ -1,0 +1,13 @@
+@import '../../../../styles/app.scss';
+
+.tick line {
+  stroke: $second_pink;
+}
+
+.tick text {
+  fill: #413e3c;
+}
+
+.mark {
+  fill: $main_blue;
+}

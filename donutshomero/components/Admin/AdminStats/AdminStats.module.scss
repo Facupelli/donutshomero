@@ -1,0 +1,55 @@
+@import "../../../styles/app.scss";
+
+.container {
+  margin-top: 4rem;
+  padding-bottom: 4rem;
+
+  .intro {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    .select_wrapper {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-start;
+
+      select {
+        background-color: transparent;
+        border: none;
+        font-weight: 700;
+        border: 1px solid $second_pink;
+        padding: 0.2rem;
+        border-radius: 0.2rem;
+      }
+    }
+
+    .total_earnings {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 1rem;
+
+      .price {
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .donuts_article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+
+    .chart_container {
+      p {
+        text-align: center;
+        font-weight: 600;
+      }
+    }
+  }
+}

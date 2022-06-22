@@ -10,6 +10,7 @@ import StockByTotal from "../../components/Admin/AdminStock/StockByTotal/StockBy
 import StockByUnit from "../../components/Admin/AdminStock/StockByUnit/StockByUnit";
 import Nav from "../../components/Nav/Nav";
 import AdminOrders from "../../components/Admin/AdminOrders/AdminOrders";
+import AdminStats from "../../components/Admin/AdminStats/AdminStats";
 
 import s from "./admin.module.scss";
 
@@ -17,7 +18,7 @@ export default function Admin({ admin }) {
   const [showPanel, setShowPanel] = useState({
     orders: true,
     stock: false,
-    users: false,
+    stats: false,
   });
   const [donuts, setDonuts] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -121,6 +122,7 @@ export default function Admin({ admin }) {
             loadingPage={loadingPage}
           />
         )}
+        {showPanel.stats && <AdminStats orders={orders} />}
       </main>
     </div>
   );
