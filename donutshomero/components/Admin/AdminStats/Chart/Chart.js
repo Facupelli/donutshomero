@@ -5,11 +5,8 @@ import s from "./Chart.module.scss";
 const width = 900;
 const height = 300;
 const margin = { top: 20, right: 20, bottom: 20, left: 200 };
-const xAxisLabelOffset = 50;
 
 export default function Chart({ data }) {
-  console.log("data", data);
-
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
 

@@ -51,20 +51,22 @@ export default function AdminStats() {
         </div>
       </article>
 
-      <article className={s.donuts_article}>
-        <div className={s.chart_container}>
-          <p>Donas singulares + en promos más vendidas:</p>
-          {donuts && <Chart data={donuts.withPromo} />}
-        </div>
-        <div className={s.chart_container}>
-          <p>Donas singulares más vendidas:</p>
-          {donuts && <Chart data={donuts.withOutPromo} />}
-        </div>
-        <div className={s.chart_container}>
-          <p>Promos más vendidas</p>
-          {donuts && <Chart data={donuts.promos} />}
-        </div>
-      </article>
+      {donuts && (
+        <article className={s.donuts_article}>
+          <div className={s.chart_container}>
+            <p>Donas singulares + en promos más vendidas:</p>
+            <Chart data={donuts.withPromo} />
+          </div>
+          <div className={s.chart_container}>
+            <p>Donas singulares más vendidas:</p>
+            <Chart data={donuts.withOutPromo} />
+          </div>
+          <div className={s.chart_container}>
+            <p>Promos más vendidas</p>
+            <Chart data={donuts.promos} />
+          </div>
+        </article>
+      )}
     </section>
   );
 }
