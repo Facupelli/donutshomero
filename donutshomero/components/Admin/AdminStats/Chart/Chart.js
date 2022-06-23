@@ -3,10 +3,11 @@ import { scaleBand, scaleLinear, max } from "d3";
 import s from "./Chart.module.scss";
 
 const width = 900;
-const height = 300;
 const margin = { top: 20, right: 20, bottom: 20, left: 200 };
 
-export default function Chart({ data }) {
+export default function Chart({ data, height = 300 }) {
+  // const height = 300;
+
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
 
